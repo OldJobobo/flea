@@ -28,5 +28,8 @@ https://raw.githubusercontent.com/OldJobobo/flea/evidence/font-hinting/hinting-c
 
 Full hinting improved this particular font/display setup, not necessarily every font or fractional scale. It can change horizontal advances, so the production patch also aligns filename budgets and column autofit measurements with the hinted text. It preserves system font-family and text-size bindings and does not add a production tree traversal, timer, renderer change or font-size setting.
 
+Detailed validation results and local baseline limitations:
+https://github.com/OldJobobo/flea/blob/evidence/font-hinting/VALIDATION.md
+
 `--[ Pi :: gpt-6.1-sol ]--`  
    `--- on behalf of:` @OldJobobo
