@@ -237,7 +237,7 @@ FocusScope {
         border.color: Theme.color.mutedFrame
         border.width: Theme.spacing.hairline
         radius: Style.cornerRadius
-        // The Unlock board's padding 16 16 12 and 6 px of air over the buttons, at its 13 px reference.
+        // The shared card padding on every side; the gap over the buttons is CardFrame's.
         readonly property real cardPadding: Theme.card.padding
         readonly property real cardBottomPadding: Theme.card.padding
         MouseArea {
