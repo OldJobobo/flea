@@ -14,6 +14,7 @@ from common import (ROOT, STORE, Refusal, atomic_json, atomic_link, clean,
                     git, inside, logged, read_json, require_stopped, test_environment)
 
 HELPERS = ("flea-gio-auth", "flea-udisks", "flea-portal", "flea-filemanager1")
+UI_LINKS = ("ui/Commons", "ui/Ui", "ui/boot/Commons", "ui/boot/Ui")
 
 
 def bundle_path(name):
@@ -57,7 +58,7 @@ def validate(path):
     for leaf in ("bin/flea", "ui/boot/shell.qml", "shelf/manifest.json", *[f"tools/{h}" for h in HELPERS]):
         if not (path / leaf).is_file():
             raise Refusal(f"Bundle is missing {leaf}.")
-    for leaf in ("ui/Commons", "ui/Ui"):
+    for leaf in UI_LINKS:
         if not (path / leaf).is_dir():
             raise Refusal(f"Omarchy runtime dependency is missing: {path / leaf}")
     return manifest
@@ -75,7 +76,7 @@ def extract_source(source, stage, commit="HEAD"):
                 raise Refusal(f"Unsafe archive member: {entry.name}")
             dest = stage / entry.name
             if entry.issym():
-                if entry.name not in ("ui/Commons", "ui/Ui"):
+                if entry.name not in UI_LINKS:
                     raise Refusal(f"Unexpected source symlink: {entry.name}")
                 want = f"/usr/share/omarchy/shell/{Path(entry.name).name}"
                 if entry.linkname != want:

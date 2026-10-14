@@ -54,8 +54,8 @@ class Tools(unittest.TestCase):
             item = path / leaf
             item.parent.mkdir(parents=True, exist_ok=True)
             item.write_text("fixture\n")
-        (path / "ui/Commons").mkdir()
-        (path / "ui/Ui").mkdir()
+        for leaf in bundles.UI_LINKS:
+            (path / leaf).mkdir()
         files = bundles.fingerprints(path)
         common.atomic_json(path / "manifest.json", {"commit": name, "version": "fixture", "checks": "quick", "files": files})
         common.atomic_json(self.store / "verification" / f"{name}.json", {"files": files, "smoke_passed": True})
@@ -164,8 +164,8 @@ class Tools(unittest.TestCase):
             path = self.root / leaf
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_text("fixture\n")
-        for name in ("Commons", "Ui"):
-            (self.root / "ui" / name).symlink_to(f"/usr/share/omarchy/shell/{name}")
+        for leaf in bundles.UI_LINKS:
+            (self.root / leaf).symlink_to(f"/usr/share/omarchy/shell/{Path(leaf).name}")
         binary = self.root / "target/release/flea"
         binary.parent.mkdir(parents=True)
         binary.write_text("#!/bin/sh\nprintf 'flea fixture\\n'\n")
@@ -191,7 +191,8 @@ class Tools(unittest.TestCase):
         self.assertEqual(manifest["commit"], self.git("rev-parse", "HEAD"))
         self.assertEqual(manifest["checks"], "quick")
         self.assertEqual((path / "ui/boot/shell.qml").read_text(), "fixture\n")
-        self.assertTrue((path / "ui/Commons").is_symlink())
+        for leaf in bundles.UI_LINKS:
+            self.assertTrue((path / leaf).is_symlink())
         self.assertFalse((self.store / "current").exists())
 
     def test_desktop_plan_never_installs(self):
