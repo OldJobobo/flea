@@ -65,7 +65,10 @@ def backend_check(bundle, fixture, env):
 
 def gui_check(bundle, fixture, env, log, native=False):
     if not native:
-        env.update({"QT_QPA_PLATFORM": "offscreen", "QT_QUICK_BACKEND": "software",
+        for key in ("DISPLAY", "WAYLAND_DISPLAY", "HYPRLAND_INSTANCE_SIGNATURE"):
+            env.pop(key, None)
+        # Flea's launcher requires a display marker; Qt still uses only its offscreen platform.
+        env.update({"DISPLAY": ":flea-smoke", "QT_QPA_PLATFORM": "offscreen", "QT_QUICK_BACKEND": "software",
                     "QSG_RHI_BACKEND": "software", "QT_QPA_PLATFORMTHEME": "generic"})
     with log.open("w") as output:
         process = subprocess.Popen([str(bundle / "bin/flea"), "--gui", str(fixture)], env=env,
@@ -77,7 +80,7 @@ def gui_check(bundle, fixture, env, log, native=False):
                 values = []
                 for method in ("ready", "path", "total", "themeLoaded"):
                     try:
-                        result = subprocess.run(["qs", "ipc", "--pid", str(process.pid),
+                        result = subprocess.run(["qs", "ipc", "--path", str(bundle / "ui/boot"),
                                                  "call", "flea", method], env=env,
                                                 capture_output=True, text=True, timeout=3)
                     except subprocess.TimeoutExpired:
@@ -96,14 +99,14 @@ def smoke(name, native=False):
     bundle = bundle_path(name)
     manifest = validate(bundle)
     log = STORE / "logs" / f"{time.time_ns()}-smoke-{'native' if native else 'offscreen'}.log"
-    with tempfile.TemporaryDirectory(prefix="smoke-", dir=STORE / "tmp") as temporary:
+    with tempfile.TemporaryDirectory(prefix="s-", dir=STORE / "tmp") as temporary:
         root = Path(temporary)
         fixture = root / "files"
         fixture.mkdir()
         (fixture / "example.txt").write_text("Custom Flea smoke fixture.\n")
         (fixture / "example.svg").write_text('<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10"><rect width="10" height="10" fill="red"/></svg>')
         (fixture / "folder").mkdir()
-        runtime = root / "runtime"
+        runtime = root / "r"
         runtime.mkdir(mode=0o700)
         env = environment(bundle, "smoke", None if native else runtime)
         print("Checking deployed backend and GUI with disposable files…", flush=True)
