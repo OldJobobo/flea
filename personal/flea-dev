@@ -1,0 +1,116 @@
+#!/usr/bin/env python3
+"""Build, verify, update and contribute without replacing packaged Flea."""
+import argparse
+from pathlib import Path
+import shutil
+import sys
+
+from bundles import build, bundle_path, promote, rollback, selected, validate
+from common import (ROOT, STORE, Refusal, atomic_json, clean, git, initialize,
+                    locked, logged, read_json, test_environment)
+from smoke import smoke
+import workflow
+
+
+def parser():
+    cli = argparse.ArgumentParser(description=__doc__)
+    commands = cli.add_subparsers(dest="command", required=True)
+    commands.add_parser("status", help="Show checkout, builds and verification status")
+    commands.add_parser("doctor", help="Verify current bundle integrity and dependencies")
+    commands.add_parser("fetch", help="Fetch upstream and fast-forward clean main; never deploy")
+    sync = commands.add_parser("sync", help="Prepare an upstream merge in a separate worktree")
+    sync.add_argument("--base", choices=("release", "main"), default="release")
+    feature = commands.add_parser("feature", help="Create a clean upstream contribution worktree")
+    feature.add_argument("name")
+    integrate = commands.add_parser("integrate", help="Merge a reviewed feature/sync into personal; never deploy")
+    integrate.add_argument("branch")
+    compile_ = commands.add_parser("build", help="Build a clean commit; daily selection stays unchanged")
+    compile_.add_argument("--source", type=Path, default=ROOT)
+    compile_.add_argument("--checks", choices=("quick", "full"), default="full")
+    verify = commands.add_parser("verify", help="Run the full upstream battery for an existing bundle's commit")
+    verify.add_argument("build", nargs="?")
+    verify.add_argument("--source", type=Path, default=ROOT)
+    check = commands.add_parser("smoke", help="Check deployed backend and GUI with disposable files")
+    check.add_argument("build", nargs="?")
+    check.add_argument("--native", action="store_true", help="Briefly open a real window instead of offscreen")
+    promotion = commands.add_parser("promote", help="Select a smoke-tested bundle; snapshots private state")
+    promotion.add_argument("build")
+    commands.add_parser("rollback", help="Restore previous build and its pre-promotion state")
+    desktop = commands.add_parser("desktop", help="Preview or install explicit user-level desktop routing")
+    desktop.add_argument("action", choices=("plan", "install", "remove"), default="plan", nargs="?")
+    desktop.add_argument("--shortcuts", action="store_true")
+    desktop.add_argument("--directory-default", action="store_true")
+    desktop.add_argument("--reveal", action="store_true")
+    desktop.add_argument("--picker", action="store_true")
+    desktop.add_argument("--confirm", action="store_true", help="Authorize the displayed out-of-repository targets")
+    return cli
+
+
+def doctor():
+    missing = [name for name in ("cargo", "rustc", "qs", "bwrap", "git", "python3") if not shutil.which(name)]
+    if missing:
+        raise Refusal("Missing commands: " + ", ".join(missing))
+    path = selected()
+    manifest = validate(path)
+    print(f"Bundle integrity: passed ({manifest['version']}, {path.name[:12]})")
+    print("Omarchy UI links: available\nStock fallback: /usr/bin/flea unchanged")
+    print("Desktop and optional live integrations are checked separately.")
+
+
+def verify(name, source):
+    source = clean(source)
+    name = name or git("rev-parse", "HEAD", source=source)
+    path = bundle_path(name)
+    manifest = validate(path)
+    if git("rev-parse", "HEAD", source=source) != name:
+        raise Refusal("Verification checkout must be on the bundle's exact source commit.")
+    proof_path = STORE / "verification" / f"{name}.json"
+    proof = read_json(proof_path) if proof_path.exists() else {"files": manifest["files"]}
+    try:
+        log = logged(["bash", "tests/run-all.sh"], source, "upstream-battery", test_environment(source))
+    except Refusal:
+        proof["full_battery"] = "failed"
+        atomic_json(proof_path, proof)
+        raise
+    proof.update({"full_battery": "passed", "full_battery_log": log})
+    atomic_json(proof_path, proof)
+    print("Full upstream battery passed; its named skip list remains in the log.")
+
+
+def main():
+    args = parser().parse_args()
+    initialize()
+    with locked():
+        if args.command == "status":
+            workflow.status()
+        elif args.command == "doctor":
+            doctor()
+        elif args.command == "fetch":
+            workflow.fetch()
+        elif args.command == "sync":
+            workflow.sync(args.base)
+        elif args.command == "feature":
+            workflow.feature(args.name)
+        elif args.command == "integrate":
+            workflow.integrate(args.branch)
+        elif args.command == "build":
+            build(args.source, args.checks)
+        elif args.command == "verify":
+            verify(args.build, args.source)
+        elif args.command == "smoke":
+            smoke(args.build or selected().name, args.native)
+        elif args.command == "promote":
+            promote(args.build)
+        elif args.command == "rollback":
+            rollback()
+        elif args.command == "desktop":
+            from desktop import execute
+            execute(args)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (Refusal, OSError, KeyboardInterrupt) as error:
+        print(f"flea-dev: {error or 'Cancelled; current selection was not automatically changed.'}", file=sys.stderr)
+        sys.exit(1)

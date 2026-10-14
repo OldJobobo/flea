@@ -1,4 +1,8 @@
 /target
+
+# Personal deployment bundles, isolated profiles, logs and contribution worktrees.
+/.local-builds/
+/.personal-worktrees/
 **/*.rs.bk
 
 # Editor and IDE droppings

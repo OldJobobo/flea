@@ -1,0 +1,36 @@
+#!/usr/bin/env python3
+"""Launch the selected immutable Flea bundle, never a working checkout."""
+import os
+import sys
+
+from bundles import selected
+from common import Refusal, environment, read_json
+
+
+def main():
+    args = sys.argv[1:]
+    bundle = selected()
+    env = environment(bundle)
+    if args == ["--custom-info"]:
+        manifest = read_json(bundle / "manifest.json")
+        print(f"{manifest['version']}\nSource: {manifest['commit']}\nBundle: {bundle}\nState: {env['XDG_STATE_HOME']}\nCache: {env['XDG_CACHE_HOME']}")
+        return
+    if args and args[0] in ("--default", "--picker", "--update"):
+        raise Refusal("That verb configures or updates packaged Flea, not this deployment. Use personal/flea-dev instead.")
+    if args and args[0] == "--custom-service":
+        if len(args) != 2 or args[1] not in ("portal", "filemanager1"):
+            raise Refusal("Use --custom-service portal|filemanager1.")
+        helper = bundle / "tools" / f"flea-{args[1]}"
+        os.execve(str(helper), [str(helper)], env)
+    binary = bundle / "bin/flea"
+    if not (bundle / "ui/boot/shell.qml").is_file() or not binary.is_file():
+        raise Refusal("Selected bundle is incomplete. Run personal/flea-dev doctor.")
+    os.execve(str(binary), [str(binary), *args], env)
+
+
+if __name__ == "__main__":
+    try:
+        main()
+    except (Refusal, OSError) as error:
+        print(f"flea-custom: {error}", file=sys.stderr)
+        sys.exit(1)
