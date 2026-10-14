@@ -161,7 +161,9 @@ def test_environment(source=None):
     runtime = STORE / "test-runtime"
     runtime.mkdir(exist_ok=True, mode=0o700)
     env.update({"HOME": str(home), "RUSTUP_HOME": os.environ.get("RUSTUP_HOME", str(Path.home() / ".rustup")),
-                "TMPDIR": str(STORE / "tmp"), "CARGO_HOME": str(STORE / "cargo-home"),
+                "PATH": str(Path.home() / ".cargo/bin") + ":/usr/bin:/bin",
+                # /tmp is bind-mounted to STORE/tmp; conventional paths keep upstream fixtures valid.
+                "TMPDIR": "/tmp", "CARGO_HOME": str(STORE / "cargo-home"),
                 "CARGO_TARGET_DIR": str(source / "target"), "FLEA_FIXTURE_ROOT": str(STORE / "fixtures"),
                 "XDG_RUNTIME_DIR": str(runtime), "XDG_CONFIG_HOME": str(home / ".config"),
                 "XDG_DATA_HOME": str(home / ".local/share"), "XDG_CACHE_HOME": str(home / ".cache"),
@@ -170,10 +172,14 @@ def test_environment(source=None):
 
 
 def sandbox_command(args):
-    # Tests can write only this repository, including their /tmp bind mount.
+    # A private in-repository tmpfs avoids host-filesystem directory-order assumptions.
+    # The inner namespace binds that memory-backed repository path to conventional /tmp.
+    inner = ["bwrap", "--ro-bind", "/", "/", "--bind", str(ROOT), str(ROOT),
+             "--bind", str(STORE / "tmp"), "/tmp", "--dev", "/dev", "--proc", "/proc",
+             "--die-with-parent", "--", *args]
     return ["bwrap", "--ro-bind", "/", "/", "--bind", str(ROOT), str(ROOT),
-            "--bind", str(STORE / "tmp"), "/tmp", "--dev", "/dev", "--proc", "/proc",
-            "--unshare-pid", "--unshare-ipc", "--unshare-net", "--die-with-parent", "--", *args]
+            "--tmpfs", str(STORE / "tmp"), "--dev", "/dev", "--proc", "/proc",
+            "--unshare-pid", "--unshare-ipc", "--unshare-net", "--die-with-parent", "--", *inner]
 
 
 def logged(args, source, label, env):

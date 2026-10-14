@@ -54,7 +54,10 @@ Omarchy and Quickshell. The broad battery needs upstream's documented runtime/te
 closure, including quickjs-ng's `/usr/bin/qjs` for Markdown figure tests. No dependency
 is installed by these commands. Test/build subprocesses run in a Bubblewrap namespace
 with a read-only host filesystem and this repository as the writable area. Fixtures,
-HOME, Cargo home, runtime state, logs, and temporary files remain repository-local.
+HOME, Cargo home, runtime state and logs remain repository-local. Temporary test
+files use a private in-repository tmpfs, bound to conventional `/tmp` in a nested
+namespace; this avoids host-filesystem directory-order assumptions in upstream's
+undo fixtures. Scratch files disappear after each check; logs remain on disk.
 The namespace has no network; this Flea release has no Cargo dependencies. Revisit
 that policy if upstream adds dependencies rather than silently allowing downloads.
 
