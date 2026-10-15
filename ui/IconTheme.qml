@@ -15,6 +15,7 @@ QtObject {
 
     function pathFor(name) { return Packs.pathFor(root.pack, name) }
     function filledFor(name) { return Packs.filledFor(root.pack, name) }
+    function solidOnly(name) { return Packs.solidOnly(root.pack, name) }
     function rounded(name, fallback) { return Packs.rounded(root.pack, name, fallback) }
 
     function load() {
@@ -23,7 +24,7 @@ QtObject {
         if (previous) previous.destroy()
         root.loadError = ""
         if (root.selection === "flea") return
-        var path = root.selection === "tabler" ? Qt.resolvedUrl("icons/tabler.json").toString()
+        var path = root.selection !== "custom" ? Qt.resolvedUrl("icons/" + root.selection + ".json").toString()
             : (Quickshell.env("XDG_CONFIG_HOME") || Quickshell.env("HOME") + "/.config") + "/flea/icons/custom.json"
         var component = Qt.createComponent("IconPackFile.qml")
         if (component.status !== Component.Ready) {

@@ -17,6 +17,7 @@ Shape {
     ShapePath {
         strokeColor: "transparent"
         fillColor: root.glyph.color
+        fillRule: ShapePath.WindingFill
         PathSvg { path: root.glyph.filledPath }
     }
 }

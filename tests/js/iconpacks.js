@@ -4,7 +4,8 @@
 function run(check) {
     check("absent selection keeps the original appearance", Packs.selected(undefined), "flea")
     check("unknown selection heals to Flea", Packs.selected("remote"), "flea")
-    check("pack IDs stay stable", Packs.IDS.join(","), "flea,tabler,custom")
+    check("pack IDs stay stable", Packs.IDS.join(","), "flea,tabler,lucide,iconoir,heroicons,phosphor,feather,custom")
+    check("every pack has a selector label", Packs.LABELS.length, Packs.IDS.length)
     function pack(icons) { return JSON.stringify({ version: 1, grid: 24, style: "round", icons: icons }) }
     var valid = pack({ folder: { path: "M2 3h20v18H2z" } })
     var parsed = Packs.parse(valid)
@@ -18,8 +19,14 @@ function run(check) {
     check("default geometry is byte-for-byte unchanged", Packs.pathFor(null, "folder"), Icons.pathFor("folder"))
     check("unknown semantic name follows the existing fallback", Packs.pathFor(parsed.pack, "unknown"), Icons.pathFor("file"))
     check("an unknown prototype key is never pack geometry", Packs.has(parsed.pack, "constructor"), false)
+    check("old packs default to strokes", parsed.pack.paint, "stroke")
+    var filled = Packs.parse(valid.replace('"style":"round"', '"style":"round","paint":"fill"')).pack
+    check("expanded outlines use the existing shape", Packs.solidOnly(filled, "folder"), true)
+    check("missing marks keep their stroke recipe", Packs.solidOnly(filled, "music"), false)
+    check("Flea keeps its stroke recipe", Packs.solidOnly(null, "folder"), false)
     var bad = ["", "null", "[]", "not JSON", valid.replace('"version":1', '"version":2'),
                valid.replace('"grid":24', '"grid":16'), valid.replace('"round"', '"soft"'),
+               valid.replace('"style":"round"', '"style":"round","paint":"remote"'),
                pack({}), pack({ tailscale: { path: "M2 2h2" } }), pack({ folder: "M2 2h2" }),
                pack({ shelf: { path: "M2 2h2" } }), pack({ markdown: { path: "M2 2h2" } }),
                pack({ folder: { path: "M2 2h2", filled: 5 } }), pack({ folder: { path: "M2 2h2", filled: "<svg/>" } }),
@@ -36,16 +43,21 @@ function run(check) {
     for (var path of ["M1 2h2z", "m1 2 3 4", "M1 2A3 4 0 1 0 5 6", "M.1 -.2l1e-2 3", "M1 2Q3 4 5 6T7 8"])
         check("SVG path accepted " + path, Packs.pathValid(path), true)
 
-    var request = new XMLHttpRequest()
-    request.open("GET", Qt.resolvedUrl("../../ui/icons/tabler.json"), false)
-    request.send()
-    var tabler = Packs.parse(request.responseText)
-    check("bundled Tabler pack validates", tabler.error, "")
-    if (!tabler.pack) return
-    check("Tabler carries every non-brand mark", Object.keys(tabler.pack.icons).length, Object.keys(Icons.PATHS).length - 2)
-    for (var name in Icons.PATHS) {
-        if (name === "shelf" || name === "markdown") continue
-        check("Tabler supplies " + name, Packs.has(tabler.pack, name), true)
-        check("Tabler outline never inherits solid geometry " + name, Packs.filledFor(tabler.pack, name), "")
+    for (var id of Packs.IDS.slice(1, -1)) {
+        var request = new XMLHttpRequest()
+        request.open("GET", Qt.resolvedUrl("../../ui/icons/" + id + ".json"), false)
+        request.send()
+        var answer = Packs.parse(request.responseText)
+        check(id + " bundled pack validates", answer.error, "")
+        if (!answer.pack) continue
+        check(id + " carries every non-brand mark", Object.keys(answer.pack.icons).length, Object.keys(Icons.PATHS).length - 2)
+        check(id + " reserves the Flea brand", Packs.pathFor(answer.pack, "shelf"), Icons.pathFor("shelf"))
+        check(id + " reserves the Markdown brand", Packs.pathFor(answer.pack, "markdown"), Icons.pathFor("markdown"))
+        for (var name in Icons.PATHS) {
+            if (name === "shelf" || name === "markdown") continue
+            check(id + " supplies " + name, Packs.has(answer.pack, name), true)
+            check(id + " uses its own fill " + name, Packs.filledFor(answer.pack, name), answer.pack.icons[name].filled)
+            check(id + " paint recipe " + name, Packs.solidOnly(answer.pack, name), id === "phosphor")
+        }
     }
 }

@@ -164,7 +164,7 @@ pub const TEXT_SIZE: &[(&str, Rule)] = &[("mode", Rule::TextSize)];
 // Flea's internal mark pack is separate from the desktop application icon theme.
 pub const DISPLAY: &[(&str, Rule)] = &[
     ("textSize", Rule::Group(TEXT_SIZE)), ("hyprlandIcons", Rule::Bool),
-    ("iconSet", Rule::Word(&["flea", "tabler", "custom"])),
+    ("iconSet", Rule::Word(&["flea", "tabler", "lucide", "iconoir", "heroicons", "phosphor", "feather", "custom"])),
 ];
 
 // hidden is the whole of the Menus section's state: the master row SettingsMenus draws over the six
@@ -466,7 +466,7 @@ mod tests {
         let current = crate::uistate::from_file(r#"{"display":{"textSize":{"mode":16},"hyprlandIcons":true}}"#);
         let icon_set = |value: &Json| value.get("display").and_then(|d| d.get("iconSet")).and_then(Json::as_str).map(str::to_owned);
         assert_eq!(icon_set(&current).as_deref(), Some("flea"));
-        for name in ["flea", "tabler", "custom"] {
+        for name in ["flea", "tabler", "lucide", "iconoir", "heroicons", "phosphor", "feather", "custom"] {
             let patch = jsondoc::parse(&format!(r#"{{"display":{{"iconSet":"{}"}}}}"#, name)).unwrap();
             let next = crate::uistate::patched(&current, &patch).unwrap();
             assert_eq!(icon_set(&next).as_deref(), Some(name));

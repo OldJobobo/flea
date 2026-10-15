@@ -2,8 +2,8 @@
 .import "Icons.js" as Icons
 
 // Packs are data, never QML, JavaScript, SVG documents or external image URLs.
-var IDS = ["flea", "tabler", "custom"]
-var LABELS = ["Flea", "Tabler Outline", "Custom"]
+var IDS = ["flea", "tabler", "lucide", "iconoir", "heroicons", "phosphor", "feather", "custom"]
+var LABELS = ["Flea", "Tabler Outline", "Lucide", "Iconoir", "Heroicons Outline", "Phosphor Regular", "Feather", "Custom"]
 var MAX_BYTES = 524288
 var MAX_ICONS = 128
 var MAX_PATH = 16384
@@ -48,7 +48,8 @@ function parse(text) {
     var data
     try { data = JSON.parse(text) } catch (_) { return bad }
     if (!object(data) || data.version !== 1 || data.grid !== 24
-            || ["round", "square"].indexOf(data.style) < 0 || !object(data.icons)) return bad
+            || ["round", "square"].indexOf(data.style) < 0 || !object(data.icons)
+            || (data.paint !== undefined && ["stroke", "fill"].indexOf(data.paint) < 0)) return bad
     var names = Object.keys(data.icons)
     if (names.length === 0 || names.length > MAX_ICONS) return bad
     var icons = Object.create(null)
@@ -59,10 +60,11 @@ function parse(text) {
                 || (icon.filled !== undefined && icon.filled !== "" && !pathValid(icon.filled))) return bad
         icons[name] = { path: icon.path, filled: icon.filled || "" }
     }
-    return { pack: { style: data.style, icons: icons }, error: "" }
+    return { pack: { style: data.style, paint: data.paint || "stroke", icons: icons }, error: "" }
 }
 
 function has(pack, name) { return pack !== null && own(pack.icons, name) }
+function solidOnly(pack, name) { return has(pack, name) && pack.paint === "fill" }
 function pathFor(pack, name) { return has(pack, name) ? pack.icons[name].path : Icons.pathFor(name) }
 function filledFor(pack, name) { return has(pack, name) ? pack.icons[name].filled : Icons.filledPathFor(name) }
 function rounded(pack, name, fleaRound) { return has(pack, name) ? pack.style === "round" : fleaRound }

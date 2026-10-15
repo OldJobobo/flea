@@ -3,6 +3,7 @@
 set -eu
 . "$(dirname "$0")/../tools/flea-sandbox-guard"
 cd "$(dirname "$0")/.."
+python3 -B tests/icon-geometry.py
 command -v qs >/dev/null || { echo 'icon-packs: qs is required'; exit 1; }
 bin=${FLEA_BIN:-$PWD/target/debug/flea}
 [ -x "$bin" ] || { echo "icon-packs: build the backend first: $bin"; exit 1; }
@@ -35,13 +36,16 @@ run_probe() {
         echo 'icon-packs: unexpected runtime diagnostic'; exit 1
     fi
 }
-run_probe tests/icon-packs.qml 'ICONPACKS DONE checks=23 failed=0'
+run_probe tests/icon-packs.qml 'ICONPACKS DONE checks=58 failed=0'
 python3 - "$fixture/state/flea/ui.json" <<'PY'
 import json
 import sys
 from pathlib import Path
 assert json.loads(Path(sys.argv[1]).read_text())["display"]["iconSet"] == "flea"
 PY
-XDG_STATE_HOME="$fixture/state" "$bin" --ui-state '{"display":{"iconSet":"tabler"}}' >/dev/null
-run_probe tests/icon-packs-startup.qml 'ICONPACKS STARTUP ok=true'
-printf 'icon-packs: 23 runtime checks, persisted selection and next-process startup passed\n'
+for pack in tabler lucide iconoir heroicons phosphor feather; do
+    XDG_STATE_HOME="$fixture/state" "$bin" --ui-state "{\"display\":{\"iconSet\":\"$pack\"}}" >/dev/null
+    export ICON_PACK_STARTUP="$pack"
+    run_probe tests/icon-packs-startup.qml 'ICONPACKS STARTUP ok=true'
+done
+printf 'icon-packs: 58 runtime checks, persisted selection and six next-process startups passed\n'
