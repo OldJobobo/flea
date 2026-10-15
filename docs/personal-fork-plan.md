@@ -12,13 +12,15 @@ The system package remains installed and unchanged as a fallback.
 - `origin`: OldJobobo/tick, the only push destination.
 - `upstream`: thisisgm/flea, fetched for source updates.
 - `main`: clean upstream `main`; fast-forward only, no personal commits.
-- `personal`: persistent integration branch; merge updates, do not rewrite published history.
+- `tick`: default and persistent integration branch; merge updates, do not rewrite published history.
 - `feature/<name>`: one contribution, based on upstream `main` unless a maintainer requests another base.
 - `sync/<date>`: candidate upstream merge, validated before integration and deployment.
 - Additional worktrees live under `.personal-worktrees/`, ignored by Git.
 
 Existing fork branches are preserved. They are not automatically integrated. The initial
-personal branch starts at the latest release available at setup, `v0.3.10`.
+integration branch started at the latest release available at setup, `v0.3.10`.
+It was originally named `personal` and was renamed to `tick` without rewriting history.
+The `personal/` tooling directory and `.personal-worktrees/` paths are unchanged.
 
 ## Tick identity and compatibility
 
@@ -39,7 +41,7 @@ update/default controls are not exposed in Tick's UI.
 
 1. Create a feature worktree from `upstream/main`.
 2. Implement focused commits and tests in that worktree.
-3. Merge the feature into `personal` after review and verification.
+3. Merge the feature into `tick` after review and verification.
 4. Push its branch to `origin`; optionally open a PR to `thisisgm/flea:main`.
 5. Keep deployment tools, personal appearance, and desktop routing out of that feature branch.
 
@@ -53,11 +55,11 @@ Fetch changes automatically if desired, but never merge or deploy unattended. De
 updates target the latest stable release; use `upstream/main` deliberately for unreleased fixes.
 
 1. Fetch upstream and fast-forward local `main` in its own worktree.
-2. Create a sync worktree from `personal` and merge the selected upstream ref.
+2. Create a sync worktree from `tick` and merge the selected upstream ref.
 3. Resolve conflicts in that worktree, keeping the daily deployment unchanged.
 4. Run local tooling tests, Rust unit tests in both profiles, and `tests/run-all.sh`.
 5. Record failed and skipped checks; do not claim full verification over a partial run.
-6. Merge the tested sync branch into `personal`, then build a fresh verified bundle.
+6. Merge the tested sync branch into `tick`, then build a fresh verified bundle.
 7. Promote that bundle explicitly; keep the previous bundle and state snapshot.
 
 ## Deployment
@@ -119,7 +121,7 @@ the custom profile requires separate routing verification. It is not silently en
 3. Add versioned deployment, explicit launcher, state snapshots, and rollback.
 4. Add safe update and clean contribution-worktree commands.
 5. Verify the bundle and tooling, including a disposable-file UI/backend smoke test.
-6. Publish the personal branch to the existing fork.
+6. Publish the `tick` integration branch to the existing fork.
 7. Install desktop routing only with authorization for the named user-level targets.
 8. Add optional reveal/portal/shelf routing only after their own verification.
 

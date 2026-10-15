@@ -39,13 +39,13 @@ Icon formats, licenses and customization are documented in `docs/icon-packs.md`.
 
 ## Build from source
 
-Use the **`personal` branch** for Tick. `main` mirrors upstream Flea and is not the
+Use the **`tick` branch** (the repository default) for Tick. `main` mirrors upstream Flea and is not the
 Tick integration branch.
 
 With GitHub CLI:
 
 ```sh
-gh repo clone OldJobobo/tick -- --branch personal
+gh repo clone OldJobobo/tick -- --branch tick
 cd tick
 personal/tick-dev build
 ```
@@ -131,7 +131,7 @@ that directory must not be published.
 
 Tick is a personal fork, not a replacement name for the upstream project.
 
-- **`main`** remains an upstream mirror; **`personal`** retains integration merges.
+- **`main`** remains an upstream mirror; **`tick`** is the default branch and retains integration merges.
 - Branding is applied deterministically when packaging personal bundles. The
   upstream source files are not globally renamed for branding.
 - Rust crate names, wire commands, QML types, environment variables and existing

@@ -8,7 +8,7 @@ setup, not current verification; current commands and branding are documented in
 ## Installed layout
 
 - Fork: `OldJobobo/tick`; local checkout `/home/oldjobobo/Projects/flea`.
-- Persistent daily integration branch: `personal`, based initially on `v0.3.10`.
+- Persistent daily integration branch: `tick` (originally `personal`), based initially on `v0.3.10`.
 - Clean upstream `main`: `.personal-worktrees/upstream`.
 - `origin` is the push destination; upstream pushing is locally disabled.
 - No existing fork feature branch is automatically integrated or deleted.

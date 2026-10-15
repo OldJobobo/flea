@@ -2,7 +2,7 @@
 
 `docs/personal-fork-plan.md` records the architecture and maintenance policy. Run
 these commands from `/home/oldjobobo/Projects/flea`. The normal checkout stays on
-`personal`; clean upstream `main` has its own worktree. `origin` is OldJobobo/tick,
+`tick` (the GitHub default branch); clean upstream `main` has its own worktree. `origin` is OldJobobo/tick,
 the only push destination, and upstream pushing remains disabled.
 
 ## Daily use
@@ -92,8 +92,8 @@ personal/tick-dev sync --base main
 
 Default sync targets the latest stable upstream release; `--base main` opts into
 unreleased work. Resolve and test in the printed sync worktree, integrate it into
-`personal`, then rebuild/smoke/promote the resulting merge commit. No timer merges
-or deploys unattended. `main` only fast-forwards and `personal` retains merges.
+`tick`, then rebuild/smoke/promote the resulting merge commit. No timer merges
+or deploys unattended. `main` only fast-forwards and `tick` retains merges.
 
 ```sh
 personal/tick-dev feature my-feature
