@@ -80,7 +80,7 @@ function runRows(check) {
           display[7].label, "Flea follows Hyprland's scale and does not change it.")
     check("the board icon override defaults off", display[9].id + "|" + display[9].on, "display.hyprlandIcons|false")
 
-    check("Display offers the shared pack registry", find(display, "display.iconSet").values.join(","), "flea,tabler,custom")
+    check("Display offers the shared pack registry", find(display, "display.iconSet").values.join(","), "flea,tabler,lucide,iconoir,heroicons,phosphor,feather,custom")
     check("the original pack is the default", find(display, "display.iconSet").selected, "flea")
     // Switching to Override adds the stop row, and nothing else about the section moves.
     var pinned = Settings.rows("display", displayState({ mode: 16 }, 16))

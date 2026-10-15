@@ -2669,6 +2669,17 @@ The startup trace adds `IconTheme.qml` and `js/IconPacks.js` (175 to 177 units);
 their summed bytes move 1673140 to 1679021. The default census remains within the
 unchanged 628-object limit; the selected-pack reader is lazy and absent from that trace.
 
+The additional bundled Lucide, Iconoir, Heroicons Outline, Phosphor Regular and Feather
+sets use the same lazy reader and semantic table. `tools/icon-pack-sources.json` pins
+release archives, digests and source mappings; `tools/flea-icon-packs-import.py` and
+`tools/icon_geometry.py` normalize primitives/relative commands and Phosphor's 256 grid.
+Optional pack `paint: fill` draws expanded contours with nonzero winding in the existing
+main shape, without extra row objects. `wc -l` still yields `src/uischema.rs` 571 and
+`tests/js/settings.js` 396; their ceilings do not move. The same 177 startup units now
+sum to 1679635 bytes (was 1679021); the census limit stays 628. Icon geometry unit tests,
+all-pack JS coverage and six next-process startup probes live alongside the live-switch
+suite in `tests/icon-packs.sh`. License texts remain alongside each bundled JSON file.
+
 xw6 adversarial fixes retain the tab handoff detail and exact payload paths. Each lift
 captures a stable tab identity and its source pane until acknowledgment or the existing
 15-second deadline. Accepted lifts wait for pane settlement beyond that deadline, and source

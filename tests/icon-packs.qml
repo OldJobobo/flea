@@ -3,6 +3,7 @@ import Quickshell
 import Quickshell.Io
 import "flea" as Flea
 import "flea/js/Icons.js" as Icons
+import "flea/js/IconPacks.js" as Packs
 
 Window {
     id: root
@@ -27,6 +28,7 @@ Window {
         return false
     }
     property int phase: 0
+    property int bundledIndex: 2
     property int checks: 0
     property int failures: 0
     property double started: Date.now()
@@ -99,7 +101,22 @@ Window {
                 root.check("the existing solid renderer clears too", contrast.solid && contrast.solid.glyph.filledPath === "")
                 root.check("Flea brand remains", marks.itemAt(6).iconPath === Icons.pathFor("shelf"))
                 root.check("Markdown brand remains", marks.itemAt(7).iconPath === Icons.pathFor("markdown"))
-                root.choose("custom"); root.phase++; return
+                root.choose(Packs.IDS[root.bundledIndex]); root.phase = 7; return
+            }
+            if (root.phase === 7) {
+                var theme = Flea.ViewState.iconTheme, id = Packs.IDS[root.bundledIndex]
+                if (!theme.pack || Flea.ViewState.saveStatus !== "Saved") return
+                if (!root.captured(id)) return
+                root.check(id + " updates existing geometry", folder.iconPath === theme.pack.icons.folder.path)
+                root.check(id + " owns its fill", contrast.filledPath === theme.pack.icons.contrast.filled)
+                root.check(id + " selects the paint recipe", folder.solidOnly === (id === "phosphor"))
+                root.check(id + " leaves brands alone", marks.itemAt(6).iconPath === Icons.pathFor("shelf") && marks.itemAt(7).iconPath === Icons.pathFor("markdown"))
+                root.check(id + " adds no folder overlay objects", folder.solid === null)
+                root.check(id + " loads without error", theme.error === "")
+                root.bundledIndex++
+                root.choose(Packs.IDS[root.bundledIndex])
+                if (Packs.IDS[root.bundledIndex] === "custom") root.phase = 2
+                return
             }
             if (root.phase === 2) {
                 if (!Flea.ViewState.iconTheme.error || Flea.ViewState.saveStatus !== "Saved") return

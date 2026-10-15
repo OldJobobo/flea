@@ -20,7 +20,8 @@ Item {
     property real strokeWidth: Theme.strokeWidth
     readonly property string iconPath: ViewState.iconTheme.pathFor(root.name)
     readonly property bool rounded: ViewState.iconTheme.rounded(root.name, ViewState.hyprlandIcons && Style.cornerRadius > 0)
-    // Empty for stroke-only marks, including all bundled Tabler Outline marks.
+    // Expanded filled outlines (Phosphor) reuse the main shape; no extra row objects.
+    readonly property bool solidOnly: ViewState.iconTheme.solidOnly(root.name)
     readonly property string filledPath: ViewState.iconTheme.filledFor(root.name)
     // Built the first time a mark names a solid part: a plain glyph owns no object for it, which tests/rowcost.qml counts.
     property Item solid: null
@@ -42,8 +43,9 @@ Item {
         transform: Scale { xScale: root.gridScale; yScale: root.gridScale }
 
         ShapePath {
-            strokeColor: root.color
-            fillColor: "transparent"
+            strokeColor: root.solidOnly ? "transparent" : root.color
+            fillColor: root.solidOnly ? root.color : "transparent"
+            fillRule: ShapePath.WindingFill
             strokeWidth: root.strokeWidth
             // Selected packs own their edge style; missing marks retain Flea's own recipe.
             capStyle: root.rounded ? ShapePath.RoundCap : ShapePath.SquareCap

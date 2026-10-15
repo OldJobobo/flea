@@ -1,0 +1,298 @@
+{
+  "version": 1,
+  "grid": 24,
+  "style": "round",
+  "paint": "stroke",
+  "name": "Feather",
+  "source": "https://github.com/feathericons/feather/tree/v4.29.2",
+  "archive_sha256": "89a8273c8e0c43ca79c8f63fe3778b915c5a03810758134c6854ecf9864f2ed7",
+  "license": "MIT",
+  "sources": {
+    "info": "info",
+    "pin": "map-pin",
+    "star": "star",
+    "globe": "globe",
+    "file": "file",
+    "folder": "folder",
+    "folders-first": "folder",
+    "file-text": "file-text",
+    "code": "code",
+    "image": "image",
+    "film": "film",
+    "music": "music",
+    "archive": "archive",
+    "type": "type",
+    "terminal": "terminal",
+    "table": "grid",
+    "presentation": "monitor",
+    "house": "home",
+    "download": "download",
+    "folder-git-2": "git-branch",
+    "server": "server",
+    "plus": "plus",
+    "history": "rotate-ccw",
+    "drive": "hard-drive",
+    "smartphone": "smartphone",
+    "camera": "camera",
+    "eject": "upload",
+    "play": "play",
+    "pause": "pause",
+    "search": "search",
+    "filter": "filter",
+    "folder-open": "folder",
+    "app-window": "layout",
+    "undo": "corner-up-left",
+    "rename": "edit-2",
+    "file-plus": "file-plus",
+    "folder-plus": "folder-plus",
+    "trash": "trash-2",
+    "eye": "eye",
+    "eye-off": "eye-off",
+    "chevron-right": "chevron-right",
+    "chevron-left": "chevron-left",
+    "arrow-left": "arrow-left",
+    "arrow-up": "arrow-up",
+    "list": "list",
+    "columns": "columns",
+    "preview": "sidebar",
+    "dual": "columns",
+    "grid": "grid",
+    "symlink": "arrow-up-right",
+    "alert": "alert-triangle",
+    "lock": "lock",
+    "key": "key",
+    "archive-out": "upload",
+    "network": "share-2",
+    "check": "check",
+    "tag": "tag",
+    "minus": "minus",
+    "maximize": "maximize",
+    "x": "x",
+    "sliders": "sliders",
+    "move-horizontal": "move",
+    "sort": "list",
+    "volume": "volume-2",
+    "volume-x": "volume-x",
+    "scissors": "scissors",
+    "copy": "copy",
+    "clipboard": "clipboard",
+    "keyboard": "command",
+    "contrast": "circle",
+    "pointer": "mouse-pointer"
+  },
+  "icons": {
+    "info": {
+      "path": "M22 12 A10 10 0 1 0 2 12 A10 10 0 1 0 22 12 Z M12 16 L12 12 M12 8 L12.01 8"
+    },
+    "pin": {
+      "path": "M21 10 C21 17 12 23 12 23 S3 17 3 10 A9 9 0 0 1 21 10 Z M15 10 A3 3 0 1 0 9 10 A3 3 0 1 0 15 10 Z"
+    },
+    "star": {
+      "path": "M12 2 L15.09 8.26 L22 9.27 L17 14.14 L18.18 21.02 L12 17.77 L5.82 21.02 L7 14.14 L2 9.27 L8.91 8.26 L12 2 Z"
+    },
+    "globe": {
+      "path": "M22 12 A10 10 0 1 0 2 12 A10 10 0 1 0 22 12 Z M2 12 L22 12 M12 2 A15.3 15.3 0 0 1 16 12 A15.3 15.3 0 0 1 12 22 A15.3 15.3 0 0 1 8 12 A15.3 15.3 0 0 1 12 2 Z"
+    },
+    "file": {
+      "path": "M13 2 H6 A2 2 0 0 0 4 4 V20 A2 2 0 0 0 6 22 H18 A2 2 0 0 0 20 20 V9 Z M13 2 L13 9 L20 9"
+    },
+    "folder": {
+      "path": "M22 19 A2 2 0 0 1 20 21 H4 A2 2 0 0 1 2 19 V5 A2 2 0 0 1 4 3 H9 L11 6 H20 A2 2 0 0 1 22 8 Z"
+    },
+    "folders-first": {
+      "path": "M22 19 A2 2 0 0 1 20 21 H4 A2 2 0 0 1 2 19 V5 A2 2 0 0 1 4 3 H9 L11 6 H20 A2 2 0 0 1 22 8 Z"
+    },
+    "file-text": {
+      "path": "M14 2 H6 A2 2 0 0 0 4 4 V20 A2 2 0 0 0 6 22 H18 A2 2 0 0 0 20 20 V8 Z M14 2 L14 8 L20 8 M16 13 L8 13 M16 17 L8 17 M10 9 L9 9 L8 9"
+    },
+    "code": {
+      "path": "M16 18 L22 12 L16 6 M8 6 L2 12 L8 18"
+    },
+    "image": {
+      "path": "M5 3 H19 A2 2 0 0 1 21 5 V19 A2 2 0 0 1 19 21 H5 A2 2 0 0 1 3 19 V5 A2 2 0 0 1 5 3 Z M10 8.5 A1.5 1.5 0 1 0 7 8.5 A1.5 1.5 0 1 0 10 8.5 Z M21 15 L16 10 L5 21"
+    },
+    "film": {
+      "path": "M4.18 2 H19.82 A2.18 2.18 0 0 1 22 4.18 V19.82 A2.18 2.18 0 0 1 19.82 22 H4.18 A2.18 2.18 0 0 1 2 19.82 V4.18 A2.18 2.18 0 0 1 4.18 2 Z M7 2 L7 22 M17 2 L17 22 M2 12 L22 12 M2 7 L7 7 M2 17 L7 17 M17 17 L22 17 M17 7 L22 7"
+    },
+    "music": {
+      "path": "M9 18 V5 L21 3 V16 M9 18 A3 3 0 1 0 3 18 A3 3 0 1 0 9 18 Z M21 16 A3 3 0 1 0 15 16 A3 3 0 1 0 21 16 Z"
+    },
+    "archive": {
+      "path": "M21 8 L21 21 L3 21 L3 8 M1 3 H23 V8 H1 Z M10 12 L14 12"
+    },
+    "type": {
+      "path": "M4 7 L4 4 L20 4 L20 7 M9 20 L15 20 M12 4 L12 20"
+    },
+    "terminal": {
+      "path": "M4 17 L10 11 L4 5 M12 19 L20 19"
+    },
+    "table": {
+      "path": "M3 3 H10 V10 H3 Z M14 3 H21 V10 H14 Z M14 14 H21 V21 H14 Z M3 14 H10 V21 H3 Z"
+    },
+    "presentation": {
+      "path": "M4 3 H20 A2 2 0 0 1 22 5 V15 A2 2 0 0 1 20 17 H4 A2 2 0 0 1 2 15 V5 A2 2 0 0 1 4 3 Z M8 21 L16 21 M12 17 L12 21"
+    },
+    "house": {
+      "path": "M3 9 L12 2 L21 9 V20 A2 2 0 0 1 19 22 H5 A2 2 0 0 1 3 20 Z M9 22 L9 12 L15 12 L15 22"
+    },
+    "download": {
+      "path": "M21 15 V19 A2 2 0 0 1 19 21 H5 A2 2 0 0 1 3 19 V15 M7 10 L12 15 L17 10 M12 15 L12 3"
+    },
+    "folder-git-2": {
+      "path": "M6 3 L6 15 M21 6 A3 3 0 1 0 15 6 A3 3 0 1 0 21 6 Z M9 18 A3 3 0 1 0 3 18 A3 3 0 1 0 9 18 Z M18 9 A9 9 0 0 1 9 18"
+    },
+    "server": {
+      "path": "M4 2 H20 A2 2 0 0 1 22 4 V8 A2 2 0 0 1 20 10 H4 A2 2 0 0 1 2 8 V4 A2 2 0 0 1 4 2 Z M4 14 H20 A2 2 0 0 1 22 16 V20 A2 2 0 0 1 20 22 H4 A2 2 0 0 1 2 20 V16 A2 2 0 0 1 4 14 Z M6 6 L6.01 6 M6 18 L6.01 18"
+    },
+    "plus": {
+      "path": "M12 5 L12 19 M5 12 L19 12"
+    },
+    "history": {
+      "path": "M1 4 L1 10 L7 10 M3.51 15 A9 9 0 1 0 5.64 5.64 L1 10"
+    },
+    "drive": {
+      "path": "M22 12 L2 12 M5.45 5.11 L2 12 V18 A2 2 0 0 0 4 20 H20 A2 2 0 0 0 22 18 V12 L18.55 5.11 A2 2 0 0 0 16.76 4 H7.24 A2 2 0 0 0 5.45 5.11 Z M6 16 L6.01 16 M10 16 L10.01 16"
+    },
+    "smartphone": {
+      "path": "M7 2 H17 A2 2 0 0 1 19 4 V20 A2 2 0 0 1 17 22 H7 A2 2 0 0 1 5 20 V4 A2 2 0 0 1 7 2 Z M12 18 L12.01 18"
+    },
+    "camera": {
+      "path": "M23 19 A2 2 0 0 1 21 21 H3 A2 2 0 0 1 1 19 V8 A2 2 0 0 1 3 6 H7 L9 3 H15 L17 6 H21 A2 2 0 0 1 23 8 Z M16 13 A4 4 0 1 0 8 13 A4 4 0 1 0 16 13 Z"
+    },
+    "eject": {
+      "path": "M21 15 V19 A2 2 0 0 1 19 21 H5 A2 2 0 0 1 3 19 V15 M17 8 L12 3 L7 8 M12 3 L12 15"
+    },
+    "play": {
+      "path": "M5 3 L19 12 L5 21 L5 3 Z"
+    },
+    "pause": {
+      "path": "M6 4 H10 V20 H6 Z M14 4 H18 V20 H14 Z"
+    },
+    "search": {
+      "path": "M19 11 A8 8 0 1 0 3 11 A8 8 0 1 0 19 11 Z M21 21 L16.65 16.65"
+    },
+    "filter": {
+      "path": "M22 3 L2 3 L10 12.46 L10 19 L14 21 L14 12.46 L22 3 Z"
+    },
+    "folder-open": {
+      "path": "M22 19 A2 2 0 0 1 20 21 H4 A2 2 0 0 1 2 19 V5 A2 2 0 0 1 4 3 H9 L11 6 H20 A2 2 0 0 1 22 8 Z"
+    },
+    "app-window": {
+      "path": "M5 3 H19 A2 2 0 0 1 21 5 V19 A2 2 0 0 1 19 21 H5 A2 2 0 0 1 3 19 V5 A2 2 0 0 1 5 3 Z M3 9 L21 9 M9 21 L9 9"
+    },
+    "undo": {
+      "path": "M9 14 L4 9 L9 4 M20 20 V13 A4 4 0 0 0 16 9 H4"
+    },
+    "rename": {
+      "path": "M17 3 A2.828 2.828 0 1 1 21 7 L7.5 20.5 L2 22 L3.5 16.5 L17 3 Z"
+    },
+    "file-plus": {
+      "path": "M14 2 H6 A2 2 0 0 0 4 4 V20 A2 2 0 0 0 6 22 H18 A2 2 0 0 0 20 20 V8 Z M14 2 L14 8 L20 8 M12 18 L12 12 M9 15 L15 15"
+    },
+    "folder-plus": {
+      "path": "M22 19 A2 2 0 0 1 20 21 H4 A2 2 0 0 1 2 19 V5 A2 2 0 0 1 4 3 H9 L11 6 H20 A2 2 0 0 1 22 8 Z M12 11 L12 17 M9 14 L15 14"
+    },
+    "trash": {
+      "path": "M3 6 L5 6 L21 6 M19 6 V20 A2 2 0 0 1 17 22 H7 A2 2 0 0 1 5 20 V6 M8 6 V4 A2 2 0 0 1 10 2 H14 A2 2 0 0 1 16 4 V6 M10 11 L10 17 M14 11 L14 17"
+    },
+    "eye": {
+      "path": "M1 12 S5 4 12 4 S23 12 23 12 S19 20 12 20 S1 12 1 12 Z M15 12 A3 3 0 1 0 9 12 A3 3 0 1 0 15 12 Z"
+    },
+    "eye-off": {
+      "path": "M17.94 17.94 A10.07 10.07 0 0 1 12 20 C5 20 1 12 1 12 A18.45 18.45 0 0 1 6.06 6.06 M9.9 4.24 A9.12 9.12 0 0 1 12 4 C19 4 23 12 23 12 A18.5 18.5 0 0 1 20.84 15.19 M14.12 14.12 A3 3 0 1 1 9.88 9.88 M1 1 L23 23"
+    },
+    "chevron-right": {
+      "path": "M9 18 L15 12 L9 6"
+    },
+    "chevron-left": {
+      "path": "M15 18 L9 12 L15 6"
+    },
+    "arrow-left": {
+      "path": "M19 12 L5 12 M12 19 L5 12 L12 5"
+    },
+    "arrow-up": {
+      "path": "M12 19 L12 5 M5 12 L12 5 L19 12"
+    },
+    "list": {
+      "path": "M8 6 L21 6 M8 12 L21 12 M8 18 L21 18 M3 6 L3.01 6 M3 12 L3.01 12 M3 18 L3.01 18"
+    },
+    "columns": {
+      "path": "M12 3 H19 A2 2 0 0 1 21 5 V19 A2 2 0 0 1 19 21 H12 M12 3 H5 A2 2 0 0 0 3 5 V19 A2 2 0 0 0 5 21 H12 M12 3 V21"
+    },
+    "preview": {
+      "path": "M5 3 H19 A2 2 0 0 1 21 5 V19 A2 2 0 0 1 19 21 H5 A2 2 0 0 1 3 19 V5 A2 2 0 0 1 5 3 Z M9 3 L9 21"
+    },
+    "dual": {
+      "path": "M12 3 H19 A2 2 0 0 1 21 5 V19 A2 2 0 0 1 19 21 H12 M12 3 H5 A2 2 0 0 0 3 5 V19 A2 2 0 0 0 5 21 H12 M12 3 V21"
+    },
+    "grid": {
+      "path": "M3 3 H10 V10 H3 Z M14 3 H21 V10 H14 Z M14 14 H21 V21 H14 Z M3 14 H10 V21 H3 Z"
+    },
+    "symlink": {
+      "path": "M7 17 L17 7 M7 7 L17 7 L17 17"
+    },
+    "alert": {
+      "path": "M10.29 3.86 L1.82 18 A2 2 0 0 0 3.53 21 H20.47 A2 2 0 0 0 22.18 18 L13.71 3.86 A2 2 0 0 0 10.29 3.86 Z M12 9 L12 13 M12 17 L12.01 17"
+    },
+    "lock": {
+      "path": "M5 11 H19 A2 2 0 0 1 21 13 V20 A2 2 0 0 1 19 22 H5 A2 2 0 0 1 3 20 V13 A2 2 0 0 1 5 11 Z M7 11 V7 A5 5 0 0 1 17 7 V11"
+    },
+    "key": {
+      "path": "M21 2 L19 4 M11.39 11.61 A5.5 5.5 0 1 1 3.612 19.388 A5.5 5.5 0 0 1 11.389 11.611 Z M11.39 11.61 L15.5 7.5 M15.5 7.5 L18.5 10.5 L22 7 L19 4 M15.5 7.5 L19 4"
+    },
+    "archive-out": {
+      "path": "M21 15 V19 A2 2 0 0 1 19 21 H5 A2 2 0 0 1 3 19 V15 M17 8 L12 3 L7 8 M12 3 L12 15"
+    },
+    "network": {
+      "path": "M21 5 A3 3 0 1 0 15 5 A3 3 0 1 0 21 5 Z M9 12 A3 3 0 1 0 3 12 A3 3 0 1 0 9 12 Z M21 19 A3 3 0 1 0 15 19 A3 3 0 1 0 21 19 Z M8.59 13.51 L15.42 17.49 M15.41 6.51 L8.59 10.49"
+    },
+    "check": {
+      "path": "M20 6 L9 17 L4 12"
+    },
+    "tag": {
+      "path": "M20.59 13.41 L13.42 20.58 A2 2 0 0 1 10.59 20.58 L2 12 V2 H12 L20.59 10.59 A2 2 0 0 1 20.59 13.41 Z M7 7 L7.01 7"
+    },
+    "minus": {
+      "path": "M5 12 L19 12"
+    },
+    "maximize": {
+      "path": "M8 3 H5 A2 2 0 0 0 3 5 V8 M21 8 V5 A2 2 0 0 0 19 3 H16 M16 21 H19 A2 2 0 0 0 21 19 V16 M3 16 V19 A2 2 0 0 0 5 21 H8"
+    },
+    "x": {
+      "path": "M18 6 L6 18 M6 6 L18 18"
+    },
+    "sliders": {
+      "path": "M4 21 L4 14 M4 10 L4 3 M12 21 L12 12 M12 8 L12 3 M20 21 L20 16 M20 12 L20 3 M1 14 L7 14 M9 8 L15 8 M17 16 L23 16"
+    },
+    "move-horizontal": {
+      "path": "M5 9 L2 12 L5 15 M9 5 L12 2 L15 5 M15 19 L12 22 L9 19 M19 9 L22 12 L19 15 M2 12 L22 12 M12 2 L12 22"
+    },
+    "sort": {
+      "path": "M8 6 L21 6 M8 12 L21 12 M8 18 L21 18 M3 6 L3.01 6 M3 12 L3.01 12 M3 18 L3.01 18"
+    },
+    "volume": {
+      "path": "M11 5 L6 9 L2 9 L2 15 L6 15 L11 19 L11 5 Z M19.07 4.93 A10 10 0 0 1 19.07 19.07 M15.54 8.46 A5 5 0 0 1 15.54 15.53"
+    },
+    "volume-x": {
+      "path": "M11 5 L6 9 L2 9 L2 15 L6 15 L11 19 L11 5 Z M23 9 L17 15 M17 9 L23 15"
+    },
+    "scissors": {
+      "path": "M9 6 A3 3 0 1 0 3 6 A3 3 0 1 0 9 6 Z M9 18 A3 3 0 1 0 3 18 A3 3 0 1 0 9 18 Z M20 4 L8.12 15.88 M14.47 14.48 L20 20 M8.12 8.12 L12 12"
+    },
+    "copy": {
+      "path": "M11 9 H20 A2 2 0 0 1 22 11 V20 A2 2 0 0 1 20 22 H11 A2 2 0 0 1 9 20 V11 A2 2 0 0 1 11 9 Z M5 15 H4 A2 2 0 0 1 2 13 V4 A2 2 0 0 1 4 2 H13 A2 2 0 0 1 15 4 V5"
+    },
+    "clipboard": {
+      "path": "M16 4 H18 A2 2 0 0 1 20 6 V20 A2 2 0 0 1 18 22 H6 A2 2 0 0 1 4 20 V6 A2 2 0 0 1 6 4 H8 M9 2 H15 A1 1 0 0 1 16 3 V5 A1 1 0 0 1 15 6 H9 A1 1 0 0 1 8 5 V3 A1 1 0 0 1 9 2 Z"
+    },
+    "keyboard": {
+      "path": "M18 3 A3 3 0 0 0 15 6 V18 A3 3 0 0 0 18 21 A3 3 0 0 0 21 18 A3 3 0 0 0 18 15 H6 A3 3 0 0 0 3 18 A3 3 0 0 0 6 21 A3 3 0 0 0 9 18 V6 A3 3 0 0 0 6 3 A3 3 0 0 0 3 6 A3 3 0 0 0 6 9 H18 A3 3 0 0 0 21 6 A3 3 0 0 0 18 3 Z"
+    },
+    "contrast": {
+      "path": "M22 12 A10 10 0 1 0 2 12 A10 10 0 1 0 22 12 Z"
+    },
+    "pointer": {
+      "path": "M3 3 L10.07 19.97 L12.58 12.58 L19.97 10.07 L3 3 Z M13 13 L19 19"
+    }
+  }
+}
