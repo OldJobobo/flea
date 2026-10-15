@@ -80,7 +80,7 @@ def gui_check(bundle, fixture, env, log, native=False):
                 values = []
                 for method in ("ready", "path", "total", "themeLoaded"):
                     try:
-                        result = subprocess.run(["qs", "ipc", "--path", str(bundle / "ui/boot"),
+                        result = subprocess.run(["qs", "ipc", "--pid", str(process.pid),
                                                  "call", "flea", method], env=env,
                                                 capture_output=True, text=True, timeout=3)
                     except subprocess.TimeoutExpired:

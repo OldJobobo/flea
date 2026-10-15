@@ -17,10 +17,12 @@ and `.local-builds/desktop.json` when an installation has been recorded.
 ## Verification achieved
 
 - Rust unit tests in debug and release: 2,541 passed and 1 ignored in each profile.
-- Personal tooling: 25 regression tests covering bundles, branch isolation, promotion,
+- Personal tooling: 26 regression tests covering bundles, branch isolation, promotion,
   rollback, timeouts, launcher pinning and conservative desktop install/restoration.
-- Real deployed backend listing and offscreen Quickshell startup: passed, including
+- Real deployed backend listing and offscreen/native Quickshell startup: passed, including
   fixture path, three visible entries and the real Omarchy theme loading.
+- Smoke IPC is pinned to the exact process started, not the shared `flea` shell ID;
+  configuration-path selection can otherwise accidentally query an existing stock window.
 - Git source under `src/`, `ui/`, `shelf/` and upstream tests is unmodified from the
   release baseline; custom development machinery lives in `personal/`.
 
@@ -46,6 +48,11 @@ incomplete. A future full verification needs the complete upstream dependency an
 fixture closure and individual investigation of remaining failures.
 
 ## Boundary of initial integration
+
+The custom launcher, desktop entry, both file-manager shortcuts and directory MIME
+default were installed with explicit permission. The MIME file's symlink into
+`/home/oldjobobo/dotfiles/xdg/.config/mimeapps.list` was preserved; only its directory
+default changed. The installer retains original files and modes for restoration.
 
 A distinct custom launcher and user-level desktop-routing installer are implemented.
 Installing those user files, changing default handlers/shortcuts, taking over existing

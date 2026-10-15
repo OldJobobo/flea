@@ -17,6 +17,7 @@ sys.path.insert(0, str(PERSONAL))
 import common
 import bundles
 import desktop
+import smoke
 import workflow
 
 
@@ -195,6 +196,18 @@ class Tools(unittest.TestCase):
         for leaf in bundles.UI_LINKS:
             self.assertTrue((path / leaf).is_symlink())
         self.assertFalse((self.store / "current").exists())
+
+    def test_gui_smoke_targets_only_the_process_it_started(self):
+        fixture = self.root / "fixture"
+        process = Namespace(pid=12345, poll=lambda: None)
+        replies = [Namespace(returncode=0, stdout=value, stderr="")
+                   for value in ("true", str(fixture), "3", "true")]
+        with patch.object(smoke.subprocess, "Popen", return_value=process), \
+             patch.object(smoke.subprocess, "run", side_effect=replies) as ipc, \
+             patch.object(smoke, "stop"):
+            smoke.gui_check(self.root, fixture, {}, self.root / "smoke.log")
+        for call in ipc.call_args_list:
+            self.assertEqual(call.args[0][:4], ["qs", "ipc", "--pid", "12345"])
 
     def test_timeout_is_reported_as_incomplete_with_a_log(self):
         with patch.object(common.subprocess, "run", side_effect=subprocess.TimeoutExpired("fixture", 1)):
