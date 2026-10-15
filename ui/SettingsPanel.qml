@@ -45,6 +45,7 @@ Item {
         selectedFavourite: root.selectedFavourite,
         about: aboutFacts.facts,
         saveStatus: ViewState.saveStatus,
+        iconPackError: ViewState.iconTheme.error,
         textSize: ViewState.textSize,
         hidden: ViewState.menuHidden,
         keyHints: ViewState.keyHints,

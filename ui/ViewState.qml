@@ -539,4 +539,7 @@ QtObject {
                 root.settleNext()
         }
     }
+
+    // Shared geometry follows this process's state; never one reader per glyph or file.
+    readonly property var iconTheme: IconTheme { requested: root.display.iconSet || "flea" }
 }

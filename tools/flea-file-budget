@@ -63,7 +63,7 @@ src/tui/input.rs 455
 src/tui/model.rs 1268
 src/tui/mod.rs 419
 src/tui/render.rs 913
-src/uischema.rs 549
+src/uischema.rs 571
 src/uistate.rs 810
 src/uistore.rs 551
 src/vulkan.rs 751
@@ -87,7 +87,7 @@ tests/permissions-focus.qml 417
 tests/js/network.js 307
 tests/js/ops.js 574
 tests/js/slowclick.js 309
-tests/js/settings.js 394
+tests/js/settings.js 396
 tests/js/tap.js 401
 tests/js/uistate.js 370
 tests/js/watch.js 541
@@ -156,14 +156,14 @@ ui/PickerChrome.qml 491
 ui/DeviceMounts.qml 537
 ui/PreviewMarkdown.qml 625
 ui/Row.qml 496
-ui/SettingsPanel.qml 547
+ui/SettingsPanel.qml 548
 ui/SettingsRow.qml 409
 ui/Sidebar.qml 713
 ui/StatusBar.qml 477
 ui/Theme.qml 493
 ui/TrashView.qml 472
 ui/UnlockDialog.qml 450
-ui/ViewState.qml 542
+ui/ViewState.qml 545
 ui/WindowBody.qml 816
 ui/js/Anchor.js 379
 ui/js/ColumnsCarry.js 94
@@ -185,7 +185,7 @@ ui/js/Ops.js 539
 ui/js/Search.js 396
 ui/js/Mounts.js 320
 ui/js/Picker.js 349
-ui/js/Settings.js 475
+ui/js/Settings.js 479
 ui/js/Scroll.js 304
 ui/js/Tabs.js 736
 ui/js/UiState.js 438
