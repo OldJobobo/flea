@@ -137,7 +137,7 @@ class Tools(unittest.TestCase):
                 bundles.promote(path.name)
 
     def test_feature_worktree_has_no_personal_commits(self):
-        self.git("switch", "-c", "personal")
+        self.git("switch", "-c", "tick")
         (self.root / "personal-only").write_text("private workflow")
         self.git("add", "personal-only")
         self.git("commit", "-m", "personal")
@@ -146,6 +146,35 @@ class Tools(unittest.TestCase):
         self.assertFalse((tree / "personal-only").exists())
         head = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=tree, text=True).strip()
         self.assertEqual(head, self.git("rev-parse", "upstream/main"))
+
+    def test_sync_uses_tick_and_leaves_main_unchanged(self):
+        self.git("switch", "-c", "tick")
+        (self.root / "tick-only").write_text("integration state")
+        self.git("add", "tick-only")
+        self.git("commit", "-m", "tick integration")
+        main = self.git("rev-parse", "main")
+        workflow.sync("main")
+        tree = next((self.root / ".personal-worktrees").glob("sync-*"))
+        self.assertTrue((tree / "tick-only").is_file())
+        self.assertEqual(self.git("branch", "--show-current"), "tick")
+        self.assertEqual(self.git("rev-parse", "main"), main)
+
+    def test_integrate_merges_into_tick_without_changing_main(self):
+        self.git("switch", "-c", "feature/example")
+        (self.root / "feature-file").write_text("feature")
+        self.git("add", "feature-file")
+        self.git("commit", "-m", "feature")
+        self.git("switch", "-c", "tick", "main")
+        main = self.git("rev-parse", "main")
+        workflow.integrate("feature/example")
+        self.assertTrue((self.root / "feature-file").is_file())
+        self.assertEqual(len(self.git("rev-list", "--parents", "-n", "1", "HEAD").split()), 3)
+        self.assertEqual(self.git("rev-parse", "main"), main)
+
+    def test_sync_and_integrate_refuse_upstream_main(self):
+        for action in (lambda: workflow.sync("main"), lambda: workflow.integrate("feature/example")):
+            with self.assertRaises(common.Refusal):
+                action()
 
     def test_feature_name_cannot_be_a_path(self):
         with self.assertRaises(common.Refusal):

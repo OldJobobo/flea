@@ -22,7 +22,7 @@ def parser():
     sync.add_argument("--base", choices=("release", "main"), default="release")
     feature = commands.add_parser("feature", help="Create a clean upstream contribution worktree")
     feature.add_argument("name")
-    integrate = commands.add_parser("integrate", help="Merge a reviewed feature/sync into personal; never deploy")
+    integrate = commands.add_parser("integrate", help="Merge a reviewed feature/sync into tick; never deploy")
     integrate.add_argument("branch")
     compile_ = commands.add_parser("build", help="Build a clean commit; daily selection stays unchanged")
     compile_.add_argument("--source", type=Path, default=ROOT)

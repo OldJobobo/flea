@@ -19,7 +19,7 @@ def latest_release():
 
 
 def fetch():
-    print("Fetching upstream; personal and deployed builds stay unchanged…", flush=True)
+    print("Fetching upstream; tick and deployed builds stay unchanged…", flush=True)
     run(["git", "fetch", "upstream", "--tags", "--prune"])
     tree = inside(ROOT / ".personal-worktrees/upstream")
     if not tree.exists():
@@ -51,24 +51,24 @@ def feature(name):
 
 def sync(base="release"):
     clean(ROOT)
-    if git("branch", "--show-current") != "personal":
-        raise Refusal("Start an upstream sync from the personal checkout.")
+    if git("branch", "--show-current") != "tick":
+        raise Refusal("Start an upstream sync from the tick checkout.")
     ref = latest_release() if base == "release" else "upstream/main"
     stamp = datetime.now(timezone.utc).strftime("%Y%m%d-%H%M%S")
     branch = f"sync/{stamp}"
-    tree = new_worktree(branch, "personal")
+    tree = new_worktree(branch, "tick")
     print(f"Merging {ref} into {branch}; daily deployment stays unchanged…", flush=True)
     try:
         run(["git", "merge", "--no-edit", ref], cwd=tree)
     except Refusal as error:
         raise Refusal(f"Sync needs attention in {tree}. Resolve or abort the merge there.\n{error}") from error
-    print(f"Candidate: {branch}\nWorktree: {tree}\nValidate here before integrating into personal.")
+    print(f"Candidate: {branch}\nWorktree: {tree}\nValidate here before integrating into tick.")
 
 
 def integrate(branch):
     clean(ROOT)
-    if git("branch", "--show-current") != "personal":
-        raise Refusal("Integrate only from the personal checkout.")
+    if git("branch", "--show-current") != "tick":
+        raise Refusal("Integrate only from the tick checkout.")
     if not re.fullmatch(r"(?:feature|sync)/[a-zA-Z0-9-]+", branch):
         raise Refusal("Integrate an explicit feature/<name> or sync/<date> branch.")
     git("rev-parse", "--verify", f"refs/heads/{branch}")
