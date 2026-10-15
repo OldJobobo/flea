@@ -2233,6 +2233,12 @@ failure fails the check rather than passing it.
   `tests/js/uistate.js` can redden on a mutation of the rule that only a zero exit proves a save.
 - `ui/Theme.qml` owns the singleton palette, type and spacing tokens from the Omarchy
   theme plus the user override.
+  `Theme.card` is every dialog card's anatomy, the OEM panel tokens at Flea's text size: `padding`
+  (`Style.spacing.panelPadding`), `gap` between title, body and buttons (`panelGap`), `labelGap`, `inset` to the
+  window's edge, the `title` size (`Style.font.title`) and the widths `narrow`, `form`, `wide` and `sheet`. A card
+  takes these and `ui/DialogScrim.qml`, never a padding, gap or width of its own. Two widths stay their board's,
+  each pinned by a test: Convert's 300 (`tests/dialog-board.qml`'s two-line error) and Permissions' 480
+  (`tests/permissions-adv.qml`); `ui/BulkRenameDialog.qml`'s `columnGap` stays the literal `tests/js/bulkrename.js` holds.
 - `ui/Pane.qml` owns one directory view, its integer model, held window, actions, the
   settle timer and the row-to-thumbnail map, see "Thumbnail requests in the GUI".
 - `ui/PaneWire.qml` is where every reply from outside the window lands: the backend's, and
@@ -9351,3 +9357,5 @@ The picker's empty-folder shot waits for the empty state to rest: `ui/EmptyState
 The rail lit-place test presses the rail through its `PointHandler` instead of setting `pointerFocus`, and releases past the drag threshold so the row never activates; `tests/sidebar-flows.qml` moves 683 to 687 in `tools/flea-file-budget`, re-derived with `wc -l`.
 
 The save-picker New folder action is separate from output-file validation: `folderPrepare` holds the current parent, `folderCreate` validates a single component and uses `mkdirat` on that descriptor, and `folderClose` releases an abandoned review. A successful create consumes its review; do not queue a redundant close ahead of the new location's save probe. A committed creation is never reported as a retryable failure, and cancelling the chooser does not remove it. The requesting application still alone writes the chosen file. `ui/PickerNewFolder.qml` owns pending identity and location, and lazily loads `ui/PickerFolderDialog.qml`; its owned focus timer dies with the card. The save-only Nerd Font folder-plus action has no button border and wraps onto another strip at narrow widths. The card height includes the scroll viewport's focus bleed so action borders stay inside the clip. `tests/picker-folder.sh` covers the real backend/window and controlled late replies, failed preparation, pending ownership, backend loss, Tab focus and narrow large-text layout; Rust folder tests cover collisions, permissions, cancellation and replaced parents. This feature moves two ceilings, re-derived with `wc -l`: `ui/PickerChrome.qml` 441 to 491 and `ui/PickerWindow.qml` 797 to 818. Existing unqualified diagnostic positions are rebased without new allowances. The 170 startup units and their 1673140-byte sum are unchanged.
+
+The dialog card tokens move one ceiling, re-derived with `wc -l`: `ui/Theme.qml` 475 to 493 for `Theme.card`. Every dialog that took the tokens is shorter or unchanged.
