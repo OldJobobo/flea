@@ -1,8 +1,13 @@
-# Initial setup and verification
+# Initial setup and verification (historical)
+
+The personal application and GitHub fork are now named **Tick**. The checkout and
+engine identities remain Flea-compatible. The figures below describe the initial
+setup, not current verification; current commands and branding are documented in
+`personal/README.md`.
 
 ## Installed layout
 
-- Fork: `OldJobobo/flea`; local checkout `/home/oldjobobo/Projects/flea`.
+- Fork: `OldJobobo/tick`; local checkout `/home/oldjobobo/Projects/flea`.
 - Persistent daily integration branch: `personal`, based initially on `v0.3.10`.
 - Clean upstream `main`: `.personal-worktrees/upstream`.
 - `origin` is the push destination; upstream pushing is locally disabled.
@@ -11,7 +16,7 @@
   ignored under `.local-builds/`; the system Flea package stays untouched.
 
 The final selected commit and current routing are runtime state, not values to pin in
-this document. Inspect `personal/flea-dev status`, `personal/flea-custom --custom-info`
+this document. Inspect `personal/tick-dev status`, `personal/tick --custom-info`
 and `.local-builds/desktop.json` when an installation has been recorded.
 
 ## Verification achieved
@@ -23,8 +28,9 @@ and `.local-builds/desktop.json` when an installation has been recorded.
   fixture path, three visible entries and the real Omarchy theme loading.
 - Smoke IPC is pinned to the exact process started, not the shared `flea` shell ID;
   configuration-path selection can otherwise accidentally query an existing stock window.
-- Git source under `src/`, `ui/`, `shelf/` and upstream tests is unmodified from the
-  release baseline; custom development machinery lives in `personal/`.
+- At initial setup, Git source under `src/`, `ui/`, `shelf/` and upstream tests was
+  unmodified from the release baseline; subsequent integrated features are recorded
+  in Git history. Personal deployment/branding machinery lives in `personal/`.
 
 ## Broad upstream battery: not green
 

@@ -1,16 +1,16 @@
-# Personal Flea fork: plan and operating contract
+# Tick: personal fork and operating contract
 
 ## Goal
 
-Run OldJobobo's customized Flea daily, keep it maintainable against upstream,
+Run Tick, OldJobobo's personal Flea fork, daily and keep it maintainable against upstream,
 and offer individual features upstream without including personal deployment code.
 The system package remains installed and unchanged as a fallback.
 
 ## Repository and branches
 
 - Checkout: `/home/oldjobobo/Projects/flea`.
-- `origin`: `https://github.com/OldJobobo/flea.git`, the only push destination.
-- `upstream`: `https://github.com/thisisgm/flea.git`, fetched for source updates.
+- `origin`: OldJobobo/tick, the only push destination.
+- `upstream`: thisisgm/flea, fetched for source updates.
 - `main`: clean upstream `main`; fast-forward only, no personal commits.
 - `personal`: persistent integration branch; merge updates, do not rewrite published history.
 - `feature/<name>`: one contribution, based on upstream `main` unless a maintainer requests another base.
@@ -19,6 +19,21 @@ The system package remains installed and unchanged as a fallback.
 
 Existing fork branches are preserved. They are not automatically integrated. The initial
 personal branch starts at the latest release available at setup, `v0.3.10`.
+
+## Tick identity and compatibility
+
+`personal/tick` and `personal/tick-dev` are the preferred entry points; the old
+`flea-custom` and `flea-dev` names remain compatibility aliases. Tick branding is
+applied to a disposable personal bundle, not the upstream source tree. Original
+and resulting hashes are retained in its manifest, and guarded seams fail closed
+on upstream drift. Clean contribution commits without personal branding assets
+remain Flea. See `personal/branding/README.md`.
+
+Rust/package names, wire protocol, shell IDs, `FLEA_*` variables, preferences and
+undo locations stay compatible. Tick's app ID is `com.oldjobobo.tick`. The legacy
+desktop ID can still route existing defaults through a hidden compatibility entry;
+`desktop rebrand` changes branding files only, never live routing. Stock package
+update/default controls are not exposed in Tick's UI.
 
 ## Contribution workflow
 
@@ -71,16 +86,17 @@ an already deployed bundle's source files.
 
 ## Desktop integration
 
-Phase one: a distinct `flea-custom` launcher and desktop entry, then explicit user-level
-shortcut and directory MIME routing with backups. Keep stock Flea available separately.
-No shell alias or PATH shadowing of `flea` is required.
+Phase one: distinct `tick` launcher, desktop entry and icon, with compatibility aliases
+for existing `flea-custom` routing. Explicit user-level shortcut and directory MIME
+routing retain backups. Keep stock Flea separately; never shadow the `flea` command.
 
 Phase two: optional user-level FileManager1 and FileChooser activation wrappers that launch
 this deployment's helpers with the pinned environment. D-Bus services must not keep a stale
 backend binary after promotion; restart only our service when changing versions. Do not call
 upstream `--default` or `--picker` to configure this layout: those verbs target stock package
 registration and can change multiple unrelated preferences. The same caution applies to
-Settings > About's default switch and its update button, which are upstream package workflows.
+stock Flea Settings > About's default switch and update button, which are upstream
+package workflows and are deliberately absent from Tick's overlaid About panel.
 
 The shelf's sources are bundled, but activating the Omarchy bar plugin and making it inherit
 the custom profile requires separate routing verification. It is not silently enabled.

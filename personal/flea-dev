@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build, verify, update and contribute without replacing packaged Flea."""
+"""Build, verify and maintain Tick without replacing packaged Flea."""
 import argparse
 from pathlib import Path
 import shutil
@@ -13,7 +13,7 @@ import workflow
 
 
 def parser():
-    cli = argparse.ArgumentParser(description=__doc__)
+    cli = argparse.ArgumentParser(prog="tick-dev", description=__doc__)
     commands = cli.add_subparsers(dest="command", required=True)
     commands.add_parser("status", help="Show checkout, builds and verification status")
     commands.add_parser("doctor", help="Verify current bundle integrity and dependencies")
@@ -39,7 +39,7 @@ def parser():
     promotion.add_argument("build")
     commands.add_parser("rollback", help="Restore previous build and its pre-promotion state")
     desktop = commands.add_parser("desktop", help="Preview or install explicit user-level desktop routing")
-    desktop.add_argument("action", choices=("plan", "install", "remove"), default="plan", nargs="?")
+    desktop.add_argument("action", choices=("plan", "install", "remove", "rebrand"), default="plan", nargs="?")
     desktop.add_argument("--shortcuts", action="store_true")
     desktop.add_argument("--directory-default", action="store_true")
     desktop.add_argument("--mime-target", type=Path, help="Explicitly authorize the resolved target of symlinked MIME preferences")
@@ -119,5 +119,5 @@ if __name__ == "__main__":
     try:
         main()
     except (Refusal, OSError, KeyboardInterrupt) as error:
-        print(f"flea-dev: {error or 'Cancelled; current selection was not automatically changed.'}", file=sys.stderr)
+        print(f"tick-dev: {error or 'Cancelled; current selection was not automatically changed.'}", file=sys.stderr)
         sys.exit(1)

@@ -209,6 +209,17 @@ class Tools(unittest.TestCase):
         for call in ipc.call_args_list:
             self.assertEqual(call.args[0][:4], ["qs", "ipc", "--pid", "12345"])
 
+    def test_tick_smoke_reads_actual_window_title_from_its_own_ipc(self):
+        fixture = self.root / "fixture"
+        process = Namespace(pid=12345, poll=lambda: None)
+        replies = [Namespace(returncode=0, stdout=value, stderr="")
+                   for value in ("true", str(fixture), "3", "true", "Tick")]
+        with patch.object(smoke.subprocess, "Popen", return_value=process), \
+             patch.object(smoke.subprocess, "run", side_effect=replies) as ipc, \
+             patch.object(smoke, "stop"):
+            smoke.gui_check(self.root, fixture, {}, self.root / "smoke.log", brand="Tick")
+        self.assertEqual(ipc.call_args.args[0], ["qs", "ipc", "--pid", "12345", "call", "flea", "brandTitle"])
+
     def test_timeout_is_reported_as_incomplete_with_a_log(self):
         with patch.object(common.subprocess, "run", side_effect=subprocess.TimeoutExpired("fixture", 1)):
             with self.assertRaises(common.CheckFailure) as caught:

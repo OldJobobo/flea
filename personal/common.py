@@ -131,7 +131,7 @@ def active_processes():
 def require_stopped():
     pids = active_processes()
     if pids:
-        raise Refusal(f"Close custom Flea windows and services first (PIDs: {', '.join(map(str, pids))}).")
+        raise Refusal(f"Close Tick windows and custom Flea services first (PIDs: {', '.join(map(str, pids))}).")
 
 
 def environment(bundle, profile="daily", runtime=None):

@@ -89,7 +89,8 @@ def status():
             print(f"{name.capitalize()}: not selected")
             continue
         manifest = validate(path)
-        print(f"{name.capitalize()}: {manifest['version']} / {path.name[:12]} / {manifest['checks']} checks")
+        brand = manifest.get("brand", {}).get("name", "Flea")
+        print(f"{name.capitalize()}: {brand} / {manifest['version']} / {path.name[:12]} / {manifest['checks']} checks")
         proof_path = STORE / "verification" / f"{path.name}.json"
         if proof_path.exists():
             proof = read_json(proof_path)

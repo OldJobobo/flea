@@ -10,6 +10,8 @@ import tarfile
 import tempfile
 import time
 
+import branding
+
 from common import (ROOT, STORE, Refusal, atomic_json, atomic_link, clean,
                     git, inside, logged, read_json, require_stopped, test_environment)
 
@@ -67,6 +69,7 @@ def validate(path):
 def extract_source(source, stage, commit="HEAD"):
     names = ["ui", "shelf", "keys.toml", "LICENSE", "packaging/com.thisisgm.flea.svg"]
     names += [f"tools/{name}" for name in HELPERS]
+    names += git("ls-tree", "-r", "--name-only", commit, "--", "personal/branding", "personal/branding.py", source=source).splitlines()
     archive = subprocess.check_output(["git", "archive", "--format=tar", commit, "--", *names], cwd=source)
     links = []
     with tarfile.open(fileobj=io.BytesIO(archive)) as tar:
@@ -125,16 +128,29 @@ def build(source=ROOT, checks="full", timeout=600):
         stage = Path(temporary) / commit
         stage.mkdir()
         extract_source(source, stage, commit)
+        overlay = None
+        if (stage / "personal/branding").is_dir():
+            if (stage / "personal/branding.py").read_bytes() != (ROOT / "personal/branding.py").read_bytes():
+                raise Refusal("Build Tick with the branding tool from the same source commit.")
+            overlay = branding.apply(stage, commit)
         (stage / "bin").mkdir()
         shutil.copy2(source / "target/release/flea", stage / "bin/flea")
         version = subprocess.check_output([str(stage / "bin/flea"), "--version"], text=True).strip()
         manifest = {"commit": commit, "version": version, "checks": checks,
                     "release_base": git("describe", "--tags", "--match", "v[0-9]*", "--abbrev=0", commit, source=source),
                     "created_ns": time.time_ns(), "logs": logs, "files": fingerprints(stage)}
+        if overlay:
+            manifest["brand"] = overlay
         atomic_json(stage / "manifest.json", manifest)
+        if overlay:
+            probe_env = dict(env, TICK_BUNDLE=str(stage))
+            logs.append(logged(["bash", "personal/tests/branding.sh"], ROOT, "tick-branding-runtime", probe_env, timeout=timeout))
+            if manifest["files"] != fingerprints(stage):
+                raise Refusal("Tick runtime check changed bundled assets.")
+            atomic_json(stage / "manifest.json", manifest)
         os.rename(stage, final)
     validate(final)
-    print(f"Built {version}: {commit}\nNext: personal/flea-dev smoke {commit}")
+    print(f"Built {version}: {commit}\nNext: personal/tick-dev smoke {commit}")
     return final
 
 
@@ -161,7 +177,7 @@ def promote(name):
     if current:
         atomic_link(STORE / "previous", f"releases/{current.name}")
     atomic_link(STORE / "current", f"releases/{name}")
-    print(f"Current: {manifest['version']} ({name[:12]})\nLauncher: {ROOT / 'personal/flea-custom'}")
+    print(f"Current: {manifest['version']} ({name[:12]})\nLauncher: {ROOT / 'personal/tick'}")
 
 
 def rollback():

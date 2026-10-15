@@ -63,7 +63,7 @@ def backend_check(bundle, fixture, env):
                 stream.close()
 
 
-def gui_check(bundle, fixture, env, log, native=False):
+def gui_check(bundle, fixture, env, log, native=False, brand=None):
     if not native:
         for key in ("DISPLAY", "WAYLAND_DISPLAY", "HYPRLAND_INSTANCE_SIGNATURE"):
             env.pop(key, None)
@@ -78,7 +78,8 @@ def gui_check(bundle, fixture, env, log, native=False):
             last = "No IPC reply"
             while time.monotonic() < deadline and process.poll() is None:
                 values = []
-                for method in ("ready", "path", "total", "themeLoaded"):
+                methods = ["ready", "path", "total", "themeLoaded"] + (["brandTitle"] if brand else [])
+                for method in methods:
                     try:
                         result = subprocess.run(["qs", "ipc", "--pid", str(process.pid),
                                                  "call", "flea", method], env=env,
@@ -87,7 +88,7 @@ def gui_check(bundle, fixture, env, log, native=False):
                         break
                     values.append(result.stdout.strip() if result.returncode == 0 else "")
                     last = result.stderr.strip() or str(values)
-                if values == ["true", str(fixture), "3", "true"]:
+                if values == ["true", str(fixture), "3", "true"] + ([brand] if brand else []):
                     return
                 time.sleep(0.2)
             raise Refusal(f"GUI did not settle on the fixture with a loaded theme: {last}\nLog: {log}")
@@ -111,7 +112,7 @@ def smoke(name, native=False):
         env = environment(bundle, "smoke", None if native else runtime)
         print("Checking deployed backend and GUI with disposable files…", flush=True)
         backend_check(bundle, fixture, env)
-        gui_check(bundle, fixture, env, log, native)
+        gui_check(bundle, fixture, env, log, native, manifest.get("brand", {}).get("name"))
     proof_path = STORE / "verification" / f"{name}.json"
     previous = json.loads(proof_path.read_text()) if proof_path.exists() else {}
     proof = {**previous, "files": manifest["files"], "smoke_passed": True,

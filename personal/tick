@@ -1,0 +1,6 @@
+#!/usr/bin/env python3
+"""Launch Tick; the legacy launcher remains a compatibility entry point."""
+from pathlib import Path
+import runpy
+
+runpy.run_path(str(Path(__file__).with_name("flea-custom")), run_name="__main__")

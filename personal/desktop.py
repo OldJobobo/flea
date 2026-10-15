@@ -7,10 +7,13 @@ import os
 import shlex
 import tempfile
 
+from branding import APP_ID
 from bundles import selected, validate
 from common import ROOT, STORE, Refusal, atomic_json, read_json, require_stopped, run
 
-DESKTOP_ID = "com.oldjobobo.flea.desktop"
+DESKTOP_ID = APP_ID + ".desktop"
+LEGACY_DESKTOP_ID = "com.oldjobobo.flea.desktop"
+ICON = Path(__file__).resolve().parent / "branding/tick.svg"
 BEGIN = "-- flea-custom: begin (managed by personal/flea-dev)"
 END = "-- flea-custom: end"
 
@@ -22,8 +25,11 @@ def paths(home=None):
     portal = config / "xdg-desktop-portal/hyprland-portals.conf"
     if not portal.exists():
         portal = config / "xdg-desktop-portal/portals.conf"
-    return {"launcher": home / ".local/bin/flea-custom",
+    return {"launcher": home / ".local/bin/tick",
+            "legacy_launcher": home / ".local/bin/flea-custom",
             "desktop": data / "applications" / DESKTOP_ID,
+            "legacy_desktop": data / "applications" / LEGACY_DESKTOP_ID,
+            "icon": data / "icons/hicolor/scalable/apps" / (APP_ID + ".svg"),
             "bindings": config / "hypr/bindings.lua", "portal": portal,
             "reveal": data / "dbus-1/services/org.freedesktop.FileManager1.service",
             "picker": data / "dbus-1/services/org.freedesktop.impl.portal.desktop.flea.service",
@@ -63,16 +69,16 @@ def restore(path, original):
 
 
 def binding_block(shortcuts, picker):
-    launch = shlex.quote(str(ROOT / "personal/flea-custom"))
+    launch = shlex.quote(str(ROOT / "personal/tick"))
     lines = [BEGIN]
     if shortcuts:
-        for chord, title, suffix in (("SUPER + SHIFT + F", "File manager (custom)", ""),
-                                      ("SUPER + ALT + SHIFT + F", "File manager (custom, cwd)",
+        for chord, title, suffix in (("SUPER + SHIFT + F", "Tick file manager", ""),
+                                      ("SUPER + ALT + SHIFT + F", "Tick file manager (cwd)",
                                        ' "$(omarchy-cmd-terminal-cwd)"')):
             command = json.dumps(f"{launch} --gui{suffix}", ensure_ascii=False)
             lines += [f'hl.unbind("{chord}")', f'o.bind("{chord}", "{title}", {{ launch = {command} }})']
     if picker:
-        lines.append('o.window("com.thisisgm.flea.picker", { tag = "+floating-window" })')
+        lines.append('o.window("com.oldjobobo.tick.picker", { tag = "+floating-window" })')
     return "\n".join([*lines, END]) + "\n"
 
 
@@ -138,13 +144,16 @@ def directory_default(text):
 
 
 def payloads(args, target):
-    command = str(ROOT / "personal/flea-custom")
+    command = str(ROOT / "personal/tick")
     # Desktop and D-Bus Exec have their own quoting rules, not shell quoting.
     quoted = '"' + command.replace("\\", "\\\\").replace('"', '\\"').replace("%", "%%") + '"'
-    values = {
-        "launcher": (f'#!/bin/sh\nexec {shlex.quote(command)} "$@"\n', 0o755),
-        "desktop": (f"[Desktop Entry]\nType=Application\nName=Flea Custom\nComment=OldJobobo's local Flea build\nExec=/usr/bin/env {quoted} --gui %f\nIcon=com.thisisgm.flea\nTerminal=false\nCategories=System;FileTools;FileManager;\nMimeType=inode/directory;\nStartupWMClass=com.thisisgm.flea\n", 0o644),
-    }
+    wrapper = f'#!/bin/sh\nexec {shlex.quote(command)} "$@"\n'
+    entry = (f"[Desktop Entry]\nType=Application\nName=Tick\nComment=Personal Flea fork for Omarchy\n"
+             f"Exec=/usr/bin/env {quoted} --gui %f\nIcon={APP_ID}\nTerminal=false\n"
+             f"Categories=System;FileTools;FileManager;\nMimeType=inode/directory;\nStartupWMClass={APP_ID}\n")
+    values = {"launcher": (wrapper, 0o755), "legacy_launcher": (wrapper, 0o755),
+              "desktop": (entry, 0o644), "legacy_desktop": (entry + "NoDisplay=true\n", 0o644),
+              "icon": (ICON.read_text(), 0o644)}
     if args.shortcuts or args.picker:
         original = target["bindings"].read_text() if target["bindings"].exists() else ""
         if BEGIN in original or END in original:
@@ -154,7 +163,7 @@ def payloads(args, target):
     for option, helper, name in (("reveal", "filemanager1", "org.freedesktop.FileManager1"),
                                   ("picker", "portal", "org.freedesktop.impl.portal.desktop.flea")):
         if getattr(args, option):
-            values[option] = (f"# Flea custom user-level activation override\n[D-BUS Service]\nName={name}\nExec={quoted} --custom-service {helper}\n", 0o644)
+            values[option] = (f"# Tick user-level activation override\n[D-BUS Service]\nName={name}\nExec={quoted} --custom-service {helper}\n", 0o644)
     if args.picker:
         original = target["portal"].read_text() if target["portal"].exists() else ""
         values["portal"] = (prefer_picker(original), 0o600)
@@ -196,7 +205,7 @@ def install(args, target, values):
         if args.directory_default:
             # payloads() wrote the explicitly authorized resolved target, not its symlink.
             if run(["xdg-mime", "query", "default", "inode/directory"], capture=True) != DESKTOP_ID:
-                raise Refusal("Directory default did not change to Flea Custom.")
+                raise Refusal("Directory default did not change to Tick.")
         if args.shortcuts or args.picker:
             reload_hypr()
         if args.picker:
@@ -237,6 +246,10 @@ def remove():
 
 def execute(args):
     target = paths()
+    if args.action == "rebrand":
+        from desktop_rebrand import execute as rebrand
+        rebrand(args, target)
+        return
     if args.action == "remove":
         if not args.confirm:
             raise Refusal("Removal restores external preferences; pass --confirm after reviewing desktop.json.")
