@@ -13,6 +13,13 @@ class Refusal(RuntimeError):
     pass
 
 
+class CheckFailure(Refusal):
+    def __init__(self, message, log, timed_out=False):
+        super().__init__(message)
+        self.log = log
+        self.timed_out = timed_out
+
+
 ROOT = Path(__file__).resolve().parent.parent
 STORE = ROOT / ".local-builds"
 
@@ -183,15 +190,22 @@ def sandbox_command(args):
             "--unshare-pid", "--unshare-ipc", "--unshare-net", "--die-with-parent", "--", *inner]
 
 
-def logged(args, source, label, env):
+def logged(args, source, label, env, timeout=600):
     initialize()
+    if timeout <= 0:
+        raise Refusal("Check timeout must be a positive number of seconds.")
     path = STORE / "logs" / f"{time.time_ns()}-{label}.log"
     print(f"Checking {label}…", flush=True)
-    with path.open("w") as output:
-        result = subprocess.run(sandbox_command(args), cwd=source, env=env, stdout=output,
-                                stderr=subprocess.STDOUT)
+    try:
+        with path.open("w") as output:
+            result = subprocess.run(sandbox_command(args), cwd=source, env=env, stdout=output,
+                                    stderr=subprocess.STDOUT, timeout=timeout)
+    except subprocess.TimeoutExpired as error:
+        raise CheckFailure(f"{label} timed out after {timeout}s; it is incomplete. Log: {path}",
+                           str(path.relative_to(ROOT)), timed_out=True) from error
     if result.returncode:
         tail = path.read_text(errors="replace").splitlines()[-12:]
-        raise Refusal(f"{label} failed ({result.returncode}). Log: {path}\n" + "\n".join(tail))
+        raise CheckFailure(f"{label} failed ({result.returncode}). Log: {path}\n" + "\n".join(tail),
+                           str(path.relative_to(ROOT)))
     print(f"  passed; log: {path.relative_to(ROOT)}", flush=True)
     return str(path.relative_to(ROOT))

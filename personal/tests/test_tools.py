@@ -195,6 +195,44 @@ class Tools(unittest.TestCase):
             self.assertTrue((path / leaf).is_symlink())
         self.assertFalse((self.store / "current").exists())
 
+    def test_timeout_is_reported_as_incomplete_with_a_log(self):
+        with patch.object(common.subprocess, "run", side_effect=subprocess.TimeoutExpired("fixture", 1)):
+            with self.assertRaises(common.CheckFailure) as caught:
+                common.logged(["fixture"], self.root, "timeout-fixture", {}, timeout=1)
+        self.assertTrue(caught.exception.timed_out)
+        self.assertTrue((self.root / caught.exception.log).is_file())
+
+    def test_desktop_install_and_remove_restore_existing_files(self):
+        args = Namespace(shortcuts=False, directory_default=False, reveal=False, picker=False)
+        with patch.dict(os.environ, {"XDG_CONFIG_HOME": str(self.root / "home/.config"), "XDG_DATA_HOME": str(self.root / "home/.local/share")}):
+            target = desktop.paths(self.root / "home")
+        target["launcher"].parent.mkdir(parents=True)
+        target["launcher"].write_text("existing launcher")
+        target["launcher"].chmod(0o750)
+        bundle = self.bundle()
+        common.atomic_link(self.store / "current", f"releases/{bundle.name}")
+        values = desktop.payloads(args, target)
+        with patch.object(desktop, "require_stopped"):
+            desktop.install(args, target, values)
+            self.assertTrue(target["desktop"].exists())
+            desktop.remove()
+        self.assertEqual(target["launcher"].read_text(), "existing launcher")
+        self.assertEqual(target["launcher"].stat().st_mode & 0o777, 0o750)
+        self.assertFalse(target["desktop"].exists())
+
+    def test_desktop_removal_preserves_subsequent_user_edits(self):
+        args = Namespace(shortcuts=False, directory_default=False, reveal=False, picker=False)
+        with patch.dict(os.environ, {"XDG_CONFIG_HOME": str(self.root / "home/.config"), "XDG_DATA_HOME": str(self.root / "home/.local/share")}):
+            target = desktop.paths(self.root / "home")
+        bundle = self.bundle()
+        common.atomic_link(self.store / "current", f"releases/{bundle.name}")
+        with patch.object(desktop, "require_stopped"):
+            desktop.install(args, target, desktop.payloads(args, target))
+            target["desktop"].write_text("user edits")
+            with self.assertRaises(common.Refusal):
+                desktop.remove()
+        self.assertEqual(target["desktop"].read_text(), "user edits")
+
     def test_desktop_plan_never_installs(self):
         args = Namespace(action="plan", shortcuts=False, directory_default=False, reveal=False, picker=False, confirm=False)
         with patch.dict(os.environ, {"XDG_CONFIG_HOME": str(self.root / "home/.config"), "XDG_DATA_HOME": str(self.root / "home/.local/share")}):

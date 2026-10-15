@@ -6,7 +6,7 @@ import shutil
 import sys
 
 from bundles import build, bundle_path, promote, rollback, selected, validate
-from common import (ROOT, STORE, Refusal, atomic_json, clean, git, initialize,
+from common import (ROOT, STORE, CheckFailure, Refusal, atomic_json, clean, git, initialize,
                     locked, logged, read_json, test_environment)
 from smoke import smoke
 import workflow
@@ -27,9 +27,11 @@ def parser():
     compile_ = commands.add_parser("build", help="Build a clean commit; daily selection stays unchanged")
     compile_.add_argument("--source", type=Path, default=ROOT)
     compile_.add_argument("--checks", choices=("quick", "full"), default="full")
+    compile_.add_argument("--timeout", type=int, default=600, help="Per-check limit in seconds (default: 600)")
     verify = commands.add_parser("verify", help="Run the full upstream battery for an existing bundle's commit")
     verify.add_argument("build", nargs="?")
     verify.add_argument("--source", type=Path, default=ROOT)
+    verify.add_argument("--timeout", type=int, default=600, help="Battery limit in seconds (default: 600)")
     check = commands.add_parser("smoke", help="Check deployed backend and GUI with disposable files")
     check.add_argument("build", nargs="?")
     check.add_argument("--native", action="store_true", help="Briefly open a real window instead of offscreen")
@@ -57,7 +59,7 @@ def doctor():
     print("Desktop and optional live integrations are checked separately.")
 
 
-def verify(name, source):
+def verify(name, source, timeout=600):
     source = clean(source)
     name = name or git("rev-parse", "HEAD", source=source)
     path = bundle_path(name)
@@ -67,9 +69,13 @@ def verify(name, source):
     proof_path = STORE / "verification" / f"{name}.json"
     proof = read_json(proof_path) if proof_path.exists() else {"files": manifest["files"]}
     try:
-        log = logged(["bash", "tests/run-all.sh"], source, "upstream-battery", test_environment(source))
-    except Refusal:
-        proof["full_battery"] = "failed"
+        log = logged(["bash", "tests/run-all.sh"], source, "upstream-battery", test_environment(source), timeout=timeout)
+        clean(source)
+        if git("rev-parse", "HEAD", source=source) != name:
+            raise Refusal("Verification checkout changed during the test run.")
+    except CheckFailure as error:
+        proof.update({"full_battery": "incomplete (timed out)" if error.timed_out else "failed",
+                      "full_battery_log": error.log})
         atomic_json(proof_path, proof)
         raise
     proof.update({"full_battery": "passed", "full_battery_log": log})
@@ -94,9 +100,9 @@ def main():
         elif args.command == "integrate":
             workflow.integrate(args.branch)
         elif args.command == "build":
-            build(args.source, args.checks)
+            build(args.source, args.checks, args.timeout)
         elif args.command == "verify":
-            verify(args.build, args.source)
+            verify(args.build, args.source, args.timeout)
         elif args.command == "smoke":
             smoke(args.build or selected().name, args.native)
         elif args.command == "promote":

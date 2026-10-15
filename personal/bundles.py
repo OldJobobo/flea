@@ -98,7 +98,7 @@ def extract_source(source, stage, commit="HEAD"):
         dest.symlink_to(target)
 
 
-def build(source=ROOT, checks="full"):
+def build(source=ROOT, checks="full", timeout=600):
     source = clean(source)
     commit = git("rev-parse", "HEAD", source=source)
     final = bundle_path(commit)
@@ -111,12 +111,12 @@ def build(source=ROOT, checks="full"):
     env = test_environment(source)
     logs = []
     for profile, args in (("unit-debug", []), ("unit-release", ["--release"])):
-        logs.append(logged(["cargo", "test", "--locked", *args], source, profile, env))
-    logs.append(logged(["cargo", "build", "--release", "--locked"], source, "release-build", env))
+        logs.append(logged(["cargo", "test", "--locked", *args], source, profile, env, timeout=timeout))
+    logs.append(logged(["cargo", "build", "--release", "--locked"], source, "release-build", env, timeout=timeout))
     logs.append(logged(["python3", "-B", "-m", "unittest", "discover", "-s", str(ROOT / "personal/tests"), "-v"],
-                       ROOT, "personal-tools", env))
+                       ROOT, "personal-tools", env, timeout=timeout))
     if checks == "full":
-        logs.append(logged(["bash", "tests/run-all.sh"], source, "upstream-battery", env))
+        logs.append(logged(["bash", "tests/run-all.sh"], source, "upstream-battery", env, timeout=timeout))
     # Build/test hooks may generate files: never package a checkout they changed.
     clean(source)
     if git("rev-parse", "HEAD", source=source) != commit:
@@ -193,4 +193,5 @@ def rollback():
         raise
     record.update({"current": previous.name, "previous": None, "rolled_back_from": record["current"]})
     atomic_json(STORE / "promotion.json", record)
+    (STORE / "previous").unlink(missing_ok=True)
     print(f"Restored build {previous.name[:12]} and its pre-promotion state.\nNewer state saved in {displaced}.")

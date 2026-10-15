@@ -47,6 +47,8 @@ and this tooling. It must be chosen explicitly and remains labelled `quick` in s
 ```sh
 personal/flea-dev build --checks quick
 personal/flea-dev verify "$(git rev-parse HEAD)"  # add full-battery evidence later
+# Explicitly allow a longer broad battery when needed:
+# personal/flea-dev verify --timeout 3600 "$(git rev-parse HEAD)"
 ```
 
 Both build modes also need `cargo`, `rustc`, `git`, `python3`, and `bwrap`; GUI smoke needs
@@ -61,7 +63,9 @@ undo fixtures. Scratch files disappear after each check; logs remain on disk.
 The namespace has no network; this Flea release has no Cargo dependencies. Revisit
 that policy if upstream adds dependencies rather than silently allowing downloads.
 
-A failed test does not select a new build. Logs are kept under `.local-builds/logs/`.
+A failed test does not select a new build. Each check defaults to a 600-second limit;
+`build --timeout SECONDS` and `verify --timeout SECONDS` can explicitly extend it.
+Timeouts are recorded as incomplete, never successful. Logs are kept under `.local-builds/logs/`.
 Bundles are archived tracked assets plus the tested release binary; Omarchy's shared
 UI modules remain external runtime dependencies and are validated at promotion.
 Integrity hashes detect edits or missing assets. Versioned bundles are not auto-pruned.
