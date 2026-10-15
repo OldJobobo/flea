@@ -51,7 +51,7 @@ pub const DEFAULTS: &str = r#"{
     "ctrlZoom": true, "volume": 100
   },
   "keys": "default",
-  "display": { "textSize": { "mode": "system" }, "hyprlandIcons": false },
+  "display": { "textSize": { "mode": "system" }, "hyprlandIcons": false, "iconSet": "flea" },
   "menu": { "hidden": ["delete", "openTerminal", "placeMenu", "runScript",
             "moveto", "copyto", "properties", "permissions", "copyAs", "pasteAs",
             "invertSelection", "extThumbs", "run", "openAsText"] },
@@ -161,9 +161,11 @@ pub const PREVIEW: &[(&str, Rule)] = &[
 // mode is "system" or one stop, so there is nowhere to put a free number; see the handoff's Display row.
 pub const TEXT_SIZE: &[(&str, Rule)] = &[("mode", Rule::TextSize)];
 
-// textSize alone. Window opacity, icon theme and shadows are the compositor's, and Flea mirrors it
-// rather than carrying a second writable copy of a setting Hyprland already owns.
-pub const DISPLAY: &[(&str, Rule)] = &[("textSize", Rule::Group(TEXT_SIZE)), ("hyprlandIcons", Rule::Bool)];
+// Flea's internal mark pack is separate from the desktop application icon theme.
+pub const DISPLAY: &[(&str, Rule)] = &[
+    ("textSize", Rule::Group(TEXT_SIZE)), ("hyprlandIcons", Rule::Bool),
+    ("iconSet", Rule::Word(&["flea", "tabler", "custom"])),
+];
 
 // hidden is the whole of the Menus section's state: the master row SettingsMenus draws over the six
 // basic actions derives from it by masterState in ui/js/Settings.js, and cannot disagree with it.
@@ -355,7 +357,7 @@ mod tests {
         assert!(d.get("preview").and_then(|p| p.get("markdownView")).is_none());
         assert_eq!(d.get("display").and_then(|p| p.get("textSize")).and_then(|t| t.get("mode")).and_then(Json::as_str), Some("system"));
         let display: Vec<&str> = d.get("display").and_then(Json::as_object).expect("display").iter().map(|(k, _)| k.as_str()).collect();
-        assert_eq!(display, ["textSize", "hyprlandIcons"], "the compositor owns opacity, icons and shadows");
+        assert_eq!(display, ["textSize", "hyprlandIcons", "iconSet"], "only Flea's internal marks are selectable");
         let menu: Vec<&str> = d.get("menu").and_then(Json::as_object).expect("menu").iter().map(|(k, _)| k.as_str()).collect();
         assert_eq!(menu, ["hidden"], "the master row is derived from menu.hidden, not stored beside it");
         assert_eq!(d.get("updates").and_then(|u| u.get("autoCheck")).and_then(Json::as_bool), Some(true));
@@ -457,6 +459,26 @@ mod tests {
         assert_eq!(map.len(), MAX_FOLDER_VIEWS);
         assert!(map.iter().all(|(key, _)| key != "/d000" && key != "/d001"));
         assert!(map.iter().any(|(key, _)| key == "/d501"));
+    }
+
+    #[test]
+    fn icon_pack_selection_is_validated_and_preserves_other_display_settings() {
+        let current = crate::uistate::from_file(r#"{"display":{"textSize":{"mode":16},"hyprlandIcons":true}}"#);
+        let icon_set = |value: &Json| value.get("display").and_then(|d| d.get("iconSet")).and_then(Json::as_str).map(str::to_owned);
+        assert_eq!(icon_set(&current).as_deref(), Some("flea"));
+        for name in ["flea", "tabler", "custom"] {
+            let patch = jsondoc::parse(&format!(r#"{{"display":{{"iconSet":"{}"}}}}"#, name)).unwrap();
+            let next = crate::uistate::patched(&current, &patch).unwrap();
+            assert_eq!(icon_set(&next).as_deref(), Some(name));
+            assert_eq!(next.get("display").and_then(|d| d.get("textSize")), current.get("display").and_then(|d| d.get("textSize")));
+            assert_eq!(next.get("display").and_then(|d| d.get("hyprlandIcons")), Some(&Json::Bool(true)));
+        }
+        for value in [r#""unknown""#, r#""/tmp/pack.qml""#, "null", "true", "12"] {
+            let text = format!(r#"{{"display":{{"iconSet":{}}}}}"#, value);
+            let patch = jsondoc::parse(&text).unwrap();
+            assert!(crate::uistate::patched(&current, &patch).is_err());
+            assert_eq!(icon_set(&crate::uistate::from_file(&text)).as_deref(), Some("flea"));
+        }
     }
 
     // The rules nothing else reached: an exact stop, a non-empty path, and the four shipped presets.

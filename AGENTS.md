@@ -2656,6 +2656,19 @@ record clears when the edit leaves that row or the tile is reused, so a pooled t
 
 ## File budget
 
+Selectable icon packs: `Glyph.qml` resolves semantic names through `IconTheme.qml`;
+Flea stays the default and creates no file reader. Tabler Outline and the watched
+`$XDG_CONFIG_HOME/flea/icons/custom.json` load only when selected. JSON packs carry
+bounded 24-unit paths, not executable code; missing marks and invalid packs retain
+Flea artwork. `docs/icon-packs.md` records the format and scope, and `tests/icon-packs.sh`
+covers switching, persistence, reload, failure and recovery on real glyphs.
+Ceilings re-derived with `wc -l`: `src/uischema.rs` 549 to 571, `ui/SettingsPanel.qml`
+547 to 548, `ui/js/Settings.js` 475 to 479, `tests/js/settings.js` 394 to 396 and
+`ui/ViewState.qml` 542 to 545 for its one shared pack service.
+The startup trace adds `IconTheme.qml` and `js/IconPacks.js` (175 to 177 units);
+their summed bytes move 1673140 to 1679021. The default census remains within the
+unchanged 628-object limit; the selected-pack reader is lazy and absent from that trace.
+
 xw6 adversarial fixes retain the tab handoff detail and exact payload paths. Each lift
 captures a stable tab identity and its source pane until acknowledgment or the existing
 15-second deadline. Accepted lifts wait for pane settlement beyond that deadline, and source
