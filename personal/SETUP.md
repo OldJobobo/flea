@@ -17,7 +17,7 @@ and `.local-builds/desktop.json` when an installation has been recorded.
 ## Verification achieved
 
 - Rust unit tests in debug and release: 2,541 passed and 1 ignored in each profile.
-- Personal tooling: 24 regression tests covering bundles, branch isolation, promotion,
+- Personal tooling: 25 regression tests covering bundles, branch isolation, promotion,
   rollback, timeouts, launcher pinning and conservative desktop install/restoration.
 - Real deployed backend listing and offscreen Quickshell startup: passed, including
   fixture path, three visible entries and the real Omarchy theme loading.

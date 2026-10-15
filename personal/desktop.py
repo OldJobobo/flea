@@ -143,7 +143,7 @@ def payloads(args, target):
     quoted = '"' + command.replace("\\", "\\\\").replace('"', '\\"').replace("%", "%%") + '"'
     values = {
         "launcher": (f'#!/bin/sh\nexec {shlex.quote(command)} "$@"\n', 0o755),
-        "desktop": (f"[Desktop Entry]\nType=Application\nName=Flea Custom\nComment=OldJobobo's local Flea build\nExec={quoted} --gui %f\nIcon=com.thisisgm.flea\nTerminal=false\nCategories=System;FileTools;FileManager;\nMimeType=inode/directory;\nStartupWMClass=com.thisisgm.flea\n", 0o644),
+        "desktop": (f"[Desktop Entry]\nType=Application\nName=Flea Custom\nComment=OldJobobo's local Flea build\nExec=/usr/bin/env {quoted} --gui %f\nIcon=com.thisisgm.flea\nTerminal=false\nCategories=System;FileTools;FileManager;\nMimeType=inode/directory;\nStartupWMClass=com.thisisgm.flea\n", 0o644),
     }
     if args.shortcuts or args.picker:
         original = target["bindings"].read_text() if target["bindings"].exists() else ""

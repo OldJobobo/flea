@@ -5,6 +5,7 @@ import importlib.machinery
 import importlib.util
 import json
 import os
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -245,6 +246,20 @@ class Tools(unittest.TestCase):
         args = Namespace(action="install", shortcuts=False, directory_default=False, reveal=False, picker=False, confirm=False)
         with self.assertRaises(common.Refusal):
             desktop.execute(args)
+
+    @unittest.skipUnless(shutil.which("xdg-mime"), "xdg-mime is not installed")
+    def test_desktop_entry_is_discoverable_by_real_xdg_mime(self):
+        home = self.root / "home"
+        env = {"HOME": str(home), "XDG_CONFIG_HOME": str(home / ".config"),
+               "XDG_DATA_HOME": str(home / ".local/share"), "PATH": "/usr/bin:/bin"}
+        args = Namespace(shortcuts=False, directory_default=True, reveal=False, picker=False)
+        with patch.dict(os.environ, env):
+            target = desktop.paths(home)
+            for path, value in desktop.payloads(args, target).items():
+                desktop.external_write(Path(path), value["bytes"], value["mode"])
+            result = subprocess.run(["xdg-mime", "query", "default", "inode/directory"],
+                                    capture_output=True, text=True, check=True)
+        self.assertEqual(result.stdout.strip(), desktop.DESKTOP_ID)
 
     def test_directory_default_edit_preserves_other_associations(self):
         original = "[Default Applications]\n# keep me\ninode/directory=stock.desktop\ntext/plain=editor.desktop\n\n[Added Associations]\ninode/directory=stock.desktop;\n"
