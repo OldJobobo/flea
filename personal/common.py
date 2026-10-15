@@ -34,7 +34,7 @@ def inside(path, base=None):
 
 def initialize():
     inside(STORE)
-    for leaf in ("releases", "logs", "tmp", "profiles", "snapshots", "verification"):
+    for leaf in ("releases", "logs", "tmp", "staging", "profiles", "snapshots", "verification"):
         inside(STORE / leaf).mkdir(parents=True, exist_ok=True, mode=0o700)
 
 

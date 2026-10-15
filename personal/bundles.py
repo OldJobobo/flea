@@ -124,7 +124,8 @@ def build(source=ROOT, checks="full", timeout=600):
     clean(source)
     if git("rev-parse", "HEAD", source=source) != commit:
         raise Refusal("The checkout changed while the build was running.")
-    with tempfile.TemporaryDirectory(prefix="bundle-", dir=STORE / "tmp") as temporary:
+    # The test namespace mounts tmpfs over STORE/tmp; candidates must stay visible outside it.
+    with tempfile.TemporaryDirectory(prefix="bundle-", dir=STORE / "staging") as temporary:
         stage = Path(temporary) / commit
         stage.mkdir()
         extract_source(source, stage, commit)

@@ -187,8 +187,10 @@ class Tools(unittest.TestCase):
 
     def test_successful_build_archives_exact_tracked_assets(self):
         self.source_assets()
-        with patch.object(bundles, "logged", return_value="fixture-log"):
+        with patch.object(bundles, "logged", return_value="fixture-log"), \
+             patch.object(bundles.tempfile, "TemporaryDirectory", wraps=tempfile.TemporaryDirectory) as candidate:
             path = bundles.build(self.root, "quick")
+        self.assertEqual(candidate.call_args.kwargs["dir"], self.store / "staging")
         manifest = bundles.validate(path)
         self.assertEqual(manifest["commit"], self.git("rev-parse", "HEAD"))
         self.assertEqual(manifest["checks"], "quick")
