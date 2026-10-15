@@ -246,6 +246,25 @@ class Tools(unittest.TestCase):
         with self.assertRaises(common.Refusal):
             desktop.execute(args)
 
+    def test_directory_default_edit_preserves_other_associations(self):
+        original = "[Default Applications]\n# keep me\ninode/directory=stock.desktop\ntext/plain=editor.desktop\n\n[Added Associations]\ninode/directory=stock.desktop;\n"
+        expected = original.replace("inode/directory=stock.desktop\n", f"inode/directory={desktop.DESKTOP_ID}\n")
+        self.assertEqual(desktop.directory_default(original), expected)
+
+    def test_symlinked_mime_requires_exact_target_authorization(self):
+        file = self.root / "dotfiles/mimeapps.list"
+        file.parent.mkdir()
+        file.write_text("[Default Applications]\ninode/directory=stock.desktop\n")
+        alias = self.root / "mimeapps.list"
+        alias.symlink_to(file)
+        args = Namespace(mime_target=None)
+        with self.assertRaises(common.Refusal):
+            desktop.mime_target(args, {"mime": alias})
+        args.mime_target = file
+        self.assertEqual(desktop.mime_target(args, {"mime": alias}), file)
+        self.assertTrue(alias.is_symlink())
+        self.assertIn("stock.desktop", file.read_text())
+
     def test_portal_preference_preserves_other_interfaces(self):
         result = desktop.prefer_picker("[preferred]\ndefault=hyprland;gtk\norg.freedesktop.impl.portal.FileChooser=gnome;gtk\norg.freedesktop.impl.portal.ScreenCast=hyprland\n")
         self.assertIn("default=hyprland;gtk", result)

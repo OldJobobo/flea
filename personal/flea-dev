@@ -42,6 +42,7 @@ def parser():
     desktop.add_argument("action", choices=("plan", "install", "remove"), default="plan", nargs="?")
     desktop.add_argument("--shortcuts", action="store_true")
     desktop.add_argument("--directory-default", action="store_true")
+    desktop.add_argument("--mime-target", type=Path, help="Explicitly authorize the resolved target of symlinked MIME preferences")
     desktop.add_argument("--reveal", action="store_true")
     desktop.add_argument("--picker", action="store_true")
     desktop.add_argument("--confirm", action="store_true", help="Authorize the displayed out-of-repository targets")

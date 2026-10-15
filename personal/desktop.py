@@ -102,6 +102,41 @@ def prefer_picker(text):
     return "\n".join(output) + "\n"
 
 
+def mime_target(args, target):
+    alias = target["mime"]
+    resolved = alias.resolve()
+    explicit = getattr(args, "mime_target", None)
+    if alias.is_symlink() and (explicit is None or Path(explicit).resolve() != resolved):
+        raise Refusal(f"MIME preferences are symlinked to {resolved}. Authorize that exact target with --mime-target {resolved}; the symlink will be preserved.")
+    if explicit is not None and Path(explicit).resolve() != resolved:
+        raise Refusal("--mime-target must resolve to the existing MIME preference file.")
+    return resolved
+
+
+def directory_default(text):
+    # Replace only this key in this section, retaining comments and other associations.
+    lines = text.splitlines(keepends=True)
+    start = [i for i, line in enumerate(lines) if line.strip() == "[Default Applications]"]
+    newline = "\r\n" if "\r\n" in text else "\n"
+    value = f"inode/directory={DESKTOP_ID}{newline}"
+    if len(start) > 1:
+        raise Refusal("Duplicate Default Applications sections; refusing an ambiguous MIME edit.")
+    if not start:
+        return text.rstrip("\r\n") + newline + f"[Default Applications]{newline}" + value
+    first = start[0] + 1
+    end = next((i for i in range(first, len(lines)) if lines[i].lstrip().startswith("[")), len(lines))
+    matches = [i for i in range(first, end) if lines[i].split("=", 1)[0].strip() == "inode/directory"]
+    if len(matches) > 1:
+        raise Refusal("Duplicate directory defaults; refusing an ambiguous MIME edit.")
+    if matches:
+        lines[matches[0]] = value
+    else:
+        if end and not lines[end - 1].endswith(("\n", "\r")):
+            lines[end - 1] += newline
+        lines.insert(end, value)
+    return "".join(lines)
+
+
 def payloads(args, target):
     command = str(ROOT / "personal/flea-custom")
     # Desktop and D-Bus Exec have their own quoting rules, not shell quoting.
@@ -123,7 +158,13 @@ def payloads(args, target):
     if args.picker:
         original = target["portal"].read_text() if target["portal"].exists() else ""
         values["portal"] = (prefer_picker(original), 0o600)
-    return {str(target[key]): {"bytes": text.encode(), "mode": mode} for key, (text, mode) in values.items()}
+    result = {str(target[key]): {"bytes": text.encode(), "mode": mode} for key, (text, mode) in values.items()}
+    if args.directory_default:
+        path = mime_target(args, target)
+        original = path.read_text() if path.exists() else ""
+        result[str(path)] = {"bytes": directory_default(original).encode(),
+                             "mode": path.stat().st_mode & 0o777 if path.exists() else 0o600}
+    return result
 
 
 def reload_hypr():
@@ -145,8 +186,6 @@ def install(args, target, values):
         if errors:
             raise Refusal("Resolve existing Hyprland config errors before installing overrides.")
     backups = {path: capture(Path(path)) for path in values}
-    if args.directory_default:
-        backups[str(target["mime"])] = capture(target["mime"])
     record = {"originals": backups, "installed": {}, "previous_mime": previous_mime,
               "shortcuts": args.shortcuts, "picker": args.picker, "directory_default": args.directory_default}
     # Recovery metadata is durable before any external file is changed.
@@ -155,7 +194,7 @@ def install(args, target, values):
         for path, value in values.items():
             external_write(Path(path), value["bytes"], value["mode"])
         if args.directory_default:
-            run(["xdg-mime", "default", DESKTOP_ID, "inode/directory"], capture=True)
+            # payloads() wrote the explicitly authorized resolved target, not its symlink.
             if run(["xdg-mime", "query", "default", "inode/directory"], capture=True) != DESKTOP_ID:
                 raise Refusal("Directory default did not change to Flea Custom.")
         if args.shortcuts or args.picker:
@@ -207,8 +246,6 @@ def execute(args):
     print("User-level targets:")
     for path in values:
         print(f"  {path}")
-    if args.directory_default:
-        print(f"  {target['mime']} (directory MIME default only)")
     if args.action == "plan":
         print("Preview only; no user configuration was changed.")
         return

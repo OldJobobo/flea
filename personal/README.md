@@ -158,6 +158,13 @@ It does not replace the stock package or alter system-owned Omarchy configuratio
 Existing files/preferences are backed up into `.local-builds/desktop.json` before writes.
 Hyprland errors trigger restoration; MIME routing is read back after setting it.
 The script refuses symlinked preference files and an existing recorded installation.
+For a symlinked MIME file, authorize its resolved target explicitly; only that target
+is edited and the symlink is preserved. On this installation the command is:
+
+```sh
+personal/flea-dev desktop install --shortcuts --directory-default \
+  --mime-target /home/oldjobobo/dotfiles/xdg/.config/mimeapps.list --confirm
+```
 
 Optional reveal/chooser routes can be included explicitly on a fresh installation:
 
