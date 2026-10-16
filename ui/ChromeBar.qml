@@ -57,7 +57,7 @@ Item {
 
     // The path bar, typed instead of drawn; the typed half is ui/PathEntry.qml, shared with the picker, and this bar answers its commit and jump.
     readonly property bool editing: entryLoader.item !== null && entryLoader.item.editing
-    // What the seam reads: the line as it stands, and the box a test double-clicks to open the bar.
+    // What the seam reads: the line as it stands, and the box a test clicks to open the bar.
     readonly property string editText: entryLoader.item !== null ? entryLoader.item.editText : ""
     readonly property alias pathArea: pathArea
     // The open field and its frame, null until the bar is first opened, so a test measures where they lie in the strip once it is.
@@ -155,10 +155,10 @@ Item {
         }
     }
 
-    // Where the path is drawn is where it is typed. A double click opens the bar, which is the
-    // pointer's half of ":" and Ctrl+L. Issue 45 made the segments above the leaf a control as well
-    // as a label: one tap on any of them opens that directory, and the leaf is where the pane
-    // already is, so it stays a label and only the bar answers a click on it.
+    // Where the path is drawn is where it is typed. One click opens the bar, which is the
+    // pointer's half of ":" and Ctrl+L. Ancestor crumbs remain navigation controls:
+    // one tap opens that directory. The current leaf, collapsed marker and empty
+    // strip instead open the editor without navigating.
     Item {
         id: pathArea
         anchors.left: nav.right
@@ -186,7 +186,7 @@ Item {
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideLeft
             textFormat: Text.PlainText
-            TapHandler { enabled: root.inputLive; onDoubleTapped: root.startEdit() }
+            TapHandler { enabled: root.inputLive; onTapped: root.startEdit() }
         }
 
         // One glyph's advance is every glyph's advance in this face, so the crumbs are fitted by
@@ -242,7 +242,7 @@ Item {
                 TapHandler {
                     enabled: root.inputLive
                     acceptedButtons: Qt.LeftButton
-                    onDoubleTapped: root.startEdit()
+                    onTapped: root.startEdit()
                 }
             }
 

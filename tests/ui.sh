@@ -2310,9 +2310,9 @@ case_click() {
     printf 'CLICK elision path=%q barOpen=%s\n' "$(ipc path)" "$(ipc pathBarOpen)"
     shot click-elision
     [[ "$(ipc path)" == "$deep" ]] || fail "click: a tap on the elision marker navigated to $(ipc path)"
-    [[ "$(ipc pathBarOpen)" == "false" ]] || fail "click: a tap on the elision marker opened the path bar"
+    [[ "$(ipc pathBarOpen)" == "true" ]] || fail "click: a tap on the elision marker did not open the path bar"
 
-    # The marker is one of keys.toml's inert segments, so the double click a tap on it never answers types the path.
+    # A second click pair in the open input must keep editing without navigating.
     omarchy-drive click "$((ex + wx))" "$((ey + wy))" --double >/dev/null \
         || fail "click: omarchy-drive refused the double click on the elision marker"
     settle
@@ -2325,7 +2325,7 @@ case_click() {
     settle
     [[ "$(ipc pathBarOpen)" == "false" ]] || fail "click: Escape did not close the path bar the elision marker opened"
 
-    # keys.toml's chrome/left x2/inert row covers the current folder's own segment, and the chrome is the window's own top item, so its band is y 0 to chromeHeight - 1.
+    # keys.toml's chrome/left/inert row covers the current folder's own segment, and the chrome is the window's own top item, so its band is y 0 to chromeHeight - 1.
     local chrome_h band_crumb band_x band
     chrome_h=$(ipc chromeHeight)
     band_crumb=$(( $(ipc crumbCount) - 1 ))
@@ -2343,15 +2343,15 @@ case_click() {
             || fail "click: the $pair_an $pair_a and the $pair_bn $pair_b differ by $pair_gap per channel at most, within twice the ink tolerance $chrome_ink_tolerance, so this theme cannot be checked by colour"
     done
     for band in "$chrome_band_inset" "$(( chrome_h - 1 - chrome_band_inset ))"; do
-        omarchy-drive click "$((band_x + wx))" "$((band + wy))" --double >/dev/null \
-            || fail "click: omarchy-drive refused the double click at y $band of the strip"
+        omarchy-drive click "$((band_x + wx))" "$((band + wy))" >/dev/null \
+            || fail "click: omarchy-drive refused the click at y $band of the strip"
         settle
         settle
         printf 'CLICK chrome-band y=%s of %s barOpen=%s path=%q\n' "$band" "$chrome_h" "$(ipc pathBarOpen)" "$(ipc path)"
         shot "click-chrome-band-$band"
         [[ "$(ipc pathBarOpen)" == "true" ]] \
-            || fail "click: a double click at y $band of the ${chrome_h}px strip did not open the path bar"
-        [[ "$(ipc path)" == "$deep" ]] || fail "click: the double click at y $band navigated to $(ipc path)"
+            || fail "click: a click at y $band of the ${chrome_h}px strip did not open the path bar"
+        [[ "$(ipc path)" == "$deep" ]] || fail "click: the click at y $band navigated to $(ipc path)"
         # Sample input: "74 3 592 20", the open field's frame, one hairline in the accent with no ring around it.
         local fx fy fw fh span ink accent
         read -r fx fy fw fh <<< "$(ipc pathFrameRect)"
@@ -2406,9 +2406,9 @@ case_click() {
     [[ "$edge_spread" -le "$chrome_edge_max_spread" ]] \
         || fail "click: the strip's bottom edge spans $edge_spread of 255 across ${chrome_edge_sample_width}px, so something opaque drew over it"
 
-    # Issue 45's own control, and the positive half the elision check needs: with only the negative
-    # above, a click that missed the window entirely passed it. Nothing drove a crumb at all, so a
-    # ChromeBar that ignored every press passed the whole suite.
+    # Issue 45's navigation control: ancestors still open their directories, rather than
+    # editing the line. This distinguishes navigation crumbs from the current folder and
+    # the collapsed marker, whose single clicks now open the input.
     local crumbs target centre cx cy up
     up=$(dirname "$deep")
     crumbs=$(ipc crumbCount)
@@ -12097,7 +12097,7 @@ case_dual() {
         '.focused == 0 and .panes[0].path == $left and .panes[1].path == $right' >/dev/null \
         || fail "dual: a tap on the left pane's parent crumb left $(ipc dualState | jq -c '[.focused, .panes[0].path, .panes[1].path]')"
     [[ "$(ipc pathBarOpen)" == "false" ]] || fail "dual: a single tap on a pane crumb opened the path bar"
-    # A double click types the path wherever a tap opens nothing: the padding before the first crumb, the space after the last, the current folder's own crumb.
+    # A single click types the path on padding, trailing space and the current folder's crumb.
     local strip sx sy sw sh press_x press_y crumb_inset
     read -r sx sy sw sh <<< "$(ipc panePathRect 0)"
     [[ -n "$sh" ]] || fail "dual: the left pane path has no on-screen box"
@@ -12115,14 +12115,14 @@ case_dual() {
             tail) press_x=$((sx + sw - chrome_band_inset)) press_y=$((sy + sh / 2)) ;;
             crumb) press_x=$cx press_y=$cy ;;
         esac
-        omarchy-drive click "$((press_x + wx))" "$((press_y + wy))" --double >/dev/null \
-            || fail "dual: omarchy-drive refused the double click on the left pane path's $strip"
+        omarchy-drive click "$((press_x + wx))" "$((press_y + wy))" >/dev/null \
+            || fail "dual: omarchy-drive refused the click on the left pane path's $strip"
         settle
         settle
-        shot "dual-path-double-$strip"
-        [[ "$(ipc pathBarOpen)" == "true" ]] || fail "dual: a double click on the left pane path's $strip did not open the path bar"
+        shot "dual-path-single-$strip"
+        [[ "$(ipc pathBarOpen)" == "true" ]] || fail "dual: a click on the left pane path's $strip did not open the path bar"
         ipc dualState | jq -e --arg left "$dir/left" '.panes[0].path == $left' >/dev/null \
-            || fail "dual: the double click on the left pane path's $strip navigated to $(ipc dualState | jq -r '.panes[0].path')"
+            || fail "dual: the click on the left pane path's $strip navigated to $(ipc dualState | jq -r '.panes[0].path')"
         key -k Escape >/dev/null
         settle
         [[ "$(ipc pathBarOpen)" == "false" ]] || fail "dual: Escape did not close the path bar opened from the pane path's $strip"

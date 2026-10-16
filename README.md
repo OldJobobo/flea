@@ -31,6 +31,8 @@ Tick adds or integrates:
   as Papirus, Yaru, Tela or Colloid independently of interface icons. Theme
   inheritance and fallback work across list, columns, grid and file pickers;
   thumbnails still take priority. See `docs/desktop-icon-themes.md`.
+- **Direct path editing.** Single-click the path to type; click elsewhere to
+  dismiss uncommitted input. Ancestor breadcrumbs still navigate on one click.
 - **New Folder in save dialogs.** Use the folder-plus button or `Ctrl+Shift+N`
   without losing the pending filename. Integrated from upstream Flea.
 - **Omarchy-styled dialogs.** Dialog surfaces use Omarchy's tokens, also
