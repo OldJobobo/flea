@@ -37,7 +37,8 @@ var INVENTORY = [
     ["showOriginal", "Show original", "symlink", "F", "open", "showOriginal"],
     // MenuAdditions rule 3: a Places or Favorites row opens this menu for its own path, so the rows
     // it carries are the ones that take a path and not the clipboard, archive, send or destroy ones.
-    ["openTab", "New tab", "plus", "P", "open"],
+    ["openTab", "New tab", "plus", "FP", "open"],
+    ["tabNew", "New tab", "plus", "B", "open"],
     ["openwith", "Open with", "app-window", "F", "open", "openWith"],
     // The run card's own entrances: Run asks through flea --open like Enter does, so the card stays the one place anything executes.
     ["run", "Run", "play", "F", "open"],
@@ -99,6 +100,7 @@ var INVENTORY = [
     ["addFavourite", "Add to Favorites", "star", "FBP", "inspect"],
     ["tags", "Tags", "tag", "F", "inspect"],
     ["removeFavourite", "Remove from Favorites", "minus", "PR", "inspect"],
+    ["reload", "Refresh", "history", "B", "view"],
     ["sort", "Sort by", "sort", "B", "view"],
     ["toggleHidden", "Show hidden files", "eye", "FB", "view"],
     ["extThumbs", "Show thumbnails", "image", "B", "view"],
@@ -144,6 +146,10 @@ function availableEntry(e, p, kind) {
     // than grey, which is what keeps issue 138's second row impossible from the rail as well.
     if (kind === "P" && (e.id === "addFavourite" || e.id === "removeFavourite"))
         return (e.id === "removeFavourite") === (p.placeFavourite === true)
+    if (e.action === "openTab" && kind === "F") {
+        e.label = "Open in new tab"
+        e.disabled = count !== 1 || ((Number(p.rowMode) || 0) & 0o170000) !== 0o040000
+    }
     if (e.action === "addFavourite" && kind === "F")
         e.disabled = count !== 1 || ((Number(p.rowMode) || 0) & 0o170000) !== 0o040000
     if (e.action === "paste") e.disabled = p.clipboardAvailable !== true && p.clipboardWatchFailed !== true

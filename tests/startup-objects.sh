@@ -58,7 +58,9 @@ if [ "$status" -ne 0 ] && [ "$status" -ne 143 ]; then
     cat "$log"
     exit 1
 fi
-warnings=$(grep -aE 'TypeError|ReferenceError|ERROR|WARN' "$log" | grep -vF 'This plugin does not support setting window masks' || true)
+warnings=$(grep -aE 'TypeError|ReferenceError|ERROR|WARN' "$log" \
+    | grep -vF 'This plugin does not support setting window masks' \
+    | grep -vF '$HYPRLAND_INSTANCE_SIGNATURE is unset. Cannot connect to hyprland.' || true)
 if [ -n "$warnings" ]; then
     printf 'FAIL startup-objects: engine warnings\n%s\n' "$warnings"
     exit 1

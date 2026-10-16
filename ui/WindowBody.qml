@@ -25,6 +25,7 @@ Rectangle {
     // The window this body was loaded into. Named host, not fleaWindow: a root property of
     // that name would bind to itself through Ipc and read null.
     property var host
+    Flea.MouseHints { surface: view; inputStamp: view.currentPane.inputAt }
     readonly property bool dualMode: ViewState.state.view === "dual"
     property int focusSide: (ViewState.state.dual || {}).focus === 1 ? 1 : 0
     // dual.split: the left listing's share of the room right of the rail in ten-thousandths, 5000 the equal split.
@@ -192,6 +193,8 @@ Rectangle {
         dropPane: view.currentPane
         stopFocused: view.currentPane.focusView === Focus.CHROME
         canGoBack: view.currentPane.canGoBack
+        canGoForward: !view.currentPane.trash.opened && !view.currentPane.flashActive
+            && view.currentPane.recentMode.length === 0 && view.currentPane.forwardHistory.length > 0
         canGoUp: view.currentPane.canGoUp
         viewMode: view.dualMode ? "dual" : view.currentPane.viewMode
         showPath: !view.dualMode
@@ -199,6 +202,7 @@ Rectangle {
         canFilter: view.currentPane.searchMode.length === 0
         canSort: view.currentPane.searchMode.length === 0
         onBackRequested: view.currentPane.goBack()
+        onForwardRequested: view.currentPane.goForward()
         onUpRequested: view.currentPane.openParent()
         onSearchRequested: view.currentPane.act("search")
         onFilterRequested: view.currentPane.act("filter")

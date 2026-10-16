@@ -396,6 +396,7 @@ Item {
 
                 readonly property bool current: root.currentIndex === tab.index
                 readonly property Item focusFrame: tabFrame
+                readonly property string mouseHint: Tabs.pathAt(root.tabs, root.currentIndex, tab.index, root.path)
                 // Every input named, so the label re-reads when a tab opens or the pane navigates.
                 readonly property string title: Tabs.label(
                     Tabs.pathAt(root.tabs, root.currentIndex, tab.index, root.path),
@@ -491,6 +492,8 @@ Item {
 
                 Item {
                     id: closeHit
+                    readonly property string mouseHint: "Close tab"
+                    readonly property string hintAction: "tabClose"
                     anchors.right: parent.right
                     anchors.verticalCenter: parent.verticalCenter
                     width: Theme.hitMin
@@ -510,10 +513,14 @@ Item {
                 }
 
                 TapHandler {
-                    acceptedButtons: Qt.LeftButton | Qt.MiddleButton
+                    acceptedButtons: Qt.LeftButton | Qt.MiddleButton | Qt.RightButton
                     onTapped: function (eventPoint, button) {
                         if (!pane)
                             return
+                        if (button === Qt.RightButton) {
+                            pane.contextMenu().openForTab(pane, tab.index, eventPoint.scenePosition)
+                            return
+                        }
                         if (button === Qt.MiddleButton) {
                             Tabs.closeAt(pane, tab.index)
                             return
@@ -566,6 +573,8 @@ Item {
 
         Item {
             id: addButton
+            readonly property string mouseHint: "New tab"
+            readonly property string hintAction: "tabNew"
             x: root.tabCount * root.tabWidth
             width: Theme.hitMin
             height: strip.height

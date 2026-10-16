@@ -121,7 +121,7 @@ function run(check) {
     go(Qt.Key_Left)
     check("Left on the first control stays", steps.pop(), "arrow-left")
     go(Qt.Key_Right); go(Qt.Key_Right); go(Qt.Key_Right)
-    check("Right walks back, up, search, filter in order", steps.join(","), "arrow-up,search,filter")
+    check("Right walks back, forward, up, search in order", steps.join(","), "arrow-right,arrow-up,search")
     go(Qt.Key_End)
     check("End goes to the last control", steps.pop(), "sliders")
     go(Qt.Key_Right)

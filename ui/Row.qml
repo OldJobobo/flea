@@ -13,6 +13,7 @@ Item {
     id: root
 
     property var row: null
+    readonly property string mouseHint: !root.renaming && root.row ? root.row.n + root.linkMark : ""
     function dateStamp() { return root.row ? (root.row.used === undefined ? root.row.m : root.row.used) : null }
     property bool cursor: false
     property bool paneFocused: true

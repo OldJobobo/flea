@@ -11,6 +11,7 @@ Item {
 
     required property int index
     required property var modelData
+    readonly property string mouseHint: !root.renaming ? String(root.modelData.path || root.modelData.label || "") : ""
     // The place the pane stands in: the fill and the accent edge. The keyboard cursor is a separate frame and moves on its own.
     property bool lit: false
     property bool cursor: false
@@ -251,6 +252,7 @@ Item {
     Component {
         id: ejectMark
         Item {
+            readonly property string mouseHint: "Eject or unmount"
             property alias hit: hitBox
             property alias frame: markFrame
             property alias hovered: hitHover.hovered

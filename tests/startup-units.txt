@@ -36,6 +36,7 @@ MatchText.qml
 MediaSound.qml
 MenuEdgeFade.qml
 MenuRow.qml
+MouseHints.qml
 MountListing.qml
 NetworkMounts.qml
 NetworkPlaces.qml
@@ -134,6 +135,8 @@ js/Messages.js
 js/Motion.js
 js/Mounts.js
 js/MouseNav.js
+js/MouseHints.js
+js/TabMenu.js
 js/Nav.js
 js/NetFs.js
 js/Ops.js
@@ -177,4 +180,4 @@ js/Trash.js
 js/TrashDates.js
 js/UiState.js
 js/Update.js
-bytes 1684068
+bytes 1692919

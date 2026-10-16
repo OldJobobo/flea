@@ -13,6 +13,7 @@ Item {
 
     // {n, d, i} as a peek answers them, or a listing row, which carries the same three fields.
     property var row: null
+    readonly property string mouseHint: root.row ? root.row.n : ""
     // The pane's thumbnail path for this row, empty for a peek's row: only the listing's own column asks for any.
     property string thumb: ""
     // A path is not a thumbnail: a cache file evicted between the answer and the decode leaves the mark to the glyph.

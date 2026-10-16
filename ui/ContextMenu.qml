@@ -6,6 +6,7 @@ import "js/LockedMenu.js" as LockedMenu
 import "js/Menu.js" as Menu
 import "js/MenuFit.js" as MenuFit
 import "js/MenuRefresh.js" as MenuRefresh
+import "js/TabMenu.js" as TabMenu
 
 // A plain overlay, not a QQC Popup: the one Controls import cost 10 ms of warm startup.
 Item {
@@ -102,8 +103,21 @@ Item {
     // entries to ui/js/Menu.js headerEntries (the column toggles and the hidden toggle, built from
     // qs module ViewState's hidden columns and the pane's showHidden), and every row flows back
     // through chosen() like the listing's own. A row's chosen verb routes by prefix in ui/Pane.qml.
+    property var tabContext: null
+    readonly property bool forTab: root.tabContext !== null
+    function openForTab(pane, index, scenePoint) {
+        var context = TabMenu.capture(pane, index)
+        if (!context) return
+        root.clearRail()
+        root.forHeader = false
+        root.hasRow = false
+        root.tabContext = context
+        root.place(scenePoint)
+    }
+
     property bool forHeader: false
     function openForHeader(scenePoint) {
+        root.clearRail()
         root.forHeader = true
         root.place(scenePoint)
     }
@@ -176,6 +190,7 @@ Item {
 
     // Menu.js builds entries from the context shared by the row menu and query; includeHidden is the keymap sheet's.
     function buildEntries(flyoutAction, includeHidden) {
+        if (root.forTab) return TabMenu.entries(root.tabContext)
         // Rail rows arrive built with their own release verdicts.
         if (root.forRail)
             return root.railEntries
@@ -302,6 +317,8 @@ Item {
     function openForRail(key, entries, scenePoint) {
         if (!entries || entries.length === 0)
             return
+        root.clearRail()
+        root.forHeader = false
         root.railKey = key
         root.railEntries = entries
         root.place(scenePoint)
@@ -310,6 +327,7 @@ Item {
     // Cleared on both ends: a rail entry left standing would put Eject on a listing row's menu,
     // and a locked path left standing would put the old folder's rows on another directory's tile.
     function clearRail() {
+        root.tabContext = null
         root.railEntries = []
         root.railKey = ""
         root.lockedPath = ""
@@ -391,7 +409,12 @@ Item {
         var key = root.railKey
         var rail = root.forRail
         var locked = root.lockedPath
+        var tab = root.tabContext
         root.close()
+        if (tab) {
+            if (!TabMenu.choose(tab, action)) root.refused("Tab changed; reopen the menu.")
+            return
+        }
         if (rail) {
             root.railChosen(action, key)
             return
@@ -462,7 +485,7 @@ Item {
 
     // Fresh capabilities use the normal inventory; selection stays on its action and placement uses the existing clamp.
     function refreshProviderRows() {
-        if (!root.opened || root.forRail || root.forHeader || root.forLocked) return
+        if (!root.opened || root.forRail || root.forHeader || root.forLocked || root.forTab) return
         // Replacing a pressed delegate destroys its grab before release can activate it.
         if (MenuRefresh.anyPressed(menuRows, root.submenuOpen ? subRows : null)) {
             root.refreshOwed = true

@@ -144,7 +144,7 @@ function countWhere(where) {
 function run(check) {
     var rows = Keymap.POINTER
     // The denominator first: an empty table would pass every loop below by having nothing in it.
-    check("the pointer table reached the tests at all", rows.length, 25)
+    check("the pointer table reached the tests at all", rows.length, 26)
     check("the table declares the listing's clicks", countWhere("listing"), 12)
     check("the table declares the middle column's own click", countWhere("column"), 1)
     check("the table declares the neighbour columns' clicks", countWhere("neighbour"), 5)
@@ -155,9 +155,10 @@ function run(check) {
     // Issue 45's crumbs are ui/ChromeBar.qml's own targets, above the listing and not in it, so
     // driveListing has nothing to press for them either; the same tests/ui.sh case clicks one.
     check("the table declares the chrome path's clicks", countWhere("chrome"), 2)
-    check("every row lands in one of those six places",
+    check("the table declares the tab context menu", countWhere("tabs"), 1)
+    check("every row lands in one of those seven places",
           countWhere("listing") + countWhere("column") + countWhere("neighbour") + countWhere("rail")
-          + countWhere("window") + countWhere("chrome"),
+          + countWhere("window") + countWhere("chrome") + countWhere("tabs"),
           rows.length)
 
     var drivenListing = 0

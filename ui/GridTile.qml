@@ -12,6 +12,7 @@ Item {
     id: root
 
     property var row: null
+    readonly property string mouseHint: !root.editing && root.row ? root.row.n : ""
     property bool cursor: false
     property bool hovered: false
     // False while the selection band runs, so the wash keeps the highlight off while the tip still reads hovered.

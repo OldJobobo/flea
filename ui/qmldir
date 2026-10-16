@@ -11,6 +11,8 @@ Backend 1.0 Backend.qml
 CheckBox 1.0 CheckBox.qml
 ChromeBar 1.0 ChromeBar.qml
 ChromeButton 1.0 ChromeButton.qml
+MouseHints 1.0 MouseHints.qml
+MouseHintBubble 1.0 MouseHintBubble.qml
 ChromeModes 1.0 ChromeModes.qml
 ColumnsArea 1.0 ColumnsArea.qml
 ColumnPane 1.0 ColumnPane.qml

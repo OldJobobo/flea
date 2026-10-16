@@ -6,6 +6,11 @@ Run Tick, OldJobobo's personal Flea fork, daily and keep it maintainable against
 and offer individual features upstream without including personal deployment code.
 The system package remains installed and unchanged as a fallback.
 
+Tick stays keyboard-first without requiring shortcut knowledge for ordinary file
+management. Mouse conventions, contextual actions and hover hints complement the
+same commands and safety checks; see `docs/mouse-support.md` for shipped behavior
+and verification scope.
+
 ## Repository and branches
 
 - Checkout: `/home/oldjobobo/Projects/flea`.

@@ -1047,6 +1047,14 @@ row = "inert"
 does = "pathBar"
 label = "type the path: the current folder's own segment, the collapsed marker or the strip beside the path"
 
+# Tick's tab menu shares the pane's single ContextMenu and captures a stable tab identity.
+[[pointer]]
+where = "tabs"
+press = "right"
+row = "any"
+does = "menu"
+label = "new, duplicate or close the clicked tab"
+
 # Issue 20: the mouse's side buttons. They belong to the window rather than to a row, so they are the
 # lines here with no listing under them; ui/js/Nav.js mouseBack and ui/js/MouseNav.js forward decide, and
 # ui/WindowBody.qml refuses both behind a dialog, an open preview, the share overlay and any field holding the keyboard.

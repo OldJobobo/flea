@@ -15,6 +15,7 @@ Item {
     property string home: ""
     property var pathAlias: null
     property bool canGoBack: false
+    property bool canGoForward: false
     property bool canGoUp: false
     // "list", "columns" or "grid"; the button naming the current one takes the accent.
     property string viewMode: "list"
@@ -32,6 +33,7 @@ Item {
     property var dropPane: null
 
     signal backRequested()
+    signal forwardRequested()
     signal upRequested()
     signal searchRequested()
     signal filterRequested()
@@ -143,6 +145,15 @@ Item {
             keyboardFocused: root.stopFocused && root.focusedGlyph === glyph
             enabled: root.canGoBack
             onActivated: root.backRequested()
+        }
+
+        Flea.ChromeButton {
+            inputLive: root.inputLive
+            ruleRows: Theme.spacing.hairline
+            glyph: "arrow-right"
+            keyboardFocused: root.stopFocused && root.focusedGlyph === glyph
+            enabled: root.canGoForward
+            onActivated: root.forwardRequested()
         }
 
         Flea.ChromeButton {

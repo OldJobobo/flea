@@ -21,9 +21,17 @@ Item {
 
     signal activated()
 
+    property string hintAction: ({ Back: "historyBack", Forward: "historyForward",
+        "Parent folder": "parent", Search: "search", Filter: "filter", Sort: "sortNext",
+        "List view": "viewList", "Columns view": "viewColumns", "Grid view": "viewGrid",
+        "Dual pane": "viewDual", Settings: "settings" })[root.accessName] || ""
+    readonly property string mouseHint: root.inputLive ? root.accessName : ""
+
     property string accessName: {
         if (root.glyph === "arrow-left")
             return "Back"
+        if (root.glyph === "arrow-right")
+            return "Forward"
         if (root.glyph === "arrow-up")
             return "Parent folder"
         if (root.glyph === "search")
@@ -34,6 +42,9 @@ Item {
             return "Columns view"
         if (root.glyph === "grid")
             return "Grid view"
+        if (root.glyph === "dual") return "Dual pane"
+        if (root.glyph === "sliders") return "Settings"
+        if (root.glyph === "x") return "Close"
         return root.glyph
     }
 
