@@ -1,15 +1,14 @@
 import QtQuick
 import QtQuick.Shapes
 import qs.Commons
-import "js/Icons.js" as Icons
 
-// One row or sidebar mark, chosen by name. Lucide's grid is 24 units at stroke 2, scaled to the slot.
+// One semantic mark, resolved through the selected icon pack and scaled to the slot.
 Item {
     id: root
 
     property string name: "file"
     property color color: "transparent"
-    // Lucide draws on a 24 unit grid, so every path in Icons.js is in those units.
+    // All packs share the same 24-unit geometry contract.
     readonly property real grid: 24
     // The mark's ceiling. Default is the row and menu mark; a surface drawing a mark alone passes its own.
     property real maxSize: Theme.markSize
@@ -19,8 +18,11 @@ Item {
     // Its own name: "scale" would shadow Item.scale, which qmllint flagged.
     readonly property real gridScale: root.markSize / root.grid
     property real strokeWidth: Theme.strokeWidth
-    // The solid part of the mark (Icons.js FILLED), empty for every mark but the few that have one.
-    readonly property string filledPath: Icons.filledPathFor(root.name)
+    readonly property string iconPath: ViewState.iconTheme.pathFor(root.name)
+    readonly property bool rounded: ViewState.iconTheme.rounded(root.name, ViewState.hyprlandIcons && Style.cornerRadius > 0)
+    // Expanded filled outlines (Phosphor) reuse the main shape; no extra row objects.
+    readonly property bool solidOnly: ViewState.iconTheme.solidOnly(root.name)
+    readonly property string filledPath: ViewState.iconTheme.filledFor(root.name)
     // Built the first time a mark names a solid part: a plain glyph owns no object for it, which tests/rowcost.qml counts.
     property Item solid: null
     function syncSolid() {
@@ -41,14 +43,14 @@ Item {
         transform: Scale { xScale: root.gridScale; yScale: root.gridScale }
 
         ShapePath {
-            strokeColor: root.color
-            fillColor: "transparent"
+            strokeColor: root.solidOnly ? "transparent" : root.color
+            fillColor: root.solidOnly ? root.color : "transparent"
+            fillRule: ShapePath.WindingFill
             strokeWidth: root.strokeWidth
-            // The Omarchy cut: square caps and mitered joins, the edge of the brand spiral; Icons.js paths are redrawn sharp to match.
-            capStyle: ViewState.hyprlandIcons && Style.cornerRadius > 0 ? ShapePath.RoundCap : ShapePath.SquareCap
-            joinStyle: ViewState.hyprlandIcons && Style.cornerRadius > 0 ? ShapePath.RoundJoin : ShapePath.MiterJoin
-            // A mark with more than one stroke is one multi-subpath SVG string; see Icons.js "Lucide path data".
-            PathSvg { path: Icons.pathFor(root.name) }
+            // Selected packs own their edge style; missing marks retain Flea's own recipe.
+            capStyle: root.rounded ? ShapePath.RoundCap : ShapePath.SquareCap
+            joinStyle: root.rounded ? ShapePath.RoundJoin : ShapePath.MiterJoin
+            PathSvg { path: root.iconPath }
         }
     }
 }

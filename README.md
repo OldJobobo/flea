@@ -37,7 +37,7 @@ Large directories stay responsive: the window loads rows and requests thumbnails
 - **Devices.** USB drives, phones and cameras over MTP, PTP and AFC, mounted from the rail. An encrypted drive unlocks from its rail row and locks again when you unmount it.
 - **Disk images.** Write an ISO or IMG to a USB drive, plain, compressed or inside a zip; Flea reads every byte back to verify it.
 - **Desktop integration.** Default file manager, “Show in folder” and Open/Save dialogs.
-- **Your settings.** Omarchy text sizes, configurable menus and Default, Vim, Mac or Windows keys.
+- **Your settings.** Omarchy text sizes, configurable menus and Default, Vim, Mac or Windows keys. Display offers Flea, Tabler, Lucide, Iconoir, Heroicons, Phosphor, Feather or a custom JSON icon pack; see `docs/icon-packs.md`.
 
 A menu row that cannot act says why beside its label (offline, signed out, no devices), and muted
 text keeps a 4.5:1 contrast against its background.

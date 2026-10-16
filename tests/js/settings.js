@@ -50,7 +50,7 @@ function runRows(check) {
     var display = Settings.rows("display", displayState(TextSize.follow(), 14))
     // The board's Display card: the text-size mode over its effective size, then the compositor's two read-only facts. No monitor-scale control, because Flea does not step or cycle that one.
     check("the Display section is text size, then Scale, then Appearance",
-          kinds(display), "group|choice|ruler|hint|fact|group|fact|hint|group|check")
+          kinds(display), "group|choice|ruler|hint|fact|group|fact|hint|group|check|choice|hint")
     check("its one control opens on Follow Omarchy", find(display, "textMode").value,
           "Follow Omarchy")
     // The board draws the mode as both names side by side, so the row names them rather than leaving ui/SettingsRow.qml to invent a second list that could disagree with the writer.
@@ -80,6 +80,8 @@ function runRows(check) {
           display[7].label, "Flea follows Hyprland's scale and does not change it.")
     check("the board icon override defaults off", display[9].id + "|" + display[9].on, "display.hyprlandIcons|false")
 
+    check("Display offers the shared pack registry", find(display, "display.iconSet").values.join(","), "flea,tabler,lucide,iconoir,heroicons,phosphor,feather,custom")
+    check("the original pack is the default", find(display, "display.iconSet").selected, "flea")
     // Switching to Override adds the stop row, and nothing else about the section moves.
     var pinned = Settings.rows("display", displayState({ mode: 16 }, 16))
     check("an override adds no row, it turns the ruler into the control", pinned.length,
