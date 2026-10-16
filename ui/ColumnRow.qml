@@ -126,21 +126,21 @@ Item {
         Image {
             id: thumbImage
             anchors.fill: parent
-            visible: root.thumbDrawn
+            visible: root.thumbDrawn || root.desktopDrawn
             opacity: root.dimOpacity
             sourceSize.width: Theme.iconSize
             sourceSize.height: Theme.iconSize
             fillMode: Image.PreserveAspectFit
             asynchronous: true
             // No cache by URL: a regenerated thumbnail keeps its path, and a cached decode would keep the old pixels.
-            cache: false
-            source: root.thumb.length > 0 ? Format.fileUri(root.thumb) : ""
+            cache: root.thumb.length === 0
+            source: root.thumb.length > 0 ? Format.fileUri(root.thumb) : root.desktopIcon
         }
 
         Flea.Glyph {
             id: markGlyph
             anchors.fill: parent
-            visible: !root.thumbDrawn
+            visible: !root.thumbDrawn && !root.desktopDrawn
             name: root.row ? Icons.glyphForRow(root.row.i, root.row.p) : "file"
             color: root.dimmed(root.cursor ? Theme.color.accent : Theme.color.mutedFrame)
         }
@@ -322,6 +322,8 @@ Item {
     }
 
     readonly property bool showChevron: root.isDir && (root.cursor || root.lifted)
+    readonly property string desktopIcon: root.live && root.visible && !root.thumb.length ? Flea.ViewState.fileIconSource(root.row, Theme.iconSize) : ""
+    readonly property bool desktopDrawn: root.desktopIcon.length > 0 && thumbImage.status === Image.Ready
 
     HoverHandler {
         id: hover

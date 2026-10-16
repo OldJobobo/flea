@@ -109,20 +109,20 @@ Item {
         Image {
             id: tileThumb
             anchors.fill: parent
-            visible: root.thumbDrawn
+            visible: root.thumbDrawn || root.desktopDrawn
             // Format.fileUri, not a concatenation: a cache path can carry a # or a ? and either one
             // silently truncates a plain file:// URL, which is what the hashcache fixture proves.
-            source: root.thumb.length > 0 ? Format.fileUri(root.thumb) : ""
-            fillMode: Image.PreserveAspectFit
-            sourceSize.width: ViewState.thumbnailPixels
-            sourceSize.height: ViewState.thumbnailPixels
+            source: root.thumb.length > 0 ? Format.fileUri(root.thumb) : root.desktopIcon
+            fillMode: root.thumb.length ? Image.PreserveAspectFit : Image.Pad
+            sourceSize.width: root.thumb.length ? ViewState.thumbnailPixels : Density.glyphCap(ViewState.thumbnailPixels)
+            sourceSize.height: root.thumb.length ? ViewState.thumbnailPixels : Density.glyphCap(ViewState.thumbnailPixels)
             asynchronous: true
-            cache: false
+            cache: root.thumb.length === 0
         }
 
         Flea.Glyph {
             anchors.fill: parent
-            visible: !root.thumbDrawn
+            visible: !root.thumbDrawn && !root.desktopDrawn
             // A folder mark never grows past 128, centred in the larger slots, so only thumbnails grow.
             maxSize: Density.glyphCap(ViewState.thumbnailPixels)
             name: root.row ? Icons.glyphForRow(root.row.i, root.row.p) : "file"
@@ -301,6 +301,8 @@ Item {
     // Pooled by its view, which parks the tile's listing reads on live (ui/GridArea.qml); a pooled tile builds no editor.
     property bool pooled: false
     readonly property bool live: !root.pooled
+    readonly property string desktopIcon: root.live && root.visible && !root.thumb.length ? ViewState.fileIconSource(root.row, Density.glyphCap(ViewState.thumbnailPixels)) : ""
+    readonly property bool desktopDrawn: root.desktopIcon.length > 0 && tileThumb.status === Image.Ready
     // The row whose editor the tile held when pooled, -1 for none; it keeps that editor while the edit stays on that row.
     property int pooledEditorRow: -1
     // The pane's edit row as a pooled tile sees it; once the edit leaves the recorded row the record clears for good.

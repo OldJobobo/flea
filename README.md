@@ -27,6 +27,10 @@ Tick adds or integrates:
 - **Seven built-in icon families.** Flea, Tabler Outline, Lucide, Iconoir,
   Heroicons Outline, Phosphor Regular and Feather, plus a watched Custom JSON
   slot. Missing custom marks fall back to Flea; reserved brand marks stay intact.
+- **Desktop file and folder themes.** Choose installed GTK/freedesktop artwork such
+  as Papirus, Yaru, Tela or Colloid independently of interface icons. Theme
+  inheritance and fallback work across list, columns, grid and file pickers;
+  thumbnails still take priority. See `docs/desktop-icon-themes.md`.
 - **New Folder in save dialogs.** Use the folder-plus button or `Ctrl+Shift+N`
   without losing the pending filename. Integrated from upstream Flea.
 - **Omarchy-styled dialogs.** Dialog surfaces use Omarchy's tokens, also

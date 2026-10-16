@@ -106,6 +106,7 @@ js/Dropbox.js
 js/Eject.js
 js/Errors.js
 js/ExtThumbs.js
+js/FileIcons.js
 js/Filter.js
 js/Focus.js
 js/FolderSorts.js
@@ -176,4 +177,4 @@ js/Trash.js
 js/TrashDates.js
 js/UiState.js
 js/Update.js
-bytes 1681128
+bytes 1684359

@@ -177,7 +177,7 @@ Item {
     // share this slot and exactly one is visible, chosen by whether the pane holds a thumbnail path.
     Image {
         id: thumbImage
-        visible: root.thumbDrawn
+        visible: root.thumbDrawn || root.desktopDrawn
         opacity: root.dimOpacity
         anchors.left: parent.left
         anchors.leftMargin: Theme.spacing.rowPaddingX + root.leadingSlot
@@ -195,7 +195,7 @@ Item {
 
     Glyph {
         id: icon
-        visible: !root.thumbDrawn
+        visible: !root.thumbDrawn && !root.desktopDrawn
         anchors.left: parent.left
         anchors.leftMargin: Theme.spacing.rowPaddingX + root.leadingSlot
         anchors.verticalCenter: parent.verticalCenter
@@ -396,10 +396,12 @@ Item {
             : "loading"
     }
 
-    // The thumbnail Image's source; empty means the row draws its Glyph instead, see the slot above.
+    readonly property string desktopIcon: root.visible && !root.thumb.length ? ViewState.fileIconSource(root.row, root.markSlot) : ""
+    readonly property bool desktopDrawn: root.desktopIcon.length > 0 && thumbImage.status === Image.Ready
+    // The shared Image's source; empty or undecodable leaves the interface glyph standing.
     function iconSource() {
         if (!root.row || root.thumb.length === 0) {
-            return ""
+            return root.desktopIcon
         }
         // A regenerated thumbnail keeps its path, so the source mtime is the only thing that moves Qt's cache key.
         return Format.fileUri(root.thumb) + "?m=" + root.row.m

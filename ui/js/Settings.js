@@ -7,6 +7,7 @@
 .import "SettingsShelf.js" as Shelf
 .import "SettingsAbout.js" as About
 .import "IconPacks.js" as IconPacks
+.import "FileIcons.js" as FileIcons
 
 // Whole sentences with "%1" for a value, filled by fill so each translates as one.
 var WORDS = {
@@ -220,9 +221,13 @@ function displayRows(state) {
     out.push({ kind: "check", id: "display.hyprlandIcons", label: "Hyprland-aware icons",
                mark: MARKS["display.hyprlandIcons"],
                on: ((state.data || {}).display || {}).hyprlandIcons === true })
-    out.push(choice("display.iconSet", "Icon set", "image", IconPacks.IDS, IconPacks.LABELS,
+    out.push(choice("display.iconSet", "Interface icons", "image", IconPacks.IDS, IconPacks.LABELS,
                     IconPacks.selected(((state.data || {}).display || {}).iconSet)))
     out.push({ kind: "hint", label: state.iconPackError || "Custom loads flea/icons/custom.json from your configuration directory. Missing marks use Flea icons. Brand marks stay unchanged." })
+    var files = FileIcons.choices(state.fileIconThemes, ((state.data || {}).display || {}).fileIconTheme)
+    out.push(choice("display.fileIconTheme", "File and folder icons", "folder", files.ids, files.labels, files.selected))
+    out.push({kind: "hint", label: state.fileIconError || "Installed desktop themes color file and folder artwork. Missing or unreadable icons use interface marks; thumbnails take priority."})
+    out.push({kind: "action", id: "refreshFileIcons", label: "Rescan icon themes", glyph: "history"})
     return out
 }
 
