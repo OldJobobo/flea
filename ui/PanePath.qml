@@ -22,7 +22,7 @@ Rectangle {
 
     color: root.focused ? Glass.surface : Glass.background
 
-    // Where no crumb is, the strip keeps the one gesture it had before issue 45: a double click types the path.
+    // Where no crumb is, a single click types the path without choosing a directory.
     component TypeArea: Item {
         HoverHandler {
             enabled: root.inputLive
@@ -31,7 +31,7 @@ Rectangle {
         TapHandler {
             enabled: root.inputLive
             acceptedButtons: Qt.LeftButton
-            onDoubleTapped: root.editRequested()
+            onTapped: root.editRequested()
         }
     }
 

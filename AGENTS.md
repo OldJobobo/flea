@@ -2656,6 +2656,14 @@ record clears when the edit leaves that row or the tile is reused, so a pooled t
 
 ## File budget
 
+Single-click path editing keeps `ChromeBar.qml` at 352 lines; `Crumb.qml` is 65,
+`PanePath.qml` 90 and `PathEntry.qml` 212, all below the hard caps. The editor
+and its outside-click mask remain lazy; neither adds a default startup object.
+The same 175 first-frame units sum to 1672849 bytes on this feature branch;
+the startup object ceiling stays 628. `keys.toml` and its generated Keymap agree
+on chrome/left/inert, and `tests/path-click.sh` covers real Qt pointer/focus
+behavior. See `docs/path-editing.md`.
+
 xw6 adversarial fixes retain the tab handoff detail and exact payload paths. Each lift
 captures a stable tab identity and its source pane until acknowledgment or the existing
 15-second deadline. Accepted lifts wait for pane settlement beyond that deadline, and source
@@ -4178,12 +4186,12 @@ in the dual view, each pane's own path, whose segments `ui/Crumb.qml` draws as t
 targets for both, placed by `ui/ChromeBar.qml` and by `ui/PanePath.qml`, from `ui/js/Crumbs.js`.
 Until 0.3.2 a dual pane's path was one `Text` answering only the double click, so a tap on a parent
 there did nothing, measured on 0.3.1 and on the 0.3.2 candidate after the second report on issue 45;
-the `row` column reads `parent` there because the leaf is the directory already listed and answers
-no single click. Neither `where` has a `pointercase_` driver in `tools/flea-acceptance-drive`, so
+the `row` column reads `parent` there because ancestors navigate; the leaf is already
+listed and now opens the editor on one click. Neither `where` has a `pointercase_` driver in `tools/flea-acceptance-drive`, so
 both report as derived and undriven in that battery; `tests/js/tap.js` holds their counts and drives
 neither, because both are QML bindings rather than `Tap.js` calls, and **`tests/js` is structurally
 unable to press either one**. `tests/ui.sh` case `click` is what presses them at the real window,
-and case `dual` presses a pane's crumb from `paneCrumbCentre`, then double clicks that pane's path
+and case `dual` presses a pane's crumb from `paneCrumbCentre`, then single clicks that pane's path
 in its padding, past its last crumb and on its own folder's crumb from `panePathRect`. A pane's path builds no crumbs while it is hidden,
 because the single view keeps it at height 0 and rule 6 is exactly that cost.
 
@@ -4207,13 +4215,13 @@ A crumb click answers on the first tap (decided 2026-09-22). `ui/Crumb.qml` used
 `exclusiveSignals: TapHandler.SingleTap | TapHandler.DoubleTap`, which makes the tap count decide by
 holding `singleTapped` until the double-click interval expires: measured on this box, 392 to 433 ms
 after the press against Qt's 400 ms interval, on every crumb click. Nobody double-clicks a
-breadcrumb, so a parent now opens at once, a double click on a parent is simply two taps, and the
-double click that types the path lives only where a single tap opens nothing: the leaf segment, the
-collapsed marker and the strip beside the crumbs, which `keys.toml` calls `inert`. Ctrl+L and `:` still
-open the bar anywhere. `tests/ui.sh` case `click` double clicks a parent with the backend stopped,
-because the path is written only when a listing answers: a listing landing between the two taps
-rebuilds the crumbs and hands the second tap to a fresh delegate, which would pass with the guard in
-`onDoubleTapped` deleted. The same case double clicks the collapsed marker, the guard's other arm.
+breadcrumb, so a parent opens at once and a double click on a parent is simply two taps.
+The path editor now also opens on the first tap: the leaf segment, collapsed marker and
+strip beside the crumbs are the non-navigation targets `keys.toml` calls `inert`.
+Ctrl+L and `:` still open the bar anywhere. `tests/ui.sh` case `click` keeps the parent
+double-click guard with the backend stopped, and now opens the collapsed marker on
+one click. `tests/path-click.sh` drives one-click activation and click-away dismissal
+through the shipped components; `PathEntry.qml` drops uncommitted input on blur.
 
 Its effect field is `does` and not `action`, and that is load bearing. `tools/flea-acceptance`
 derives its whole key checklist with one `sed` for `^action = ` over this file, with no table

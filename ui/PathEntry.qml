@@ -35,7 +35,7 @@ Item {
     property string cachedKey: ""
     property var cachedNames: []
 
-    // The strip typed instead of drawn: keys.toml's pathBar action (":" and Ctrl+L) and a double click on the path open it.
+    // The strip typed instead of drawn: keys.toml's pathBar action (":" and Ctrl+L) and a single click on the path open it.
     property bool editing: false
 
     function startEdit() {
@@ -56,11 +56,39 @@ Item {
             return
         }
         root.editing = false
+        field.focus = false
         root.pendingKey = ""
         root.cachedKey = ""
         root.cachedNames = []
         // The field is in no focus scope of its own, so the keyboard goes nowhere until the host answers editClosed.
         root.editClosed()
+    }
+
+    function containsPress(item, point) {
+        if (!item || !item.visible || !root.Window.window) return false
+        var local = item.mapFromItem(root.Window.window.contentItem, point.x, point.y)
+        return local.x >= 0 && local.y >= 0 && local.x < item.width && local.y < item.height
+    }
+
+    // Only outside presses hit this layer; input/dropdown gestures reach their real owners.
+    MouseArea {
+        parent: root.Window.window ? root.Window.window.contentItem : null
+        anchors.fill: parent
+        z: 1000000
+        visible: root.editing
+        acceptedButtons: Qt.AllButtons
+        containmentMask: QtObject {
+            function contains(point: point): bool {
+                return root.editing && !root.containsPress(root, point)
+                    && !(root.jumpShown && root.containsPress(root.jump.dropItem, point))
+            }
+        }
+        onPressed: function(mouse) { root.closeEdit(); mouse.accepted = false }
+        onWheel: wheel => wheel.accepted = false
+    }
+    Connections {
+        target: root.Window.window
+        function onActiveChanged() { var window = root.Window.window; if (root.editing && window && !window.active) root.closeEdit() }
     }
 
     // Tab completes from the backend's peek, the read the columns view already makes, so it costs no new request type.

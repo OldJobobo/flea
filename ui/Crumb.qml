@@ -56,9 +56,10 @@ Text {
     TapHandler {
         enabled: crumb.inputLive
         acceptedButtons: Qt.LeftButton
-        // The collapsed marker names no directory, so a press on it opens nothing rather than whichever crumb it stands for.
-        onSingleTapped: if (!crumb.modelData.last && !crumb.modelData.elided) crumb.chosen(crumb.modelData.path)
-        // Only where a tap opens nothing does a double click type the path; on a parent it is two taps.
-        onDoubleTapped: if (crumb.modelData.last || crumb.modelData.elided) crumb.editRequested()
+        // Ancestors navigate; the current folder and collapsed marker edit on the first tap.
+        onTapped: {
+            if (crumb.modelData.last || crumb.modelData.elided) crumb.editRequested()
+            else crumb.chosen(crumb.modelData.path)
+        }
     }
 }
