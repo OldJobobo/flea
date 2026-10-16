@@ -1,4 +1,5 @@
 mod backend;
+mod iconthemes;
 mod chooser;
 mod clip;
 mod defaults;
@@ -141,6 +142,7 @@ fn main() {
     };
 
     // Bare and checked before every other mode, so a script can ask which Flea is installed without parsing.
+    if args.len() == 2 && args[1] == "--desktop-icons" { exit(iconthemes::cli::run()); }
     if args.len() == 2 && args[1] == "--version" {
         println!("{}", env!("CARGO_PKG_VERSION"));
         exit(0);

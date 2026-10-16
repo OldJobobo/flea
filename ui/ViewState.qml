@@ -5,6 +5,7 @@ import Quickshell.Io
 import qs.Commons
 import "js/Density.js" as Density
 import "js/Format.js" as Format
+import "js/FileIcons.js" as FileIcons
 import "js/Keymap.js" as Keymap
 import "js/Settings.js" as Settings
 import "js/TextSize.js" as TextSize
@@ -542,4 +543,22 @@ QtObject {
 
     // Shared geometry follows this process's state; never one reader per glyph or file.
     readonly property var iconTheme: IconTheme { requested: root.display.iconSet || "flea" }
+    readonly property string fileIconTheme: FileIcons.selection(root.display.fileIconTheme)
+    property var desktopIcons: null
+    function loadDesktopIcons() {
+        if (!root.desktopIcons) {
+            var component = Qt.createComponent("DesktopIcons.qml")
+            if (component.status === Component.Ready)
+                root.desktopIcons = component.createObject(root, { selection: root.fileIconTheme })
+        }
+        return root.desktopIcons
+    }
+    function syncDesktopIcons() {
+        if (root.fileIconTheme !== "builtin") root.loadDesktopIcons()
+        if (root.desktopIcons) root.desktopIcons.selection = root.fileIconTheme
+    }
+    function fileIconSource(row, size) {
+        return root.fileIconTheme !== "builtin" && root.desktopIcons ? root.desktopIcons.source(row, size) : ""
+    }
+    onFileIconThemeChanged: Qt.callLater(root.syncDesktopIcons)
 }

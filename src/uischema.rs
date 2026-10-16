@@ -51,7 +51,7 @@ pub const DEFAULTS: &str = r#"{
     "ctrlZoom": true, "volume": 100
   },
   "keys": "default",
-  "display": { "textSize": { "mode": "system" }, "hyprlandIcons": false, "iconSet": "flea" },
+  "display": { "textSize": { "mode": "system" }, "hyprlandIcons": false, "iconSet": "flea", "fileIconTheme": "builtin" },
   "menu": { "hidden": ["delete", "openTerminal", "placeMenu", "runScript",
             "moveto", "copyto", "properties", "permissions", "copyAs", "pasteAs",
             "invertSelection", "extThumbs", "run", "openAsText"] },
@@ -70,6 +70,7 @@ pub const SIDEBAR_STOPS: [f64; 4] = [160.0, 192.0, 224.0, 256.0];
 // What a value has to be for the key to keep it. A key that fails its rule falls back to its default.
 pub enum Rule {
     Bool,
+    IconTheme,
     Word(&'static [&'static str]),
     // columns names what the list row SHOWS, so it holds each column key at most once and name always.
     Columns,
@@ -165,6 +166,7 @@ pub const TEXT_SIZE: &[(&str, Rule)] = &[("mode", Rule::TextSize)];
 pub const DISPLAY: &[(&str, Rule)] = &[
     ("textSize", Rule::Group(TEXT_SIZE)), ("hyprlandIcons", Rule::Bool),
     ("iconSet", Rule::Word(&["flea", "tabler", "lucide", "iconoir", "heroicons", "phosphor", "feather", "custom"])),
+    ("fileIconTheme", Rule::IconTheme),
 ];
 
 // hidden is the whole of the Menus section's state: the master row SettingsMenus draws over the six
@@ -357,7 +359,7 @@ mod tests {
         assert!(d.get("preview").and_then(|p| p.get("markdownView")).is_none());
         assert_eq!(d.get("display").and_then(|p| p.get("textSize")).and_then(|t| t.get("mode")).and_then(Json::as_str), Some("system"));
         let display: Vec<&str> = d.get("display").and_then(Json::as_object).expect("display").iter().map(|(k, _)| k.as_str()).collect();
-        assert_eq!(display, ["textSize", "hyprlandIcons", "iconSet"], "only Flea's internal marks are selectable");
+        assert_eq!(display, ["textSize", "hyprlandIcons", "iconSet", "fileIconTheme"], "interface and file artwork are separate selections");
         let menu: Vec<&str> = d.get("menu").and_then(Json::as_object).expect("menu").iter().map(|(k, _)| k.as_str()).collect();
         assert_eq!(menu, ["hidden"], "the master row is derived from menu.hidden, not stored beside it");
         assert_eq!(d.get("updates").and_then(|u| u.get("autoCheck")).and_then(Json::as_bool), Some(true));

@@ -2656,6 +2656,21 @@ record clears when the edit leaves that row or the tile is reused, so a pooled t
 
 ## File budget
 
+Desktop file/folder themes use an independent `display.fileIconTheme` selection.
+The default creates no resolver. `DesktopIcons.qml` and the bounded Rust
+`--desktop-icons` worker load only on opt-in or opening Display. Existing viewport
+Image slots render installed PNG/SVG/XPM art; list/column/grid counts remain
+17/15/13, and thumbnails retain priority. Theme inheritance, metadata/queue/cache
+bounds, rescan invalidation, system changes and fallback are documented in
+`docs/desktop-icon-themes.md` and exercised by `tests/desktop-icons.sh`.
+Ceilings re-derived with `wc -l`: `src/uischema.rs` 571 to 573,
+`src/uistate.rs` 810 to 811, `ui/Row.qml` 496 to 498,
+`ui/SettingsPanel.qml` 548 to 558, `ui/ViewState.qml` 545 to 564 and
+`ui/js/Settings.js` 479 to 484. `ColumnRow.qml` is 367 and `GridTile.qml` 318,
+both below the hard cap. The default trace adds only `js/FileIcons.js`:
+178 units and 1682866 bytes on this feature branch, with the unchanged
+628-object startup limit; neither DesktopIcons.qml nor its worker is in that trace.
+
 Selectable icon packs: `Glyph.qml` resolves semantic names through `IconTheme.qml`;
 Flea stays the default and creates no file reader. Tabler Outline and the watched
 `$XDG_CONFIG_HOME/flea/icons/custom.json` load only when selected. JSON packs carry

@@ -46,6 +46,8 @@ Item {
         about: aboutFacts.facts,
         saveStatus: ViewState.saveStatus,
         iconPackError: ViewState.iconTheme.error,
+        fileIconThemes: ViewState.desktopIcons ? ViewState.desktopIcons.themes : [],
+        fileIconError: ViewState.desktopIcons ? ViewState.desktopIcons.error : "",
         textSize: ViewState.textSize,
         hidden: ViewState.menuHidden,
         keyHints: ViewState.keyHints,
@@ -67,6 +69,9 @@ Item {
         }
         return out.join("\n")
     }
+
+    onOpenedChanged: if (root.opened && root.section === "display") ViewState.loadDesktopIcons()
+    onSectionChanged: if (root.opened && root.section === "display") ViewState.loadDesktopIcons()
 
     function open(holder) {
         root.focusHolder = holder
@@ -97,6 +102,11 @@ Item {
         var row = root.rows[index]
         if (!row || !Settings.focusable(row))
             return
+        if (row.id === "refreshFileIcons") {
+            var service = ViewState.loadDesktopIcons()
+            if (service) service.refresh()
+            return
+        }
         if (row.kind === "favourite") {
             // A pin opens the folder it names, the way the sidebar opens a favourite.
             if (row.pinPath !== undefined) { root.openPin(row.pinPath); return }

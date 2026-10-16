@@ -1,5 +1,9 @@
 # Icon packs
 
+For installed GTK/freedesktop file and folder artwork, see
+`docs/desktop-icon-themes.md`. That selection is independent of these interface
+packs; Settings → Display labels this selector **Interface icons**.
+
 Settings > Display > Appearance > **Icon set** selects **Flea**, **Tabler Outline**,
 **Lucide**, **Iconoir**, **Heroicons Outline**, **Phosphor Regular**, **Feather**, or
 **Custom**. Changes apply immediately to existing glyphs and are saved in
