@@ -68,7 +68,8 @@ path-data packs like the Custom interface-icon slot.
   up to 256 distinct requests; successful and missing results are cached.
 - The existing thumbnail `Image` also renders themed icons. No additional image,
   loader or shape is built per row. Artwork decodes asynchronously, shares Qt's
-  image cache, and is capped to the slot size (128 logical pixels for grid marks).
+  image cache, and is capped to the slot size (128 logical pixels for installed-theme
+  grid marks; Adaptive mode follows all six grid sizes through 256 pixels).
 - Metadata supports inherited themes, implicit `hicolor`, fixed/scalable/threshold
   directories and scaled directories. The closest child size is considered before
   trying a parent. User roots take precedence within the same theme directory.

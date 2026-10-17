@@ -64,9 +64,10 @@ or schedules a whole-directory recolour. Its FIFO cache holds at most 128 semant
 name/size results. Repeated rows at the same size share URLs and Qt's decoded image
 cache. SVG intrinsic dimensions match the requested size, with the geometry still
 on its 64-unit design grid: Qt's data-URL loader can otherwise hold a 64-pixel image
-even as `Image.sourceSize` grows. Grid icons retain the existing 128-pixel cap;
-thumbnails can fill the larger 192/256-pixel slots. A palette change clears the
-source cache; changed SVG bytes naturally produce new
+even as `Image.sourceSize` grows. Adaptive grid artwork follows all six thumbnail
+stops (48, 64, 96, 128, 192 and 256 pixels), including unchanged system-app fallback.
+Interface glyphs and separately selected installed icon themes retain their existing
+128-pixel cap. A palette change clears the source cache; changed SVG bytes naturally produce new
 image URLs, so old Qt pixmaps cannot masquerade as the new colours.
 
 There is one shared existing Rust desktop-icon worker for catalogue/system fallback
@@ -99,8 +100,9 @@ suite to save `adaptive-qt.png`, an actual offscreen Qt capture. The suite cover
 live theme-file/name changes, cache reuse, hidden idleness, original app fallback,
 resolver failure, thumbnail priority, object budgets, switching out/back and
 next-process persistence. A zoom leg measures painted and intrinsic Image dimensions
-at all six Ctrl+wheel thumbnail stops in both directions, including unchanged
-system-app fallback and full-size thumbnail controls. A separate leg decodes all
+at all six Ctrl+wheel thumbnail stops in both directions, including full-size
+system-app fallback and thumbnails in Adaptive mode. A second pass checks that
+System mode retains its 128-pixel artwork cap. A separate leg decodes all
 30 aliases in both geometry
 tiers across all six palettes: 360 actual Qt SVG decodes. The suite is registered
 in `tests/run-all.sh`; the pure suite runs in the existing JS battery.

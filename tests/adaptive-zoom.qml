@@ -10,6 +10,7 @@ Window {
     color:Flea.Theme.color.background
     property var stops:["small","medium","large","xlarge","huge","largest","huge","xlarge","large","medium","small"]
     property int index:0
+    property string selection:"adaptive"
     property bool changing:false
     property double started:Date.now()
     property int checks:0
@@ -36,22 +37,27 @@ Window {
             if (Date.now()-root.started>12000) { root.check("zoom stop settles",false);stop();root.done();return }
             if (!Flea.ViewState.initialReadComplete || Flea.ViewState.saveStatus!=="Saved") return
             if (!root.changing) {
-                Flea.ViewState.changeSetting("display.fileIconTheme","adaptive")
+                Flea.ViewState.changeSetting("display.fileIconTheme",root.selection)
                 Flea.ViewState.changeSetting("preview.thumbSize",root.stops[root.index])
                 root.changing=true;root.started=Date.now();return
             }
-            if (Date.now()-root.started<150 || !folder.desktopDrawn || !file.desktopDrawn || !brand.desktopDrawn || !photo.thumbDrawn) return
-            var cap=Density.glyphCap(root.pixels)
-            ;[folder,file,brand].forEach(function(tile) {
+            if (Date.now()-root.started<150 || !brand.desktopDrawn || !photo.thumbDrawn) return
+            if (root.selection==="adaptive" && (!folder.desktopDrawn || !file.desktopDrawn)) return
+            var cap=root.selection==="adaptive" ? root.pixels : Density.glyphCap(root.pixels)
+            var tiles=root.selection==="adaptive" ? [folder,file,brand] : [brand]
+            tiles.forEach(function(tile) {
                 var image=tile.thumbItem
-                console.log("ZOOM "+root.stops[root.index]+" "+tile.row.n+" painted="+image.paintedWidth+" decode="+image.sourceSize.width)
+                console.log("ZOOM "+root.selection+" "+root.stops[root.index]+" "+tile.row.n+" painted="+image.paintedWidth+" decode="+image.sourceSize.width)
                 root.check(root.stops[root.index]+" "+tile.row.n+" drawn width follows zoom",Math.abs(image.paintedWidth-cap)<1)
-                root.check(root.stops[root.index]+" "+tile.row.n+" decode stays capped",image.sourceSize.width===cap)
+                root.check(root.stops[root.index]+" "+tile.row.n+" decode matches mode size",image.sourceSize.width===cap)
                 root.check(root.stops[root.index]+" "+tile.row.n+" intrinsic raster follows zoom",Math.abs(image.implicitWidth-cap)<1)
             })
             root.check(root.stops[root.index]+" thumbnail follows full slot",Math.abs(photo.thumbItem.paintedWidth-root.pixels)<1)
             root.check(root.stops[root.index]+" thumbnail keeps priority",photo.desktopIcon==="")
-            if (++root.index===root.stops.length) {stop();root.done();return}
+            if (++root.index===root.stops.length) {
+                if (root.selection==="adaptive") {root.selection="system";root.index=0}
+                else {stop();root.done();return}
+            }
             root.changing=false;root.started=Date.now()
         }
     }
