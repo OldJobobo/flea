@@ -1,55 +1,68 @@
 import QtQuick
 import QtQuick.Shapes
 
-// The caller owns the three-beat cadence. Choreography exists only once this mark is shown.
+// Static elsewhere; EmptyState opts into the nine supplied articulated moods.
 Item {
     id: root
     property color color: Theme.color.mutedFrame
     readonly property real grid: 24
-    readonly property real markScale: Math.min(root.width, root.height) / root.grid
+    readonly property real markScale: root.idleGestures ? Math.min(root.width / 30, root.height / 31)
+        : Math.min(root.width, root.height) / root.grid
     property bool idleGestures: false
-    property real bob: 0
+    readonly property var clips: ["idle", "walk", "happy", "thinking", "searching", "waving", "sleepy", "surprised", "error"]
+    property int nextSequence: 0
+    property int groupOffset: 0
     property int nextGesture: 0
     property string lastGesture: ""
+    property var pending: []
     property var choreography: null
     property bool ready: false
     readonly property bool settled: (!root.choreography || !root.choreography.running)
-        && root.opacity === 1 && root.rotation === 0 && root.scale === 1 && root.bob === 0
-
-    transformOrigin: Item.Bottom
-    transform: Translate { y: root.bob }
+        && root.pending.length === 0 && root.opacity === 1
 
     function motion() {
         if (!root.choreography) {
             var component = Qt.createComponent("TickIdleMotion.qml")
             if (component.status !== Component.Ready) throw new Error(component.errorString())
             root.choreography = component.createObject(root, { mark: root })
+            root.choreography.finished.connect(function() { root.startNext() })
         }
         return root.choreography
     }
     function settle() {
+        root.pending = []
         if (root.choreography) root.choreography.stop()
         root.opacity = 1
-        root.rotation = 0
-        root.scale = 1
-        root.bob = 0
+    }
+    function startNext() {
+        if (!root.visible || Theme.reducedMotion) { root.settle(); return }
+        if (!root.pending.length) return
+        var next = root.pending[0]
+        root.pending = root.pending.slice(1)
+        root.lastGesture = next
+        root.motion().play(next)
     }
     function replay() {
-        root.settle()
-        if (!root.idleGestures || !root.visible || Theme.reducedMotion) return
-        var gesture = ["curious", "hop", "wiggle"][root.nextGesture]
-        root.nextGesture = (root.nextGesture + 1) % 3
-        root.lastGesture = gesture
-        root.motion().play(gesture)
+        if (!root.idleGestures || !root.visible || Theme.reducedMotion) { root.settle(); return }
+        // Three full clips per appearance; caption beats queue rather than truncate.
+        if (root.nextGesture >= 3) return
+        root.pending = root.pending.concat([root.clips[(root.groupOffset + root.nextGesture) % root.clips.length]])
+        root.nextGesture++
+        if (!root.choreography || !root.choreography.running) root.startNext()
     }
     function appear() {
         root.settle()
         root.nextGesture = 0
-        root.lastGesture = root.idleGestures ? "arrival" : ""
-        if (root.idleGestures && !Theme.reducedMotion) root.motion().play("arrival")
+        root.lastGesture = ""
+        if (root.idleGestures && !Theme.reducedMotion) {
+            root.groupOffset = root.nextSequence
+            root.nextSequence = (root.nextSequence + 3) % root.clips.length
+            root.replay()
+        }
     }
 
     Shape {
+        visible: root.choreography === null
         width: root.grid; height: root.grid
         x: (root.width - root.grid * root.markScale) / 2
         y: (root.height - root.grid * root.markScale) / 2

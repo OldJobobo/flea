@@ -73,12 +73,16 @@ def apply(stage, commit):
     if template.count("@PATH@") != 1:
         raise Refusal("Tick mark template is invalid")
     save("ui/FleaMark.qml", template.replace("@PATH@", json.dumps(mark["path"])))
-    motion = stage / "ui/TickIdleMotion.qml"
-    if motion.exists() or motion.is_symlink():
-        raise Refusal("Tick idle-motion component collides with an existing UI file")
-    motion.write_text((assets / "TickIdleMotion.qml").read_text())
+    for leaf, source in (("TickIdleMotion.qml", "TickIdleMotion.qml"), ("TickParts.js", "mascot/TickParts.js"),
+                         ("TickMotions.js", "mascot/TickMotions.js")):
+        motion = stage / "ui" / leaf
+        if motion.exists() or motion.is_symlink():
+            raise Refusal("Tick animation asset collides with an existing UI file")
+        motion.write_text((assets / source).read_text())
     once("ui/qmldir", "FleaMark 1.0 FleaMark.qml", "FleaMark 1.0 FleaMark.qml\nTickIdleMotion 1.0 TickIdleMotion.qml")
-    once("ui/EmptyState.qml", "            id: heroMark\n", "            id: heroMark\n            idleGestures: true\n")
+    once("ui/EmptyState.qml", "            id: heroMark\n", "            id: heroMark\n            idleGestures: true\n            color: Theme.color.foreground\n")
+    once("ui/EmptyState.qml", "            width: Theme.heroMarkSize\n            height: Theme.heroMarkSize",
+         "            width: Math.max(0, Math.min(Theme.heroMarkSize * 2, root.width - 2 * Theme.spacing.rowPaddingX))\n            height: width * 31 / 30")
     once("shelf/FleaShelfMark.qml", 'PathSvg { path: "M21 21H3V3h18v14H7V7h10v6h-6" }',
          'PathSvg { path: ' + json.dumps(mark["path"]) + ' }')
     once("shelf/FleaShelfMark.qml", 'strokeColor: root.color\n      fillColor: "transparent"',

@@ -39,27 +39,52 @@ updater nor the stock default-handler action. Tick updates go through `tick-dev`
 
 ## Empty-folder character beats
 
-The empty-folder mascot has a soft arrival, then three short gestures on the
-existing 2.8-second caption cadence: a curious tilt, a little hop, and a wiggle.
-After the third beat it returns exactly to its neutral pose and stays still.
-There is no continuous idle loop, extra recurring timer, or directory work.
+The empty-folder mascot uses the newer supplied `tick-animation-pack (1).zip`:
+**idle**, **walk**, **happy hop**, **thinking**, **searching**, **sleepy**, **waving**,
+**surprised**, and **error**. This replaces the earlier whole-icon tilt/hop/wiggle
+with an articulated body, twelve leg segments and two antennae, preserving the
+supplied pivots, gait phases, hop/extra keyframes and native timings.
+The mark is twice the old hero size when space permits, with a 30:31 aspect and
+semantic foreground ink so the details read on both dark and light themes.
+
+Each appearance selects three clips, rotating through these groups in order:
+`idle/walk/happy`, `thinking/searching/waving`, `sleepy/surprised/error`.
+The first starts immediately; the first two caption beats queue the other two.
+Every clip finishes before the next starts, even past the third caption beat;
+then the mascot rests. Groups rotate per pane, not through persisted user state.
+These are character moods, not filesystem-status reports: “error” does not set an
+application error, and “searching” does not start a search. There is no continuous
+idle loop, extra recurring timer, or directory work.
 
 `TickMark.qml` keeps the existing `replay()`, `settle()` and `settled` contract.
 Only the overlaid `EmptyState.qml` opts into `idleGestures`; menu/settings/shelf
 marks remain static. Fixed-caption states keep their own glyph instead of the
-mascot. Artwork, theme ink, layout and caption wording are unchanged.
+mascot. Caption wording and the existing three-beat timer are unchanged.
 
 `TickIdleMotion.qml` is instantiated only for a visible animated mascot and
 released on hide. Reduced motion skips allocation on appearance, refuses replay,
 and interrupts an active gesture back to neutral immediately. A fresh appearance
-resets the gesture order. Both files remain under their normal QML file caps;
-no upstream file ceiling or source startup-unit budget changes.
+resets the sequence and clears pending clips. Both files remain under their
+normal QML file caps; no upstream file ceiling or source startup-unit budget changes.
+
+The original SVG pieces and source QML are retained in `mascot/` with input hashes.
+`personal/import_tick_animations.py` validates the SVGs and six-state JSON, generating
+`TickParts.js` and `TickMotions.js`. The overlay copies both tables beside the rig,
+which paints fifteen
+semantic-color ShapePaths. No animated GIF, SMIL playback, hard-coded white image,
+SVG image reader or additional multimedia dependency is used at runtime.
+The supplied archive remains untouched; source attribution/provenance is recorded
+in `mascot/README.md` without assuming an additional license.
 
 `personal/tests/mascot.sh` tests the actual overlaid EmptyState. It runs as part
 of the bundle branding gate and covers all gestures, three-beat rest, interruption,
 hidden release, fixed captions, and non-empty-state marks. Optional screenshots
 can be saved to an existing directory under `.local-builds` by setting
 `TICK_MASCOT_CAPTURE`; `TICK_BUNDLE` selects the staged bundle under test.
+Verification passed 48 mascot runtime checks, 43 branding runtime checks and
+51 personal-tooling tests. Runtime checks cover every supplied clip at native
+speed, exact neutral endings, three-group rotation, queue cancellation and rest. Captures are inspected at the
+enlarged hero size and in the padded 48 px happy-hop pose.
 
 Guarded upstream seams fail closed if changed. Bundle metadata records original
 source hashes and final file fingerprints; old unbranded bundles remain valid.

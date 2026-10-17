@@ -4,7 +4,8 @@ set -eu
 cd "$(dirname "$0")/../.."
 . tools/flea-sandbox-guard
 bundle=${TICK_BUNDLE:-$(readlink -f .local-builds/current)}
-test -f "$bundle/ui/TickIdleMotion.qml" || { echo 'Tick mascot: an animated Tick bundle is required'; exit 1; }
+test -f "$bundle/ui/TickIdleMotion.qml" && test -f "$bundle/ui/TickParts.js" && test -f "$bundle/ui/TickMotions.js" \
+    || { echo 'Tick mascot: a bundle with the supplied animation rig is required'; exit 1; }
 if [ -n "${TICK_MASCOT_CAPTURE:-}" ]; then
     capture=$(readlink -f "$TICK_MASCOT_CAPTURE")
     case "$capture" in "$PWD/.local-builds/"*) ;; *) echo 'Tick mascot: captures must stay under .local-builds'; exit 1;; esac
@@ -26,7 +27,7 @@ output=$(env -u DISPLAY -u WAYLAND_DISPLAY -u HYPRLAND_INSTANCE_SIGNATURE \
     HOME="$fixture/home" XDG_STATE_HOME="$fixture/state" XDG_CONFIG_HOME="$fixture/settings" \
     XDG_DATA_HOME="$fixture/home/data" XDG_CACHE_HOME="$fixture/home/cache" XDG_RUNTIME_DIR="$fixture/runtime" \
     QT_QPA_PLATFORM=offscreen QT_QPA_PLATFORMTHEME=generic QT_FORCE_STDERR_LOGGING=1 \
-    timeout 25 qs -p "$fixture/config" 2>&1)
+    timeout 50 qs -p "$fixture/config" 2>&1)
 status=$?
 set -e
 printf '%s\n' "$output"
@@ -37,4 +38,4 @@ if printf '%s\n' "$output" | grep -E 'TypeError|ReferenceError|WARN|ERROR|MASCOT
     | grep -vF 'This plugin does not support setting window masks'; then
     echo 'Tick mascot: unexpected runtime diagnostic'; exit 1
 fi
-printf 'Tick mascot: arrival, three gestures, rest, hidden release and reduced motion passed\n'
+printf 'Tick mascot: all nine supplied clips, rotation, queue, rest, theme ink and reduced motion passed\n'

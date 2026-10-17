@@ -30,7 +30,7 @@ class Branding(unittest.TestCase):
             destination = self.stage / leaf
             destination.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(PERSONAL.parent / leaf, destination)
-        shutil.copytree(PERSONAL / "branding", self.stage / "personal/branding")
+        shutil.copytree(PERSONAL / "branding", self.stage / "personal/branding", ignore=shutil.ignore_patterns("*.zip"))
         return leaves
 
     def test_clean_upstream_build_is_not_rebranded(self):
@@ -82,11 +82,17 @@ class Branding(unittest.TestCase):
         self.assertNotIn('@PATH@', mark)
         self.assertIn('ShapePath.WindingFill', mark)
         self.assertTrue((self.stage / "ui/TickIdleMotion.qml").is_file())
+        self.assertEqual((self.stage / "ui/TickParts.js").read_bytes(), (PERSONAL / "branding/mascot/TickParts.js").read_bytes())
+        self.assertEqual((self.stage / "ui/TickMotions.js").read_bytes(), (PERSONAL / "branding/mascot/TickMotions.js").read_bytes())
         self.assertIn('TickIdleMotion 1.0 TickIdleMotion.qml', (self.stage / "ui/qmldir").read_text())
         self.assertIn('Qt.createComponent("TickIdleMotion.qml")', mark)
         self.assertIn('property bool idleGestures: false', mark)
         self.assertIn('idleGestures: true', (self.stage / "ui/EmptyState.qml").read_text())
-        self.assertNotIn('Timer {', (self.stage / "ui/TickIdleMotion.qml").read_text())
+        rig = (self.stage / "ui/TickIdleMotion.qml").read_text()
+        self.assertNotIn('Timer {', rig)
+        self.assertNotIn('Animation.Infinite', rig)
+        self.assertIn('fillColor: root.mark.color', rig)
+        self.assertNotIn('Image {', rig)
         packs = (self.stage / "ui/js/IconPacks.js").read_text()
         self.assertIn('name === "shelf" ||', packs)
         self.assertIn('var IDS = ["flea", "tabler",', packs)
@@ -95,6 +101,12 @@ class Branding(unittest.TestCase):
     def test_idle_motion_refuses_an_existing_ui_component(self):
         self.stage_sources()
         (self.stage / "ui/TickIdleMotion.qml").write_text("User-owned component")
+        with self.assertRaisesRegex(Refusal, 'collides'):
+            branding.apply(self.stage, "d" * 40)
+
+    def test_animation_geometry_refuses_an_existing_ui_file(self):
+        self.stage_sources()
+        (self.stage / "ui/TickParts.js").write_text("User-owned script")
         with self.assertRaisesRegex(Refusal, 'collides'):
             branding.apply(self.stage, "d" * 40)
 

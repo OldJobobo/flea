@@ -1,0 +1,23 @@
+{
+  "archive": "tick-animation-pack (1).zip",
+  "archive_sha256": "cb33806b19ebbd2d972f96d7d6d66bf803a7b898be52bda630c62bbc86100cc9",
+  "files": {
+    "assets/body.svg": "a672daadee4c8862d134b3f1c32555d9184f6443cd9e0a4623658ea443db564b",
+    "assets/antenna-left.svg": "9aa388435b7c9404e067c2e12fd4c21ac96165d34dde1409cf33caa55991f87d",
+    "assets/antenna-right.svg": "d02c37caec11bbd2ac198f097a3e430a9ce357ea7f8ebf38b75882da800069eb",
+    "assets/front-left-upper.svg": "7849496bc4c6c69ac07592aab40bf8b82cd496fc04c3f0998ed9b9f17dd6c804",
+    "assets/front-left-lower.svg": "c5fd8406bc058db29d3cfc49d2d2e68e51911b19850584b72769b114dfc31503",
+    "assets/front-right-upper.svg": "4b4ea087031569636624944d1f6d7ae3acea4c627d68c349d42f4aff2cbed83c",
+    "assets/front-right-lower.svg": "02705ed00946e8c9ebe5d9683e58d1a21bcc2a59b9fccd864b2b87e946d4886e",
+    "assets/middle-left-upper.svg": "9f808a413dce50c753eca633a03d3b5e5e416dd8b32c38628d1b31de87378e1b",
+    "assets/middle-left-lower.svg": "5a2b5a425da74deffed00d1abf6771cad7529b701a58e12f628aeed0d09a3ddc",
+    "assets/middle-right-upper.svg": "948ccbbb79e7062fb93ae43aecf1537c5b598ecc6acbd5237671b3681d494140",
+    "assets/middle-right-lower.svg": "59eb8802ad2094b064bb1dbabb032f36f29c11cf2f00b4ad697e009ff4396737",
+    "assets/back-left-upper.svg": "81d5d9ebe4df7bec8aa9950d70a650be52732d25bb4297513913647923b93df3",
+    "assets/back-left-lower.svg": "cf0cbbde2228fa519d029dc8d5305ba55c7451a38d242ebd77828e6f3a5d21d5",
+    "assets/back-right-upper.svg": "badabecd58646e3ece50cf49bc59cd48667b7339522afce1954584f232b8dd47",
+    "assets/back-right-lower.svg": "041e70f4728491d270b5563f16d779195024dede964ee0c6020808af2498b225",
+    "supplied/TickMascot.qml": "1c216443abf7607c3e445340e1d372f386a016fc2f368a3a5b837bc23b71686f",
+    "motion-spec.json": "4f7289d050efd67845f2a62018d6ccea4846da0ff0a8b2cab9f4f67ca10f6c38"
+  }
+}
