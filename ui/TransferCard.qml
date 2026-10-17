@@ -171,7 +171,7 @@ Item {
             Rectangle {
                 width: parent.width * Transfer.fraction(root.shown)
                 height: parent.height
-                color: Theme.color.accentFrame
+                color: Theme.color.semanticInk("info", Theme.color.accentFrame, true)
 
                 // The card publishes four times a second; easing across the gap is what makes the
                 // fill read as movement rather than as four steps a second.

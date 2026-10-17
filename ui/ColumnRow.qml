@@ -78,6 +78,8 @@ Item {
     readonly property bool isDir: !!root.row && root.row.d === true
     // The cut dim lives in the ink, so no child carries its own opacity binding.
     readonly property color ink: root.dimmed(root.cursor ? Theme.color.accent : root.dim ? Theme.color.muted : Theme.color.foreground)
+    readonly property bool semanticActive: root.cursor || root.dim || root.lifted || root.hovered || root.selected || root.dropTarget
+    readonly property color nameInk: root.dimmed(Theme.color.fileInk(root.row, root.semanticActive, root.cursor ? Theme.color.accent : root.dim ? Theme.color.muted : Theme.color.foreground))
 
     // ui/ColumnPane.qml sets it on the renaming (cursor) row: the error line pushes the rows below down as ui/Row.qml's does.
     property real errorGrowth: 0
@@ -153,7 +155,7 @@ Item {
             anchors.fill: parent
             visible: !root.thumbDrawn && !root.desktopDrawn && root.langSlug === ""
             name: root.row ? Icons.glyphForRow(root.row.i, root.row.p) : "file"
-            color: root.dimmed(root.cursor ? Theme.color.accent : Theme.color.mutedFrame)
+            color: root.dimmed(Theme.color.fileInk(root.row, root.semanticActive, root.cursor ? Theme.color.accent : Theme.color.mutedFrame))
         }
     }
 
@@ -167,7 +169,7 @@ Item {
         anchors.verticalCenter: line.verticalCenter
         visible: !root.renaming && !root.marking
         text: root.row && root.nameBudget >= 0 ? Format.middleElide(root.row.n, Math.max(0, root.nameBudget - (root.clipMark.length > 0 ? Math.ceil((Theme.spacing.gap + root.clipPx) / Theme.bodyAdvance) : 0))) : (root.row ? root.row.n : "")
-        color: root.ink
+        color: root.nameInk
         font.family: Theme.font.family
         font.pixelSize: Theme.font.body
         textFormat: Text.PlainText
@@ -234,7 +236,7 @@ Item {
                         text: parent.shownName
                         matchStart: parent.run.start
                         matchLength: parent.run.length
-                        color: root.ink
+                        color: root.nameInk
                         accent: root.dimmed(Theme.color.accent)
                         armed: root.markArmed
                         elideMiddle: true

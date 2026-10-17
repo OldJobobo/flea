@@ -136,77 +136,77 @@ ui/ColumnPane.qml	425	root	Declared QML id; component context access is valid at
 ui/ColumnPane.qml	425	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnPane.qml	426	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnPane.qml	427	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	214	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	214	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	215	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	215	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	216	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	216	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	217	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	218	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	217	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	218	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	219	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	219	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	224	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	224	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	225	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	225	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	220	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	220	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	221	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	221	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	226	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	226	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	227	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	227	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	228	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	236	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	237	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	228	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	229	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	230	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	238	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	239	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	246	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	246	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	247	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	247	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	250	markParts	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	251	markParts	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	252	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	252	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	252	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	252	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	252	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	252	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	264	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	264	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	265	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	265	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	270	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	270	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	270	nameText	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	270	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	271	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	271	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	271	nameText	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	271	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	240	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	241	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	248	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	248	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	249	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	249	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	252	markParts	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	253	markParts	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	266	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	266	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	267	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	267	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	272	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	272	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	272	nameText	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	272	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	273	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	273	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	273	nameText	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	273	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	274	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	277	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	277	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	278	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	278	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	286	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	275	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	276	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	279	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	279	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	280	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	280	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	288	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	289	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	289	markContent	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	289	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	290	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	290	markContent	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	290	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	291	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	291	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	291	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	292	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	292	markContent	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	292	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	293	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	329	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	330	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	294	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	295	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	331	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	332	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
@@ -2135,110 +2135,110 @@ ui/PaneWire.qml	321	pane	Declared QML property; enclosing component context supp
 ui/PaneWire.qml	322	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	323	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	324	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	327	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	329	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	332	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	340	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	328	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	330	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	333	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	341	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	342	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	343	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	349	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	351	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	345	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	346	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	352	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	353	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	359	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	361	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	368	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	369	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	354	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	355	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	356	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	362	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	364	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	371	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	373	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	374	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	382	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	383	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	390	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	390	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	377	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	380	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	388	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	391	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	393	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	396	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	397	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	398	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	398	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	399	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	401	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	402	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	403	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	408	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	404	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	405	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	409	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	410	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	412	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	413	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	415	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	417	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	418	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	419	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	421	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	422	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	423	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	426	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	427	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	428	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	429	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	434	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	434	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	424	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	431	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	432	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	435	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	436	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	437	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	439	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	440	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	443	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	444	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	448	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	448	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	448	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	444	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	445	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	446	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	449	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	450	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	452	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	453	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	465	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	456	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	460	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	460	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	460	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	461	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	462	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	466	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	467	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	468	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	471	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	471	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	472	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	472	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	479	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	480	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	481	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	482	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	485	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	488	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	488	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	489	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	493	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	494	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	485	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	486	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	486	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	496	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	501	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	499	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	502	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	502	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	503	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	507	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	508	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	510	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	515	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	516	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	517	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	521	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	521	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	525	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	529	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	532	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	534	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	536	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	522	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	524	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	531	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	535	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	535	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	539	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	543	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	546	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	547	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	554	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	558	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	559	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	566	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	548	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	550	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	560	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	561	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	568	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	569	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	570	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	571	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	574	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	575	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	579	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	579	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	572	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	573	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	580	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	581	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	581	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	582	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	583	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	586	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	584	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	585	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	588	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	589	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	593	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	593	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	594	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	595	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	595	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	597	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	600	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	609	pane	Declared QML property; enclosing component context supplies it.
 ui/PathJump.qml	303	root	Declared QML id; component context access is valid at runtime.
 ui/PathJump.qml	304	root	Declared QML id; component context access is valid at runtime.
 ui/PathJump.qml	316	root	Declared QML id; component context access is valid at runtime.
@@ -2662,35 +2662,28 @@ ui/SidebarRow.qml	122	root	Declared QML id; component context access is valid at
 ui/SidebarRow.qml	122	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	123	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	123	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	168	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	169	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	169	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	170	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	170	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	171	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	171	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	256	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	172	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	172	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	173	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	173	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	257	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	258	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	262	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	262	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	263	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	259	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	260	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	264	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	264	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	265	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	266	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	273	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	266	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	267	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	268	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	275	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	278	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	277	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	280	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	283	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	283	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	283	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	283	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	284	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	284	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	284	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	282	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	285	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	285	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	285	root	Declared QML id; component context access is valid at runtime.
@@ -2698,36 +2691,43 @@ ui/SidebarRow.qml	285	root	Declared QML id; component context access is valid at
 ui/SidebarRow.qml	286	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	286	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	286	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	289	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	289	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	290	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	290	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	288	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	288	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	288	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	291	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	291	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	292	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	292	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	341	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	293	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	293	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	294	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	294	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	343	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	346	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	346	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	347	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	345	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	348	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	348	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	349	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	350	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	350	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	351	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	353	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	353	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	352	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	353	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	355	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	355	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	355	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	470	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	471	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	472	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	473	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	473	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	474	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	357	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	357	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	357	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	479	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	480	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	481	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	482	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	482	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	483	root	Declared QML id; component context access is valid at runtime.
 ui/TabBar.qml	390	root	Declared QML id; component context access is valid at runtime.
 ui/TabBar.qml	391	root	Declared QML id; component context access is valid at runtime.
 ui/TabBar.qml	392	root	Declared QML id; component context access is valid at runtime.
@@ -3001,21 +3001,21 @@ ui/UnlockDialog.qml	394	mountOut	Quickshell type unresolved when its module is m
 ui/UnlockDialog.qml	398	root	Declared QML id; component context access is valid at runtime.
 ui/UnlockDialog.qml	398	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
 ui/UnlockDialog.qml	407	mountOut	Quickshell type unresolved when its module is missing.
-ui/ViewState.qml	469	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	473	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	475	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	481	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	485	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	487	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	488	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	492	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	494	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/ViewState.qml	536	root	Declared QML id; component context access is valid at runtime.
-ui/ViewState.qml	536	settleOut	Quickshell type unresolved when its module is missing.
-ui/ViewState.qml	548	root	Declared QML id; component context access is valid at runtime.
-ui/ViewState.qml	548	settleOut	Quickshell type unresolved when its module is missing.
-ui/ViewState.qml	555	root	Declared QML id; component context access is valid at runtime.
-ui/ViewState.qml	555	settleOut	Quickshell type unresolved when its module is missing.
+ui/ViewState.qml	470	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	474	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	476	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	482	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	486	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	488	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	489	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	493	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	495	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/ViewState.qml	537	root	Declared QML id; component context access is valid at runtime.
+ui/ViewState.qml	537	settleOut	Quickshell type unresolved when its module is missing.
+ui/ViewState.qml	549	root	Declared QML id; component context access is valid at runtime.
+ui/ViewState.qml	549	settleOut	Quickshell type unresolved when its module is missing.
+ui/ViewState.qml	556	root	Declared QML id; component context access is valid at runtime.
+ui/ViewState.qml	556	settleOut	Quickshell type unresolved when its module is missing.
 ui/WindowBody.qml	365	view	Declared QML id; component context access is valid at runtime.
 ui/WindowBody.qml	369	view	Declared QML id; component context access is valid at runtime.
 ui/WindowBody.qml	371	primaryPane	Declared QML id; component context access is valid at runtime.
@@ -3221,46 +3221,46 @@ ui/ColumnPane.qml	426	root	Declared QML id; component context access is valid at
 ui/ColumnPane.qml	427	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnPane.qml	438	root	Declared QML id; the loading signal crosses its component context and is exercised by columnsmoves.
 ui/ColumnPane.qml	439	root	Declared QML id; the loading signal crosses its component context and is exercised by columnsmoves.
-ui/ColumnRow.qml	215	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	215	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	216	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	217	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	217	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	218	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	219	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	219	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	225	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	225	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	226	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	226	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	221	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	221	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	227	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	227	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	228	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	237	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	238	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	228	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	230	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	239	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	247	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	247	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	251	markParts	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	265	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	265	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	271	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	271	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	271	nameText	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	271	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	274	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	278	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	278	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	287	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	288	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	240	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	241	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	249	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	249	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	253	markParts	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	267	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	267	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	273	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	273	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	273	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	273	nameText	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	276	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	280	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	280	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	289	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	290	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	290	markContent	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	290	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	293	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	330	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	291	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	292	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	292	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	292	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	295	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	332	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
@@ -3445,12 +3445,12 @@ ui/GridArea.qml	279	root	Declared QML id; component context access is valid at r
 ui/GridArea.qml	280	root	Declared QML id; component context access is valid at runtime.
 ui/GridArea.qml	289	dragSession	Declared QML id; component context access is valid at runtime.
 ui/GridArea.qml	389	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	169	nameLabel	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	171	nameLabel	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	171	nameLabel	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	171	nameLabel	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	172	nameLabel	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	172	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	169	nameLabel	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	235	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	236	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	237	root	Declared QML id; component context access is valid at runtime.
@@ -3930,110 +3930,128 @@ ui/PaneWire.qml	321	pane	Declared QML property; enclosing component context supp
 ui/PaneWire.qml	322	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	323	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	324	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	327	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	329	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	332	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	340	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	325	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	325	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	328	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	330	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	333	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	341	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	342	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	343	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	349	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	351	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	344	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	344	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	345	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	346	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	352	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	353	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	359	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	361	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	368	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	369	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	354	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	355	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	356	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	362	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	364	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	371	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	372	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	372	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	373	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	374	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	382	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	383	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	378	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	379	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	379	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	380	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	389	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	390	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	390	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	391	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	393	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	396	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	397	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	398	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	398	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	399	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	401	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	402	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	403	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	408	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	404	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	405	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	409	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	410	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	411	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	411	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	412	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	413	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	415	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	417	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	418	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	419	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	421	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	422	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	423	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	426	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	427	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	428	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	429	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	434	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	434	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	424	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	431	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	432	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	435	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	436	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	437	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	438	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	438	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	439	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	440	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	443	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	444	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	448	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	448	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	448	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	444	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	445	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	446	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	449	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	450	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	452	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	453	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	465	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	454	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	455	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	455	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	456	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	460	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	460	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	460	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	461	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	463	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	464	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	464	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	466	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	467	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	468	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	471	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	471	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	472	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	472	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	479	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	480	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	481	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	482	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	485	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	488	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	488	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	489	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	493	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	494	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	485	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	486	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	486	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	496	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	501	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	499	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	502	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	502	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	503	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	507	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	508	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	510	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	515	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	516	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	517	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	521	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	521	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	525	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	529	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	532	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	534	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	536	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	522	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	524	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	531	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	535	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	535	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	539	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	543	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	546	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	547	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	554	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	558	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	559	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	566	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	548	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	550	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	560	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	561	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	568	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	569	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	570	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	571	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	574	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	575	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	579	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	579	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	572	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	573	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	580	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	581	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	581	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	582	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	583	pane	Declared QML property; enclosing component context supplies it.
-ui/PaneWire.qml	586	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	584	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	585	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	588	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	589	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	593	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	593	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	594	pane	Declared QML property; enclosing component context supplies it.
 ui/PaneWire.qml	595	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	595	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	597	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	600	pane	Declared QML property; enclosing component context supplies it.
+ui/PaneWire.qml	609	pane	Declared QML property; enclosing component context supplies it.
 ui/PathJump.qml	303	root	Declared QML id; component context access is valid at runtime.
 ui/PathJump.qml	304	root	Declared QML id; component context access is valid at runtime.
 ui/PathJump.qml	316	root	Declared QML id; component context access is valid at runtime.
@@ -4400,45 +4418,48 @@ ui/Sidebar.qml	661	root	Declared QML id; component context access is valid at ru
 ui/SidebarRow.qml	122	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	123	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	123	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	169	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	170	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	170	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	124	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	124	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	124	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	171	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	171	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	257	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	258	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	264	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	264	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	265	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	172	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	172	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	173	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	173	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	259	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	260	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	266	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	275	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	280	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	285	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	285	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	285	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	285	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	286	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	286	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	286	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	291	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	291	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	292	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	292	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	343	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	348	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	348	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	349	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	266	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	267	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	268	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	277	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	282	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	288	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	288	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	288	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	293	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	293	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	294	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	294	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	345	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	350	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	350	root	Declared QML id; component context access is valid at runtime.
 ui/SidebarRow.qml	351	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	355	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	355	root	Declared QML id; component context access is valid at runtime.
-ui/SidebarRow.qml	355	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	470	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	471	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	472	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	473	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	473	root	Declared QML id; component context access is valid at runtime.
-ui/StatusBar.qml	474	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	352	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	353	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	357	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	357	root	Declared QML id; component context access is valid at runtime.
+ui/SidebarRow.qml	357	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	479	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	480	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	481	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	482	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	482	root	Declared QML id; component context access is valid at runtime.
+ui/StatusBar.qml	483	root	Declared QML id; component context access is valid at runtime.
 ui/TabBar.qml	390	root	Declared QML id; component context access is valid at runtime.
 ui/TabBar.qml	391	root	Declared QML id; component context access is valid at runtime.
 ui/TabBar.qml	392	root	Declared QML id; component context access is valid at runtime.

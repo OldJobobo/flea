@@ -322,6 +322,7 @@ Item {
             pane.sticky("")
             pane.message(line, unreportedFailure)
             if (unreportedFailure) pane.message(line, false)
+            if (pane.statusBar) pane.statusBar.classifyNotice(line, failed > 0 || skipped > 0 || note ? "warning" : cancelled ? "info" : ok > 0 ? "success" : "info")
             root.retryId = retryPaths.length ? id : 0
             root.retryPaths = retryPaths
             root.retryFolder = pane.path
@@ -338,7 +339,9 @@ Item {
         function onTrashed(ok, failed, reason) {
             if (ok === 0 && failed === 0) return
             pane.sticky("")
-            pane.message(Ops.trashed(ok, failed, reason), ok === 0)
+            var line = Ops.trashed(ok, failed, reason)
+            pane.message(line, ok === 0)
+            if (pane.statusBar) pane.statusBar.classifyNotice(line, failed > 0 ? "warning" : "success")
             pane.clearSelection()
             root.anchor = Anchor.afterDelete(pane, ok > 0)
         }
@@ -366,11 +369,14 @@ Item {
         function onMade(ok, path) {
             root.renameOnArrival = path
             pane.message(Ops.made(path), false)
+            if (pane.statusBar) pane.statusBar.classifyNotice(Ops.made(path), ok ? "success" : "info")
             pane.refresh(path)
         }
 
         function onDuplicated(ok, path) {
-            pane.message(Format.fill(Ops.WORDS.duplicated, Ops.leaf(path)) + Status.undoHint(), false)
+            var line = Format.fill(Ops.WORDS.duplicated, Ops.leaf(path)) + Status.undoHint()
+            pane.message(line, false)
+            if (pane.statusBar) pane.statusBar.classifyNotice(line, ok ? "success" : "info")
             pane.refresh(path)
         }
 
@@ -379,7 +385,9 @@ Item {
         function onLinked(ok, failed, skipped, note) {
             // A stranded note is shown as an error, so a leftover link is never silent.
             var stranded = String(note || "").length > 0
-            pane.message(Ops.linkedLine(ok, failed, skipped, note || ""), (failed > 0 && ok === 0) || stranded)
+            var line = Ops.linkedLine(ok, failed, skipped, note || "")
+            pane.message(line, (failed > 0 && ok === 0) || stranded)
+            if (pane.statusBar) pane.statusBar.classifyNotice(line, failed > 0 || skipped > 0 || stranded ? "warning" : ok > 0 ? "success" : "info")
             pane.refresh("")
         }
 
@@ -400,6 +408,7 @@ Item {
         function onUndone(op, ok) {
             pane.sticky("")
             pane.message(Ops.undone(op), false)
+            if (pane.statusBar) pane.statusBar.classifyNotice(Ops.undone(op), ok ? "success" : "info")
             pane.refresh("", op === "permissions" || op === "settags")
         }
 
@@ -426,6 +435,7 @@ Item {
             pane.transfer = Ops.emptyTransfer()
             pane.sticky("")
             pane.message(Ops.redone(op) + Status.undoHint(), false)
+            if (pane.statusBar) pane.statusBar.classifyNotice(Ops.redone(op) + Status.undoHint(), ok ? "success" : "info")
             pane.refresh("", op === "permissions" || op === "settags")
         }
 
@@ -440,14 +450,18 @@ Item {
                 pane.refresh("")
                 return
             }
-            pane.message(ok ? Ops.archiveDoneLine(verified) : err === "cancelled" ? "Extraction cancelled." : Errors.sentence("archive", err), !ok && err !== "cancelled")
+            var line = ok ? Ops.archiveDoneLine(verified) : err === "cancelled" ? "Extraction cancelled." : Errors.sentence("archive", err)
+            pane.message(line, !ok && err !== "cancelled")
+            if (pane.statusBar) pane.statusBar.classifyNotice(line, ok ? verified ? "success" : "warning" : "info")
             pane.refresh("")
         }
 
         function onConvertDone(id, ok, path, err, requestId, source, collision) {
             if (requestId && (!pane.convertSource || pane.convertSource.requestId !== requestId || pane.convertSource.path !== source)) return
             pane.sticky("")
-            pane.message(ok ? Format.fill(Ops.WORDS.convertedTo, Ops.leaf(path)) : collision ? err : Errors.sentence("convert", err), !ok)
+            var line = ok ? Format.fill(Ops.WORDS.convertedTo, Ops.leaf(path)) : collision ? err : Errors.sentence("convert", err)
+            pane.message(line, !ok)
+            if (pane.statusBar) pane.statusBar.classifyNotice(line, ok ? "success" : "info")
             if (ok) {
                 if (pane.searchMode === Search.RESULTS) root.stale = true
                 else pane.refresh(path)

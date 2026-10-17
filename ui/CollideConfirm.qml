@@ -90,6 +90,7 @@ FocusScope {
                 id: title
                 width: parent.width
                 text: root.titleText
+                color: Theme.color.semanticInk("warning", Theme.color.foreground)
             }
             buttons: Row {
                 id: buttons

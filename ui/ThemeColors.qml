@@ -2,6 +2,7 @@ import QtQuick
 import qs.Commons as Commons
 import "js/Contrast.js" as Contrast
 import "js/Material.js" as Material
+import "js/SemanticColors.js" as SemanticColors
 
 // Palette roles stay opaque; the default mode's text lift is computed once per palette, alpha or focus change.
 QtObject {
@@ -37,6 +38,21 @@ QtObject {
         foreground: Commons.Color.foreground, muted: root.opaqueMuted, metadata: root.opaqueMetadata})
     readonly property var modePalette: Object.assign({}, root.opaquePalette, {blurBrightness: Glass.mode === "glassy" ? 0.75 : 1})
     readonly property var material: Glass.on && Glass.usesDefault ? Material.inks(root.modePalette, Math.round(Glass.alpha * 255), root.textContrast) : root.opaquePalette
+    readonly property var semantic: ViewState.semanticColors
+        ? SemanticColors.inks(Theme.palette, Commons.Color.accent, root.modePalette,
+            Glass.on && Glass.usesDefault ? Math.round(Glass.alpha * 255) : 255, root.textContrast)
+        : ({ text: {}, frame: {} })
+    function semanticInk(role, fallback, frame) {
+        var roles = frame === true ? root.semantic.frame : root.semantic.text
+        return roles[role] || fallback
+    }
+    function fileInk(row, active, fallback) {
+        if (!ViewState.semanticColors || active) return fallback
+        var role = SemanticColors.fileRole(row)
+        if (role === "symlink") return root.symlink
+        if (role === "executable") return root.executable
+        return root.semanticInk(role, fallback)
+    }
     function modeInk(ink, need, quiet) {
         return Glass.on && Glass.usesDefault ? Material.liftInk(ink, root.modePalette, Math.round(Glass.alpha * 255), need, quiet) : ink
     }

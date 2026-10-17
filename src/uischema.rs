@@ -1,6 +1,10 @@
 // The shipped ui.json shape and the rule each key is measured against; src/uistate.rs applies them.
 use crate::jsondoc::{self, Json};
 
+#[cfg(test)]
+#[path = "semanticcolors_tests.rs"]
+mod semanticcolors_tests;
+
 // docs/flea-0.1.4-build-handoff.md section 1's shape and defaults, but density compact (0.3.2), showUnmounted on (0.3.3).
 pub const DEFAULTS: &str = r#"{
   "view": "list",
@@ -53,7 +57,7 @@ pub const DEFAULTS: &str = r#"{
   },
   "previewFacts": "compact",
   "keys": "default",
-  "display": { "textSize": { "mode": "system" }, "hyprlandIcons": false, "iconSet": "flea", "fileIconTheme": "builtin" },
+  "display": { "textSize": { "mode": "system" }, "hyprlandIcons": false, "iconSet": "flea", "fileIconTheme": "builtin", "semanticColors": false },
   "menu": { "hidden": ["delete", "openTerminal", "placeMenu", "runScript",
             "moveto", "copyto", "properties", "permissions", "copyAs", "pasteAs",
             "invertSelection", "extThumbs", "run", "openAsText"] },
@@ -171,7 +175,7 @@ pub const TEXT_SIZE: &[(&str, Rule)] = &[("mode", Rule::TextSize)];
 pub const DISPLAY: &[(&str, Rule)] = &[
     ("textSize", Rule::Group(TEXT_SIZE)), ("hyprlandIcons", Rule::Bool),
     ("iconSet", Rule::Word(&["flea", "tabler", "lucide", "iconoir", "heroicons", "phosphor", "feather", "custom"])),
-    ("fileIconTheme", Rule::IconTheme),
+    ("fileIconTheme", Rule::IconTheme), ("semanticColors", Rule::Bool),
 ];
 
 // hidden is the whole of the Menus section's state: the master row SettingsMenus draws over the six
@@ -373,7 +377,7 @@ mod tests {
         assert_eq!(d.get("preview").and_then(|p| p.get("wrap")).and_then(Json::as_bool), Some(false));
         assert_eq!(d.get("display").and_then(|p| p.get("textSize")).and_then(|t| t.get("mode")).and_then(Json::as_str), Some("system"));
         let display: Vec<&str> = d.get("display").and_then(Json::as_object).expect("display").iter().map(|(k, _)| k.as_str()).collect();
-        assert_eq!(display, ["textSize", "hyprlandIcons", "iconSet", "fileIconTheme"], "interface and file artwork are separate selections");
+        assert_eq!(display, ["textSize", "hyprlandIcons", "iconSet", "fileIconTheme", "semanticColors"], "appearance selections remain independent");
         let menu: Vec<&str> = d.get("menu").and_then(Json::as_object).expect("menu").iter().map(|(k, _)| k.as_str()).collect();
         assert_eq!(menu, ["hidden"], "the master row is derived from menu.hidden, not stored beside it");
         assert_eq!(d.get("updates").and_then(|u| u.get("autoCheck")).and_then(Json::as_bool), Some(true));

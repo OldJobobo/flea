@@ -176,7 +176,7 @@ Item {
         width: root.markSlot
         height: root.markSlot
         name: root.row ? Icons.glyphForRow(root.row.i, root.row.p) : Icons.FALLBACK
-        color: root.dimmed(root.dualMode ? (root.cursor && root.paneFocused ? Theme.color.accent : Theme.color.mutedFrame) : root.lifted ? Theme.color.foreground : Theme.color.metadataFrame)
+        color: root.dimmed(Theme.color.fileInk(root.row, root.lifted, root.dualMode ? (root.cursor && root.paneFocused ? Theme.color.accent : Theme.color.mutedFrame) : root.lifted ? Theme.color.foreground : Theme.color.metadataFrame))
     }
 
     // What the row actually draws, so a test catches the binding being cut and not only the lookup.
@@ -416,7 +416,7 @@ Item {
         return text !== undefined ? text : ""
     }
 
-    // Semantic colour is reserved for symlink and executable, and a lifted row gives it up for contrast.
+    // Full mode expands resting file roles; lifted rows keep the existing interaction ink.
     function nameColor() {
         if (!root.row) {
             return Theme.color.muted
@@ -429,12 +429,12 @@ Item {
         }
         // corner: a directory carries the execute bits, so it claims foreground before that test.
         if (root.row.d) {
-            return Theme.color.foreground
+            return Theme.color.fileInk(root.row, false, Theme.color.foreground)
         }
         if (root.row.x !== false && Format.isExecutable(root.row.p)) {
             return Theme.color.executable
         }
-        return Theme.color.foreground
+        return Theme.color.fileInk(root.row, false, Theme.color.foreground)
     }
 
     // The drawn columns and cells, shared with Header's geometry seam.

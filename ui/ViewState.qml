@@ -57,6 +57,7 @@ QtObject {
     // the compositor's alone.
     readonly property var display: root.state.display || ({})
     readonly property var textSize: TextSize.parse(root.display.textSize)
+    readonly property bool semanticColors: root.display.semanticColors === true
 
     // Omarchy's own size, held here so the Ctrl+Shift chords and the panel's own rows step away
     // from and back to one anchor rather than each resolving their own.

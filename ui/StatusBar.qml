@@ -6,6 +6,7 @@ import "js/Filter.js" as Filter
 import "js/Focus.js" as Focus
 import "js/Ops.js" as Ops
 import "js/Status.js" as Status
+import "js/SemanticColors.js" as SemanticColors
 import "js/Trash.js" as Trash
 
 Item {
@@ -28,6 +29,8 @@ Item {
     // True while the pane's fs facts for its folder are still out, so the slot draws nothing yet.
     property bool fsPending: false
     property string notice: ""
+    property string noticeKind: ""
+    onNoticeChanged: root.noticeKind = ""
     // Each notice carries a serial, so a withdrawal names the notice it owns.
     property int noticeSerial: 0
     // [{text, detail, place}]: place is the path a no-Trash refusal was raised in, "" for every other error.
@@ -110,7 +113,7 @@ Item {
     implicitHeight: Theme.chromeHeight + detailView.height
 
     // Completion messages cannot acknowledge a failure; each error requires its own dismissal.
-    function say(text, isError, detail) {
+    function say(text, isError, detail, kind) {
         if (!text) { root.dismiss(); return }
         if (isError) {
             root.errors = Status.withError(root.errors, text, detail, root.path)
@@ -118,8 +121,14 @@ Item {
         }
         // The serial moves with the notice, so a later withdrawal names this one.
         root.notice = text
+        root.noticeKind = kind || ""
         root.noticeSerial += 1
         root.syncNoticeTimer()
+    }
+
+    // Audited UI producers enrich the notice they just posted, without changing message/error routing.
+    function classifyNotice(text, kind) {
+        if (root.notice === text) root.noticeKind = kind
     }
 
     // An arm's prompt arrives on its own channel, so the bar starts the arm from the call and not from the sentence.
@@ -260,7 +269,7 @@ Item {
     }
 
     function slot() {
-        return { transient: root.transient_, transientIsError: root.transientIsError, armLive: root.armLive,
+        return { transient: root.transient_, transientIsError: root.transientIsError, armLive: root.armLive, noticeKind: root.noticeKind,
                  searching: root.searching, searchLine: root.searchLine,
                  stickyHere: root.stickyHere, sticky: root.sticky }
     }
@@ -271,10 +280,10 @@ Item {
     }
     // Centre ink sits on the surface, so error takes the surface lift and any other role its own.
     function centreColor() {
-        var role = Status.centreRole(root.slot())
+        var role = ViewState.semanticColors ? SemanticColors.noticeRole(root.slot()) : Status.centreRole(root.slot())
         if (role === "error")
             return Theme.color.errorOnSurface
-        return Theme.color[role] !== undefined ? Theme.color[role] : Theme.color.foreground
+        return Theme.color.semanticInk(role, Theme.color[role] !== undefined ? Theme.color[role] : Theme.color.foreground)
     }
 
     Timer { id: clear; interval: root.messageMs; onTriggered: root.notice = "" }

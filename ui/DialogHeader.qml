@@ -6,6 +6,7 @@ Item {
     id: root
 
     property alias text: title.text
+    property alias color: title.color
     property alias elide: title.elide
     readonly property bool truncated: title.truncated
     readonly property alias ruleItem: rule

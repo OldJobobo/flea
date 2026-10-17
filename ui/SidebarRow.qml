@@ -120,7 +120,9 @@ Item {
         id: glyphMark
         Glyph {
             name: root.modelData.glyph
-            color: root.highlighted && root.modelData.kind === "trash" ? Theme.color.accent : Theme.color.foreground
+            color: root.highlighted && root.modelData.kind === "trash" ? Theme.color.accent
+                : !root.highlighted && !root.modelData.error && ["home", "favorite", "favourite"].indexOf(root.modelData.kind) >= 0
+                    ? Theme.color.semanticInk("directory", Theme.color.foreground, true) : Theme.color.foreground
         }
     }
 

@@ -90,7 +90,7 @@ function run(check) {
 
     // Execute semantics travel unchanged through the real row parser and the shipped colour function.
     var nameColor = eval("(function(root, Theme, Format) {" + Source.block(Source.source("ui/Row.qml"), "function nameColor()", "ui/Row.qml") + "})")
-    var palette = {color: {foreground: "foreground", executable: "executable", symlink: "symlink", muted: "muted"}}
+    var palette = {color: {foreground: "foreground", executable: "executable", symlink: "symlink", muted: "muted", fileInk: function (row, active, fallback) { return fallback }}}
     for (var fstype of ["exfat", "vfat"]) {
         var row = Messages.sized(JSON.parse('{"rows":[{"n":"Launcher","d":false,"p":33261,"x":false}]}'))[0]
         check(fstype + " 0755 name keeps foreground", nameColor({row: row, lifted: false}, palette, Format), "foreground")

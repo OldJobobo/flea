@@ -100,6 +100,8 @@ import "network.js" as NetworkSuite
 import "ops.js" as OpsSuite
 import "opstrash.js" as OpsTrashSuite
 import "palette.js" as PaletteSuite
+import "semanticcolors.js" as SemanticColorsSuite
+import "semanticnotices.js" as SemanticNoticesSuite
 import "pathbar.js" as PathBarSuite
 import "phones.js" as PhonesSuite
 import "picker.js" as PickerSuite
@@ -208,7 +210,7 @@ Item {
             ["jump", JumpSuite], ["jump-heldout", JumpHeldoutSuite], ["keymap", KeymapSuite], ["langmarks", LangmarksSuite], ["keyreach", KeyReachSuite], ["localsend", LocalSendSuite], ["listbudget", ListBudgetSuite], ["match", MatchSuite], ["menu", MenuSuite], ["properties", PropertiesSuite], ["propertyfacts", PropertyFactsSuite], ["xwnewfile", XwNewFileSuite],
             ["marks", MarksSuite], ["markdown", MarkdownSuite], ["mdstructure", MdStructureSuite], ["mdlineends", MdLineEndsSuite], ["mdliteral", MdLiteralSuite], ["mdspecfix", MdSpecFixSuite], ["mddraw", MdDrawSuite], ["mdnest", MdNestSuite], ["mdhtml", MdHtmlSuite], ["mdhtmlgh", MdHtmlGhSuite], ["mdhead", MdHeadSuite], ["mdhtmlrow", MdHtmlRowSuite], ["mdr7", MdR7Suite], ["mdround4", MdRound4Suite], ["mdprogress", MdProgressSuite], ["mdslice", MdSliceSuite], ["markdownpictures", MarkdownPicturesSuite], ["mounts", MountsSuite], ["motion", MotionSuite], ["names", NamesSuite], ["nav", NavSuite], ["navnewest", NavNewestSuite], ["cursorreturn", CursorReturnSuite], ["crumbs", CrumbsSuite], ["devices", DevicesSuite], ["loopdevices", LoopDevicesSuite], ["network", NetworkSuite], ["navmouse", NavMouseSuite], ["mousesupport", MouseSupportSuite], ["mdtable", MdTableSuite],
             ["openwith", OpenWithSuite], ["ops", OpsSuite], ["opstrash", OpsTrashSuite],
-            ["palette", PaletteSuite], ["pathbar", PathBarSuite], ["places", PlacesSuite], ["placemenu", PlaceMenuSuite], ["rail", RailSuite], ["fsslot", FsSlotSuite], ["scripts", ScriptsSuite],
+            ["palette", PaletteSuite], ["semanticcolors", SemanticColorsSuite], ["semanticnotices", SemanticNoticesSuite], ["pathbar", PathBarSuite], ["places", PlacesSuite], ["placemenu", PlaceMenuSuite], ["rail", RailSuite], ["fsslot", FsSlotSuite], ["scripts", ScriptsSuite],
             ["phones", PhonesSuite],
             ["picker", PickerSuite],
             ["pickerpath", PickerPathSuite],

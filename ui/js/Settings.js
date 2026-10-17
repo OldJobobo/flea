@@ -228,6 +228,9 @@ function displayRows(state) {
     out.push(choice("display.fileIconTheme", "File and folder icons", "folder", files.ids, files.labels, files.selected))
     out.push({kind: "hint", label: state.fileIconError || "Installed desktop themes color file and folder artwork. Missing or unreadable icons use interface marks; thumbnails take priority."})
     out.push({kind: "action", id: "refreshFileIcons", label: "Rescan icon themes", glyph: "history"})
+    out.push({kind: "check", id: "display.semanticColors", label: "Full semantic colours",
+              on: ((state.data || {}).display || {}).semanticColors === true})
+    out.push({kind: "hint", label: "Use theme colours for file types, navigation and operation states. Selection and focus keep the theme accent."})
     return out
 }
 

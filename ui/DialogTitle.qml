@@ -8,6 +8,7 @@ Item {
     id: root
 
     property string text: ""
+    property color color: Theme.color.foreground
     property int elide: Text.ElideRight
     property bool showsEscape: true
 
@@ -20,7 +21,7 @@ Item {
         anchors.right: escHint.left
         anchors.rightMargin: Theme.spacing.gap
         text: root.text
-        color: Theme.color.foreground
+        color: root.color
         font.family: Theme.font.family
         font.pixelSize: Theme.card.title
         font.bold: true

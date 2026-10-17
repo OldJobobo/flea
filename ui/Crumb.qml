@@ -25,7 +25,8 @@ Text {
     // corner: a path is arbitrary text, so PlainText, the same rule every filename on this surface follows.
     text: crumb.modelData.text
     color: crumb.dropTarget ? Theme.color.accent
-        : crumb.modelData.last || (crumbHover.hovered && !crumb.modelData.elided) ? Theme.color.foreground : crumb.restColor
+        : crumb.modelData.last || (crumbHover.hovered && !crumb.modelData.elided) ? Theme.color.foreground
+        : crumb.modelData.elided ? crumb.restColor : Theme.color.semanticInk("info", crumb.restColor)
     font.family: Theme.font.family
     font.pixelSize: Theme.font.caption
     textFormat: Text.PlainText

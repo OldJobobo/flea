@@ -227,8 +227,8 @@ function runColumnRowCost(check) {
     // The thumbnail keeps its opacity branch; ink and the mark dim in color, so the count names the branch it counts.
     check("the thumbnail keeps its single opacity branch",
         row.split("opacity: root.dimOpacity").length - 1, 1)
-    check("ink, the mark glyph, the match wash and the metadata ink dim through dimmed()",
-        row.split("root.dimmed(").length - 1, 4)
+    check("ink, semantic name ink, the glyph, match wash and metadata dim through dimmed()",
+        row.split("root.dimmed(").length - 1, 5)
     check("the middle-elision backstop stays",
         row.indexOf("elide: Text.ElideMiddle") >= 0, true)
     var list = Source.source("ui/Row.qml")

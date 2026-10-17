@@ -131,6 +131,7 @@ js/Marks.js
 js/Marquee.js
 js/Match.js
 js/Material.js
+js/SemanticColors.js
 js/Menu.js
 js/MenuContext.js
 js/MenuWheel.js
@@ -184,4 +185,4 @@ js/TrashDates.js
 js/UiState.js
 js/Update.js
 js/UserDirs.js
-bytes 1794262
+bytes 1801180

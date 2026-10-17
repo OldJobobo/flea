@@ -140,7 +140,7 @@ Item {
             name: root.row ? Icons.glyphForRow(root.row.i, root.row.p) : "file"
             // ThemeRoles.dc.html gives accent the selection fill and edge and foreground the label
             // and the mark inside it, so the border carries the emphasis and the ink stays readable.
-            color: root.cursor || root.selected ? Theme.color.foreground : Theme.color.mutedFrame
+            color: Theme.color.fileInk(root.row, root.lifted || root.dropTarget, root.cursor || root.selected ? Theme.color.foreground : Theme.color.mutedFrame)
         }
     }
 
@@ -201,7 +201,7 @@ Item {
         height: Math.max(root.dropTarget ? Theme.grid.captionLineHeight : Theme.grid.captionHeight, Math.ceil(contentHeight))
         horizontalAlignment: Text.AlignHCenter
         text: root.row ? GridNames.gridCaption(root.row.n, root.captionPerLine, root.captionLines) : ""
-        color: Theme.color.foreground
+        color: Theme.color.fileInk(root.row, root.lifted || root.dropTarget, Theme.color.foreground)
         font.family: Theme.font.family
         font.pixelSize: Theme.font.bodySmall
         textFormat: Text.PlainText

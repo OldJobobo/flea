@@ -50,7 +50,7 @@ function runRows(check) {
     var display = Settings.rows("display", displayState(TextSize.follow(), 14))
     // The board's Display card: the text-size mode over its effective size, then the compositor's two read-only facts. No monitor-scale control, because Flea does not step or cycle that one.
     check("the Display section is text size, then Scale, then Appearance",
-          kinds(display), "group|choice|ruler|hint|fact|group|fact|hint|group|check|choice|hint|choice|hint|action")
+          kinds(display), "group|choice|ruler|hint|fact|group|fact|hint|group|check|choice|hint|choice|hint|action|check|hint")
     check("its one control opens on Follow Omarchy", find(display, "textMode").value,
           "Follow Omarchy")
     // The board draws the mode as both names side by side, so the row names them rather than leaving ui/SettingsRow.qml to invent a second list that could disagree with the writer.
