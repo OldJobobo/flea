@@ -1,4 +1,5 @@
 #!/bin/bash
+. "$(dirname "$0")/headless-commons.sh"
 # Drives ui/ViewState.qml's writer under a real Quickshell: the queue drain, the failure path, and
 # two windows saving different settings over one state file. tests/js/uistate.js can reach none of
 # them, because the book alone never sees a Process, Quickshell does not emit exited for a program it
@@ -42,6 +43,8 @@ fi
 sandbox_make "$SANDBOX" || exit 1
 mkdir -p "$QMLDIR/js" || exit 1
 cp ui/ViewState.qml "$QMLDIR/ViewState.qml" || exit 1
+# ViewState's icon service must resolve even when this writer fixture selects the default pack.
+cp ui/IconTheme.qml ui/IconPackFile.qml ui/DesktopIcons.qml "$QMLDIR/" || exit 1
 # Every library ViewState imports, and theirs, read from the import lines so a new one cannot be missed.
 # Sample input: ViewState.qml `import "js/Settings.js" as Settings`, a library's `.import "Places.js" as Places`.
 libs=$(sed -n 's|^import "js/\([A-Za-z]*\)\.js".*|\1|p' ui/ViewState.qml)
@@ -56,8 +59,8 @@ while [ -n "${libs// /}" ]; do
   done
   libs=$next
 done
-ln -sfn /usr/share/omarchy/shell/Commons "$QMLDIR/Commons" || exit 1
-printf 'module flea\nsingleton ViewState 1.0 ViewState.qml\n' > "$QMLDIR/qmldir" || exit 1
+headless_commons "$SANDBOX" "$QMLDIR/Commons" || exit 1
+printf 'module flea\nsingleton ViewState 1.0 ViewState.qml\nIconTheme 1.0 IconTheme.qml\nIconPackFile 1.0 IconPackFile.qml\nDesktopIcons 1.0 DesktopIcons.qml\n' > "$QMLDIR/qmldir" || exit 1
 
 cat > "$QMLDIR/probe.qml" <<'QML'
 import QtQuick
@@ -580,7 +583,7 @@ nav_root=$SANDBOX/navigation
 mkdir -p "$nav_root/config" "$nav_root/home" "$nav_root/state/flea" "$nav_root/bin" "$nav_root/cache" "$nav_root/runtime" "$nav_root/from" "$nav_root/to" || exit 1
 chmod 700 "$nav_root/runtime" || exit 1
 ln -s "$PWD/ui" "$nav_root/config/flea" || exit 1
-ln -s "$(readlink -f ui/boot/Commons)" "$nav_root/config/Commons" || exit 1
+headless_commons "$nav_root" || exit 1
 ln -s "$(readlink -f ui/boot/Ui)" "$nav_root/config/Ui" || exit 1
 cp tests/uiwriter-navigation.qml "$nav_root/config/shell.qml" || exit 1
 printf '%s\n' '{"updates":{"autoCheck":false},"places":{"rail":"hidden","showTrash":false,"showNetwork":false,"showDevices":false}}' > "$nav_root/state/flea/ui.json" || exit 1

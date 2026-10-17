@@ -83,10 +83,10 @@ def apply(stage, commit):
     once("ui/EmptyState.qml", "            id: heroMark\n", "            id: heroMark\n            idleGestures: true\n            color: Theme.color.foreground\n")
     once("ui/EmptyState.qml", "            width: Theme.heroMarkSize\n            height: Theme.heroMarkSize",
          "            width: Math.max(0, Math.min(Theme.heroMarkSize * 2, root.width - 2 * Theme.spacing.rowPaddingX))\n            height: width * 31 / 30")
-    once("shelf/FleaShelfMark.qml", 'PathSvg { path: "M21 21H3V3h18v14H7V7h10v6h-6" }',
+    once("shelf/FleaShelfMark.qml", 'PathSvg { path: "M22 22H2V2h20v16H6V6h12v8h-8v-2h6V8H8v8h12V4H4v16h18z" }',
          'PathSvg { path: ' + json.dumps(mark["path"]) + ' }')
-    once("shelf/FleaShelfMark.qml", 'strokeColor: root.color\n      fillColor: "transparent"',
-         'strokeColor: "transparent"\n      fillColor: root.color\n      fillRule: ShapePath.WindingFill')
+    once("shelf/FleaShelfMark.qml", 'fillColor: root.color\n      strokeColor: "transparent"',
+         'fillColor: root.color\n      fillRule: ShapePath.WindingFill\n      strokeColor: "transparent"')
     once("shelf/FleaShelfMark.qml", 'readonly property real inkOrigin: 2', 'readonly property real inkOrigin: 1')
     once("shelf/FleaShelfMark.qml", 'readonly property real inkExtent: 20', 'readonly property real inkExtent: 22')
 

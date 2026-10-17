@@ -2,6 +2,7 @@
 # Real pointer/key delivery into shipped path chrome; no real user settings or file operations.
 set -eu
 . "$(dirname "$0")/../tools/flea-sandbox-guard"
+. "$(dirname "$0")/headless-commons.sh"
 cd "$(dirname "$0")/.."
 fixture=$(mktemp -d "$FIXTURE_ROOT/flea-path-click-XXXXXX")
 sandbox_require "$fixture"
@@ -10,7 +11,7 @@ trap 'sandbox_remove "$fixture"' EXIT
 mkdir -p "$fixture/config" "$fixture/home" "$fixture/state" "$fixture/settings" "$fixture/runtime"
 chmod 700 "$fixture/runtime"
 ln -s "$PWD/ui" "$fixture/config/flea"
-ln -s "$(readlink -f ui/boot/Commons)" "$fixture/config/Commons"
+headless_commons "$fixture" || exit 1
 ln -s "$(readlink -f ui/boot/Ui)" "$fixture/config/Ui"
 cp tests/path-click.qml "$fixture/config/shell.qml"
 set +e

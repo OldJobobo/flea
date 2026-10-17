@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+. "$(dirname "$0")/headless-commons.sh"
 # Omarchy's Window Transparency precedence through Glass, one headless launch per case, and a Hyprland config reload with no theme switch.
 set -u
 cd "$(dirname "$0")/.." || exit 1
@@ -71,7 +72,9 @@ run_case() {
         && chmod 700 "$probe/runtime" || { setup_failed "$name" "mkdir of the probe directories failed"; return 1; }
     printf 'glass\n' > "$probe/home/.local/state/omarchy/current/theme.name" \
         && printf '%s\n' "$palette" > "$theme_dir/colors.toml" || { setup_failed "$name" "writing the palette failed"; return 1; }
-    # A stand-in for hyprctl that answers decoration:rounding from a file, so a reload can be seen to move it.
+    # A stand-in for hyprctl that answers decoration:rounding from a file, so a reload can be seen to move it, and lists this
+    # shell's one window, answers its opacity from a file (Omarchy's 0.985 while it carries the tag), logs each read, and logs a
+    # tag change only when the tag's state actually changes, as setting a tag Hyprland already holds changes nothing.
     printf '10\n' > "$probe/rounding" && cat > "$probe/bin/hyprctl" <<'STUB' && chmod +x "$probe/bin/hyprctl" \
         || { setup_failed "$name" "writing the hyprctl stand-in failed"; return 1; }
 #!/bin/sh
@@ -79,10 +82,19 @@ case "$*" in
     *decoration:rounding*) printf '{"option":"decoration:rounding","int":%s,"set":true}\n' "$(cat "$ROUNDING_FILE")" ;;
     *gaps_out*) echo '{"int":0,"css":"0 0 0 0"}' ;;
     *monitors*) echo '[]' ;;
+    *"clients -j"*) printf '[{"address":"0xabc123","pid":%s,"class":"com.thisisgm.flea","tags":[%s]}]\n' "$PPID" "$(cat "$TAGS_FILE")" ;;
+    *getprop*) printf '%s\n' "$*" >> "$PROBE_LOG"; if [ -s "$TAGS_FILE" ]; then echo 0.985; else cat "$OPACITY_FILE"; fi ;;
+    *+transparent*) [ -s "$TAGS_FILE" ] || { printf '%s\n' "$*" >> "$DISPATCH_LOG"; printf '"transparent"' > "$TAGS_FILE"; }; echo ok ;;
+    *-transparent*) [ -s "$TAGS_FILE" ] && { printf '%s\n' "$*" >> "$DISPATCH_LOG"; : > "$TAGS_FILE"; }; echo ok ;;
     *) echo '{"bool":false}' ;;
 esac
 STUB
     [[ "$toggle" == - ]] || printf 'return\n' > "$toggle_dir/window-$toggle.lua" || { setup_failed "$name" "writing the toggle failed"; return 1; }
+    # Hyprland's own opacity for the window: 1 where Omarchy leaves it alone, 0.985 where stable Omarchy's catch-all rule draws it.
+    local opacity=1
+    [[ "$mode" == tag-stable ]] && opacity=0.985
+    printf '%s\n' "$opacity" > "$probe/opacity" && : > "$probe/tag.log" && : > "$probe/probe.log" && : > "$probe/tags" \
+        || { setup_failed "$name" "writing the opacity stand-in failed"; return 1; }
     if [[ "$theme" != - ]]; then
         printf '[font]\nbase-size = 14\n\n[flea]\n%s\n' "${theme:+background-alpha = $theme}" > "$theme_dir/shell.toml" \
             || { setup_failed "$name" "writing the theme's shell.toml failed"; return 1; }
@@ -94,11 +106,12 @@ STUB
     env HOME="$probe/home" XDG_STATE_HOME="$probe/state" "$bin" --ui-state \
         '{"preview":{"thumbnails":"off"},"updates":{"autoCheck":false}}' >/dev/null \
         || { setup_failed "$name" "$bin --ui-state failed"; return 1; }
-    ln -s "$PWD/ui" "$probe/config/flea" && ln -s "$(readlink -f ui/boot/Commons)" "$probe/config/Commons" \
-        && ln -s "$(readlink -f ui/boot/Ui)" "$probe/config/Ui" && cp tests/glass-mode.qml "$probe/config/shell.qml" \
+    ln -s "$PWD/ui" "$probe/config/flea" || { setup_failed "$name" "linking the probe's UI failed"; return 1; }
+    headless_commons "$probe" || exit 1
+    ln -s "$(readlink -f ui/boot/Ui)" "$probe/config/Ui" && cp tests/glass-mode.qml "$probe/config/shell.qml" \
         || { setup_failed "$name" "linking the probe's shell directory failed"; return 1; }
     local log="$probe/qs.log" tick sig=()
-    if [[ "$mode" == socket ]]; then
+    if [[ "$mode" == socket || "$mode" == tag* ]]; then
         # A stand-in for Hyprland's event socket, so the raw event takes the path it takes in the product.
         mkdir -p "$probe/runtime/hypr/glassmode" || { setup_failed "$name" "mkdir of the socket directory failed"; return 1; }
         python3 -I tests/glass-mode-socket.py "$probe/runtime/hypr/glassmode" "$probe/go" >"$probe/socket.log" 2>&1 &
@@ -113,7 +126,7 @@ STUB
     env -u DISPLAY -u WAYLAND_DISPLAY -u HYPRLAND_INSTANCE_SIGNATURE -u FLEA_SELECT "${sig[@]}" \
         HOME="$probe/home" XDG_STATE_HOME="$probe/state" XDG_CONFIG_HOME="$probe/config" PATH="$probe/bin:$PATH" \
         XDG_DATA_HOME="$probe/data" XDG_CACHE_HOME="$probe/cache" XDG_RUNTIME_DIR="$probe/runtime" \
-        FLEA_BIN="$bin" ROUNDING_FILE="$probe/rounding" GLASSM_ROUNDING="$probe/rounding" GLASSM_MODE="$mode" GLASSM_EXPECT="$expect" GLASSM_GLASS="$glass" \
+        FLEA_BIN="$bin" ROUNDING_FILE="$probe/rounding" OPACITY_FILE="$probe/opacity" DISPATCH_LOG="$probe/tag.log" PROBE_LOG="$probe/probe.log" TAGS_FILE="$probe/tags" GLASSM_DISPATCH="$probe/tag.log" GLASSM_PROBE="$probe/probe.log" GLASSM_ROUNDING="$probe/rounding" GLASSM_MODE="$mode" GLASSM_EXPECT="$expect" GLASSM_GLASS="$glass" \
         QT_QPA_PLATFORM=offscreen QT_QPA_PLATFORMTHEME=generic QT_QUICK_BACKEND=software QT_FORCE_STDERR_LOGGING=1 \
         setsid dbus-run-session -- qs -p "$probe/config" >"$log" 2>&1 </dev/null &
     qs_pid=$!
@@ -124,6 +137,7 @@ STUB
     stop_qs || { setup_failed "$name" "its shell did not stop"; return 1; }
     if [[ -n "$server_pid" ]]; then kill "$server_pid" 2>/dev/null; wait "$server_pid" 2>/dev/null; server_pid=""; fi
     grep -a 'GLASSM FAIL' "$log" | sed "s/^/  $name: /"
+    grep -a 'GLASSM EDGE' "$log" || true
     local tally
     tally=$(grep -ao 'GLASSM DONE checks=[0-9]* failed=[0-9]*' "$log" | tail -1)
     if [[ -z "$tally" ]]; then
@@ -154,12 +168,12 @@ run_case user-over-opaque precedence opaque 128 0.34 0.5
 run_case user-over-glassy precedence glassy 153 0.34 0.6
 # Row (b): opaque is 1, even over a theme value.
 run_case opaque precedence opaque 255 0.34 -
-# Row (c): glassy takes the theme's own value, else Glass.glassAlpha; the harness sets 0.75 (191 of 255) to prove the path, and the shipped default draws 255.
+# Row (c): glassy takes the theme's value, else its pick; the synthetic override still proves the 0.75 path.
 run_case glassy-theme precedence glassy 87 0.34 -
 run_case glassy-bare precedence glassy 191 - - 0.75
 run_case glassy-empty-theme precedence glassy 191 "" - 0.75
-run_case glassy-default precedence glassy 255 - -
-# Row (d): transparent, Omarchy's default and no toggle, is today's: the theme's value, else 1.
+run_case glassy-default precedence glassy 192 - -
+# Row (d): transparent takes the theme's value, else opaque at 255/255: no shipped theme sets an opacity and no toggle file means transparency was never chosen.
 run_case transparent-theme precedence - 87 0.34 -
 run_case transparent-bare precedence - 255 - -
 # A value that is not a number is the default 1 where it is set, as before the mode existed.
@@ -168,6 +182,10 @@ run_case user-word precedence glassy 255 0.34 abc
 run_case socket socket - 255 - -
 # A reload moves the mode and the corner radius under a running window.
 run_case reload reload glassy 191 - - 0.75
+# Flea's own window takes Omarchy's transparency tag where Hyprland leaves it at 1, gives it up in Glassy, and leaves a window
+# Hyprland already draws below 1 to that rule.
+run_case tag tag - 255 - -
+run_case tag-stable tag-stable - 255 - -
 
 printf 'glass-mode: checks=%s failed=%s\n' "$total" "$failed"
-[[ "$failed" -eq 0 ]]
+[[ "$failed" -eq 0 ]] || exit 1

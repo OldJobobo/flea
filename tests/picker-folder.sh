@@ -2,6 +2,7 @@
 # Real save window, real backend, exclusively marker-owned fixtures outside HOME.
 set -euo pipefail
 . "$(dirname "$0")/../tools/flea-sandbox-guard"
+. "$(dirname "$0")/headless-commons.sh"
 cd "$(dirname "$0")/.."
 [ -x target/debug/flea ] || cargo build --locked -q
 root="$FIXTURE_ROOT/flea-picker-folder-$$"
@@ -11,7 +12,7 @@ mkdir -p "$root"/{config,home/Downloads/existing,state/flea,cache,data,runtime}
 chmod 700 "$root/runtime"
 printf '{"pickerView":"list","places":{"favourites":[]}}\n' > "$root/state/flea/ui.json"
 ln -s "$PWD/ui" "$root/config/flea"
-ln -s "$(readlink -f ui/boot/Commons)" "$root/config/Commons"
+headless_commons "$root" || exit 1
 ln -s "$(readlink -f ui/boot/Ui)" "$root/config/Ui"
 request=$(/usr/bin/python3 - "$root/home/Downloads" <<'PY'
 import json,sys

@@ -817,4 +817,5 @@ Rectangle {
             unlockHost: Qt.binding(function () { return view.unlockHost })
         })
     }
+    readonly property bool clearSurface: Glass.clear
 }

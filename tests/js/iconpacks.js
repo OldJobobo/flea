@@ -50,11 +50,15 @@ function run(check) {
         var answer = Packs.parse(request.responseText)
         check(id + " bundled pack validates", answer.error, "")
         if (!answer.pack) continue
-        check(id + " carries every non-brand mark", Object.keys(answer.pack.icons).length, Object.keys(Icons.PATHS).length - 2)
+        check(id + " carries every original non-brand mark", Object.keys(answer.pack.icons).length, Object.keys(Icons.PATHS).length - 4)
         check(id + " reserves the Flea brand", Packs.pathFor(answer.pack, "shelf"), Icons.pathFor("shelf"))
         check(id + " reserves the Markdown brand", Packs.pathFor(answer.pack, "markdown"), Icons.pathFor("markdown"))
         for (var name in Icons.PATHS) {
             if (name === "shelf" || name === "markdown") continue
+            if (name === "html" || name === "chevron-down") {
+                check(id + " falls back for new upstream mark " + name, Packs.pathFor(answer.pack, name), Icons.pathFor(name))
+                continue
+            }
             check(id + " supplies " + name, Packs.has(answer.pack, name), true)
             check(id + " uses its own fill " + name, Packs.filledFor(answer.pack, name), answer.pack.icons[name].filled)
             check(id + " paint recipe " + name, Packs.solidOnly(answer.pack, name), id === "phosphor")

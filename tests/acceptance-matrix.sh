@@ -68,7 +68,8 @@ rows = [line.split('|') for line in pathlib.Path(sys.argv[1]).read_text().splitl
 assert all(len(row) == 4 for row in rows)
 assert len(rows) == len({(row[0], row[3]) for row in rows})
 # Count distinct current non-header ids from derive_menu_actions, including Places rows.
-assert len({row[0] for row in rows if row[3] != 'header'}) == 45
+assert len({row[0] for row in rows if row[3] != 'header'}) == 49
+assert ['compare', 'compare', 'Compare', 'file'] in rows
 assert ['delete', 'deletePermanently', 'Delete permanently', 'file'] in rows
 assert ['moveto', 'moveTo', 'Move to', 'file'] in rows
 assert ['openwith', 'openWith', 'Open with', 'file'] in rows
@@ -76,12 +77,17 @@ assert ['makeExecutable', 'makeExecutable', 'Make executable', 'file'] in rows
 assert ['flashDrive', 'flashDrive', 'Flash to drive', 'file'] in rows
 assert {row[3] for row in rows if row[0] == 'open'} == {'file', 'places', 'trash'}
 assert ['openTab', 'openTab', 'New tab', 'places'] in rows
+assert ['openTab', 'openTab', 'New tab', 'file'] in rows
+assert ['tabNew', 'tabNew', 'New tab', 'background'] in rows
+assert ['reload', 'reload', 'Refresh', 'background'] in rows
 assert ['removeFavourite', 'removeFavourite', 'Remove from Favorites', 'places'] in rows
 assert {row[3] for row in rows if row[0] == 'paste'} == {'file', 'background'}
 assert ['updateFlea', 'updateFlea', 'Update Flea', 'background'] in rows
 # The storage-class thumbnail switch is a background row only; ui/js/ExtThumbs.js relabels it per class.
 assert {row[3] for row in rows if row[0] == 'extThumbs'} == {'background'}
 assert ['extThumbs', 'extThumbs', 'Show thumbnails', 'background'] in rows
+assert {row[3] for row in rows if row[0] == 'toggleLangMarks'} == {'file', 'background'}
+assert all(row[1:3] == ['toggleLangMarks', 'Show code icons'] for row in rows if row[0] == 'toggleLangMarks')
 assert {row[0] for row in rows if row[3] == 'header'} == {'col:mode', 'col:size', 'col:date', 'col:kind'}
 print('ACCEPTANCE_MENU ids=' + str(len({row[0] for row in rows if row[3] != 'header'})) + ' header=4 context_rows=' + str(len(rows)))
 PY

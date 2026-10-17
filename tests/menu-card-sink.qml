@@ -33,6 +33,10 @@ ShellRoot {
     function click(item, x, y, button) { shell.press(item, x, y, button); shell.release(item, x, y, button) }
     function clickCentre(item, button) { shell.click(item, item.width / 2, item.height / 2, button) }
 
+    function actionIndex(target, action) {
+        return target.entries.findIndex(function (entry) { return entry.action === action })
+    }
+
     // A row, a separator and the card's top padding, as {name, item, x, y} for one card.
     function dead(card, rowAt, sepAt, padItem, padY) {
         var row = card === "main" ? menu.itemFor(rowAt) : menu.submenuItemFor(rowAt)
@@ -45,7 +49,7 @@ ShellRoot {
     // One press and release on a dead point leaves the menu, the cursors and the chosen log as they were.
     function sink(card, which, button) {
         var pad = Flea.Theme.spacing.rowPaddingY / 2
-        var points = card === "main" ? shell.dead("main", 5, 2, menu.frameItem, pad)
+        var points = card === "main" ? shell.dead("main", shell.actionIndex(menu, "paste"), menu.entries.findIndex(function (entry) { return entry.separator }), menu.frameItem, pad)
                                      : shell.dead("flyout", 1, 2, menu.submenuFrameItem, pad)
         var point = points.filter(function (p) { return p.name === which })[0]
         var tag = card + ":" + which + ":" + (button === Qt.LeftButton ? "left" : "right")
@@ -113,7 +117,7 @@ ShellRoot {
         m.openWithLoaded = true
         m.openWithApps = [{ id: "a", label: "App A" }, { id: "b", label: "App B" }]
         m.openAt(Qt.point(100, 60))
-        m.cursor = 3
+        m.cursor = shell.actionIndex(m, "cut")
     }
     function ready(item) { return item && item.height > 0 }
     // The card body under a frame, by type name, whatever else the frame holds beside it.
@@ -135,34 +139,37 @@ ShellRoot {
     function openFlyoutWithDisabled() {
         shell.openMain()
         var entries = menu.entries.slice()
-        var flyoutRow = Object.assign({}, entries[1])
+        var at = shell.actionIndex(menu, "openWith")
+        var flyoutRow = Object.assign({}, entries[at])
         flyoutRow.submenu = [{ id: "a", label: "App A" }, { id: "off", label: "Unavailable", disabled: true },
                              { separator: true }, { id: "b", label: "App B" }]
-        entries[1] = flyoutRow
+        entries[at] = flyoutRow
         menu.entries = entries
-        menu.cursor = 1
-        menu.openSubmenu(1)
+        menu.cursor = at
+        menu.openSubmenu(at)
     }
     // An Open with flyout of overflowRows rows (App A, a disabled row, a separator, then enabled rows) taller than its frame.
     function openOverflowingFlyout(target) {
         var m = target || menu
         shell.openMain(m)
         var entries = m.entries.slice()
-        var flyoutRow = Object.assign({}, entries[1])
+        var at = shell.actionIndex(m, "openWith")
+        var flyoutRow = Object.assign({}, entries[at])
         var rows = [{ id: "a", label: "App A" }, { id: "off", label: "Unavailable", disabled: true }, { separator: true }]
         for (var i = rows.length; i < shell.overflowRows; i++)
             rows.push({ id: "r" + i, label: "App " + i })
         flyoutRow.submenu = rows
-        entries[1] = flyoutRow
+        entries[at] = flyoutRow
         m.entries = entries
-        m.cursor = 1
-        m.openSubmenu(1)
+        m.cursor = at
+        m.openSubmenu(at)
     }
     // The live Open with flyout: App A, App B, a separator, Another application.
     function openLiveFlyout() {
         shell.openMain()
-        menu.cursor = 1
-        menu.openSubmenu(1)
+        var at = shell.actionIndex(menu, "openWith")
+        menu.cursor = at
+        menu.openSubmenu(at)
     }
 
     // Each scene opens a fresh menu, waits for its rows to stand, then runs once, so one failure never hides the next.
@@ -230,23 +237,25 @@ ShellRoot {
     function mainWheelHover() {
         var frame = menu.frameItem
         // The wheel over a disabled row steps the highlight one row and never pixel scrolls.
-        var disabled = menu.itemFor(5)
+        var disabled = menu.itemFor(shell.actionIndex(menu, "paste"))
         driver.mouseWheel(disabled, disabled.width / 2, disabled.height / 2, Qt.NoButton, Qt.NoModifier, 0, -120, 1)
-        shell.check("main:wheel-steps-one", menu.cursor, 4)
+        shell.check("main:wheel-steps-one", menu.cursor, shell.actionIndex(menu, "copy"))
         shell.check("main:wheel-no-pixel-scroll", shell.cardUnder(frame).contentY, 0)
         shell.check("main:card-not-interactive", shell.cardUnder(frame).interactive, false)
         // The highlight still follows the pointer: two moves across an enabled row, the first one arms it.
-        var row = menu.itemFor(6)
+        var duplicate = shell.actionIndex(menu, "duplicate")
+        var row = menu.itemFor(duplicate)
         driver.mouseMove(row, 10, row.height / 2, 1, Qt.NoButton, Qt.NoModifier)
         driver.mouseMove(row, 20, row.height / 2, 1, Qt.NoButton, Qt.NoModifier)
-        shell.check("main:hover-follows", menu.cursor, 6)
+        shell.check("main:hover-follows", menu.cursor, duplicate)
         // A submenu row opens its flyout and the menu stays open.
-        shell.clickCentre(menu.itemFor(1), Qt.LeftButton)
-        shell.check("main:submenu-click-opens", menu.openSubmenuRow, 1)
+        var openWith = shell.actionIndex(menu, "openWith")
+        shell.clickCentre(menu.itemFor(openWith), Qt.LeftButton)
+        shell.check("main:submenu-click-opens", menu.openSubmenuRow, openWith)
         shell.check("main:submenu-click-open", menu.opened, true)
     }
     function mainEnabled() {
-        shell.clickCentre(menu.itemFor(4), Qt.LeftButton)
+        shell.clickCentre(menu.itemFor(shell.actionIndex(menu, "copy")), Qt.LeftButton)
         shell.check("main:enabled-once", shell.chosenLog, ["copy"])
         shell.check("main:enabled-closes", menu.opened, false)
     }
@@ -369,16 +378,18 @@ ShellRoot {
     function restingPointer() {
         shell.check("rest:settled", restMenu.pointerSettling, false)
         shell.check("rest:pointer-unseen", restMenu.pointerGlobal.x < 0, true)
-        shell.check("rest:flyout-open", restMenu.openSubmenuRow, 1)
-        var row = restMenu.itemFor(6)
+        var openWith = shell.actionIndex(restMenu, "openWith")
+        var duplicate = shell.actionIndex(restMenu, "duplicate")
+        shell.check("rest:flyout-open", restMenu.openSubmenuRow, openWith)
+        var row = restMenu.itemFor(duplicate)
         // The window's first pointer event, on a main row without a flyout: where the pointer rests, never a move.
         driver.mouseMove(row, 20, row.height / 2, 1, Qt.NoButton, Qt.NoModifier)
         shell.check("rest:row-hovered", row.hovered, true)
-        shell.check("rest:cursor-stays", restMenu.cursor, 1)
-        shell.check("rest:flyout-stays", restMenu.openSubmenuRow, 1)
+        shell.check("rest:cursor-stays", restMenu.cursor, openWith)
+        shell.check("rest:flyout-stays", restMenu.openSubmenuRow, openWith)
         // Motion from there is answered at once, as on Qt 6.11: the row takes the cursor and the flyout closes.
         driver.mouseMove(row, 30, row.height / 2, 1, Qt.NoButton, Qt.NoModifier)
-        shell.check("rest:motion-takes-the-row", restMenu.cursor, 6)
+        shell.check("rest:motion-takes-the-row", restMenu.cursor, duplicate)
         shell.check("rest:motion-closes-the-flyout", restMenu.openSubmenuRow, -1)
         // A ground that appears under the pointer takes Qt's point rounded to whole pixels, so under a pixel is that point.
         shell.check("rest:a-rounded-point-is-rest", liveKeyRow.awayFrom(Qt.point(120.4, 250.6), 120, 251), false)

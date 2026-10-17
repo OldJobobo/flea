@@ -2,6 +2,7 @@
 # Tooltips in the real WindowBody, including its inactive full-window overlay layers.
 set -eu
 . "$(dirname "$0")/../tools/flea-sandbox-guard"
+. "$(dirname "$0")/headless-commons.sh"
 cd "$(dirname "$0")/.."
 case "${1-}" in ""|--native) ;; *) echo 'usage: mouse-window.sh [--native]'; exit 2;; esac
 fixture=$(mktemp -d "$FIXTURE_ROOT/flea-mouse-window-XXXXXX")
@@ -11,7 +12,7 @@ trap 'sandbox_remove "$fixture"' EXIT
 mkdir -p "$fixture"/{config,home,state,settings,data,cache,runtime,files}
 chmod 700 "$fixture/runtime"
 touch "$fixture/files"/{a,b,c}.txt
-ln -s "$(readlink -f ui/boot/Commons)" "$fixture/config/Commons"
+headless_commons "$fixture" || exit 1
 ln -s "$(readlink -f ui/boot/Ui)" "$fixture/config/Ui"
 ln -s "$PWD/ui/boot/fleatab.qml" "$fixture/config/fleatab.qml"
 cp tests/mouse-window.qml "$fixture/config/shell.qml"

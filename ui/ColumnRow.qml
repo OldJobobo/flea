@@ -3,6 +3,7 @@ import qs.Commons
 import "." as Flea
 import "js/Drag.js" as DragOps
 import "js/Icons.js" as Icons
+import "js/LangMarks.js" as LangMarks
 import "js/Format.js" as Format
 import "js/Match.js" as Match
 
@@ -18,6 +19,15 @@ Item {
     property string thumb: ""
     // A path is not a thumbnail: a cache file evicted between the answer and the decode leaves the mark to the glyph.
     readonly property bool thumbDrawn: root.thumb.length > 0 && thumbImage.status !== Image.Error
+    // One filename lookup; only a mapped row without a thumbnail builds the mark's Loader.
+    readonly property string langSlug: ViewState.langMarks && !root.desktopDrawn ? LangMarks.slugForRow(root.row) : ""
+    // A search warms the complete mark hidden, so its first answer only changes the slug.
+    readonly property bool langWarm: ViewState.langMarks && root.shown && root.pane !== null && root.pane.searchMode.length > 0 && root.pane.swap.searchWarm === true
+    property var langLoader: null
+    function syncLangMark() { LangMarks.syncMark(root, markGlyph, Qt.resolvedUrl("LangMarkLoader.qml"), Component.Ready) }
+    onLangWarmChanged: root.syncLangMark()
+    onLangSlugChanged: root.syncLangMark()
+    onThumbDrawnChanged: root.syncLangMark()
     readonly property alias iconStatus: thumbImage.status
     readonly property Item thumbItem: thumbImage
     // The row this column's own cursor is on. Only the active column paints it in the accent.
@@ -141,7 +151,7 @@ Item {
         Flea.Glyph {
             id: markGlyph
             anchors.fill: parent
-            visible: !root.thumbDrawn && !root.desktopDrawn
+            visible: !root.thumbDrawn && !root.desktopDrawn && root.langSlug === ""
             name: root.row ? Icons.glyphForRow(root.row.i, root.row.p) : "file"
             color: root.dimmed(root.cursor ? Theme.color.accent : Theme.color.mutedFrame)
         }

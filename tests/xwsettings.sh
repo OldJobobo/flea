@@ -1,4 +1,5 @@
 #!/bin/bash
+. "$(dirname "$0")/headless-commons.sh"
 # Two ViewState singletons over one temp ui.json: live apply of one window's change in the other, per-window state, own-write and half-written guards; tests/js/uistate.js pins the merge, this pins the QML wiring.
 set -u
 # Hard rule 9's guard, which owns FIXTURE_ROOT and every create and delete below.
@@ -55,6 +56,8 @@ check "quitReady observers finish before shutdown" 0 "$?"
 # a headless run has no session for.
 mkdir -p "$QMLDIR/js" || exit 1
 cp ui/ViewState.qml "$QMLDIR/ViewState.qml" || exit 1
+# Keep ViewState's icon service available in the isolated singleton module.
+cp ui/IconTheme.qml ui/IconPackFile.qml ui/DesktopIcons.qml "$QMLDIR/" || exit 1
 # Sample import: import "js/Settings.js" as Settings; transitive libraries use .import "Places.js" as Places.
 libs=$(sed -n 's|^import "js/\([A-Za-z]*\)\.js".*|\1|p' ui/ViewState.qml)
 copied=" "
@@ -68,8 +71,8 @@ while [ -n "${libs// /}" ]; do
   done
   libs=$next
 done
-ln -sfn /usr/share/omarchy/shell/Commons "$QMLDIR/Commons" || exit 1
-printf 'module flea\nsingleton ViewState 1.0 ViewState.qml\n' > "$QMLDIR/qmldir" || exit 1
+headless_commons "$SANDBOX" "$QMLDIR/Commons" || exit 1
+printf 'module flea\nsingleton ViewState 1.0 ViewState.qml\nIconTheme 1.0 IconTheme.qml\nIconPackFile 1.0 IconPackFile.qml\nDesktopIcons 1.0 DesktopIcons.qml\n' > "$QMLDIR/qmldir" || exit 1
 
 # Window A: saves one preference the way pane.toggleHidden does, then stays alive one beat past
 # its drained writer so a re-applied own write would have to show as a queued patch or a failure.
@@ -525,7 +528,7 @@ if [ "$fail" -eq 0 ]; then
     done
     config="$SANDBOX/start/ui-$role"
     mkdir -p "$config/boot" || exit 1
-    ln -s "$(readlink -f ui/boot/Commons)" "$config/boot/Commons" || exit 1
+    headless_commons "$SANDBOX" "$config/boot/Commons" || exit 1
     ln -s "$(readlink -f ui/boot/Ui)" "$config/boot/Ui" || exit 1
     cp tests/xwsettings-start.qml "$config/boot/shell.qml" || exit 1
   done
@@ -579,7 +582,7 @@ mkdir -p "$SANDBOX/tabs/config" "$SANDBOX/tabs/a/sub" "$SANDBOX/tabs/b/sub" || e
 printf 'a\n' > "$SANDBOX/tabs/a/a.txt" || exit 1
 printf 'b\n' > "$SANDBOX/tabs/b/b.txt" || exit 1
 ln -s "$PWD/ui" "$SANDBOX/tabs/config/flea" || exit 1
-ln -s "$(readlink -f ui/boot/Commons)" "$SANDBOX/tabs/config/Commons" || exit 1
+headless_commons "$SANDBOX" "$SANDBOX/tabs/config/Commons" || exit 1
 ln -s "$(readlink -f ui/boot/Ui)" "$SANDBOX/tabs/config/Ui" || exit 1
 cp tests/xwsettings-tabs.qml "$SANDBOX/tabs/config/shell.qml" || exit 1
 cat > "$SANDBOX/tabs/launcher" <<'SH'

@@ -2,6 +2,7 @@
 # Real Glyphs, settings selector, lazy reader and custom-file reloads; no real user state.
 set -eu
 . "$(dirname "$0")/../tools/flea-sandbox-guard"
+. "$(dirname "$0")/headless-commons.sh"
 cd "$(dirname "$0")/.."
 python3 -B tests/icon-geometry.py
 command -v qs >/dev/null || { echo 'icon-packs: qs is required'; exit 1; }
@@ -14,7 +15,7 @@ trap 'sandbox_remove "$fixture"' EXIT
 mkdir -p "$fixture/config" "$fixture/home" "$fixture/state" "$fixture/settings/flea/icons" "$fixture/runtime"
 chmod 700 "$fixture/runtime"
 ln -s "$PWD/ui" "$fixture/config/flea"
-ln -s "$(readlink -f ui/boot/Commons)" "$fixture/config/Commons"
+headless_commons "$fixture" || exit 1
 ln -s "$(readlink -f ui/boot/Ui)" "$fixture/config/Ui"
 run_probe() {
     local output status

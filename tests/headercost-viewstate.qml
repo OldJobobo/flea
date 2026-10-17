@@ -8,6 +8,10 @@ import QtQuick
 QtObject {
     id: root
     property var state: ({})
+    readonly property bool langMarks: root.state.langMarks !== false
+    readonly property bool hyprlandIcons: true
+    readonly property var iconTheme: IconTheme { }
+    function fileIconSource(row, size) { return "" }
     property var hiddenCols: ["mode", "kind"]
     property var commits: []
 
