@@ -91,6 +91,7 @@ RowDrag 1.0 RowDrag.qml
 WindowDrag 1.0 WindowDrag.qml
 IconTheme 1.0 IconTheme.qml
 DesktopIcons 1.0 DesktopIcons.qml
+AdaptiveIcons 1.0 AdaptiveIcons.qml
 IconPackFile 1.0 IconPackFile.qml
 Glyph 1.0 Glyph.qml
 GlyphSolid 1.0 GlyphSolid.qml

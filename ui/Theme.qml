@@ -21,6 +21,8 @@ Singleton {
 
     // True only once colors.toml parsed to a palette, so a test can tell one from a fallback.
     property bool ready: false
+    // Raw inputs for opt-in adaptive artwork; material derivation stays lazy.
+    property var palette: ({})
 
     // The size Flea draws at: Omarchy's own unless the Display section pinned an override stop.
     readonly property int baseSize: TextSize.effective(ViewState.textSize, Style.font.baseSize)
@@ -391,6 +393,7 @@ Singleton {
         // A body that parsed to nothing left every role on its fallback, so the flag says so rather
         // than reporting that the read happened: text() returns "" for a file that is not there.
         root.ready = Palette.isPalette(found);
+        root.palette = found;
     }
 
     // Sample input: [{"id":0,"name":"DP-1","width":2560,"height":1440,"scale":1.00,"focused":true}]

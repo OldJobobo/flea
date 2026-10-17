@@ -13,7 +13,7 @@ pub fn valid_name(name: &str) -> bool {
 }
 
 pub fn valid_selection(value: &str) -> bool {
-    matches!(value, "builtin" | "system") || value.strip_prefix("theme:").is_some_and(valid_name)
+    matches!(value, "builtin" | "adaptive" | "system") || value.strip_prefix("theme:").is_some_and(valid_name)
 }
 
 pub fn valid_icon(name: &str) -> bool {

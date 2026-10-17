@@ -15,7 +15,7 @@ const HEADER: &str = "[Icon Theme]\nName=Test icons\nDirectories=24/places,48/pl
 fn names_and_settings_cannot_be_paths_or_control_sequences() {
     for name in ["Papirus-Dark", "My Icons", "Yaru", "日本語"] { assert!(valid_name(name)); }
     for name in ["", ".", "..", "../icons", "/icons", "a\\b", "a\0b", " x", "x\n"] { assert!(!valid_name(name)); }
-    for selection in ["builtin", "system", "theme:Papirus", "theme:My Icons"] { assert!(valid_selection(selection)); }
+    for selection in ["builtin", "adaptive", "system", "theme:Papirus", "theme:My Icons"] { assert!(valid_selection(selection)); }
     for selection in ["Papirus", "theme:", "theme:../../x", "invalid"] { assert!(!valid_selection(selection)); }
     assert!(valid_icon("application-vnd.oasis.opendocument.text"));
     assert!(!valid_icon("folder.svg/../../x"));
@@ -118,7 +118,7 @@ fn regular_file_reader_refuses_directories_invalid_utf8_and_large_metadata() {
 fn file_icon_selection_persists_without_overwriting_interface_icons() {
     use crate::jsondoc::{parse, Json};
     let current = crate::uistate::from_file(r#"{"display":{"iconSet":"lucide"}}"#);
-    for value in ["builtin", "system", "theme:Papirus-Dark", "theme:My Icons"] {
+    for value in ["builtin", "adaptive", "system", "theme:Papirus-Dark", "theme:My Icons"] {
         let patch = parse(&format!(r#"{{"display":{{"fileIconTheme":"{value}"}}}}"#)).unwrap();
         let next = crate::uistate::patched(&current, &patch).unwrap();
         let display = next.get("display").unwrap();

@@ -47,7 +47,7 @@ Item {
         saveStatus: ViewState.saveStatus,
         iconPackError: ViewState.iconTheme.error,
         fileIconThemes: ViewState.desktopIcons ? ViewState.desktopIcons.themes : [],
-        fileIconError: ViewState.desktopIcons ? ViewState.desktopIcons.error : "",
+        fileIconError: ViewState.desktopIcons && ViewState.desktopIcons.error ? (ViewState.fileIconTheme === "adaptive" ? "System app icons unavailable; adaptive artwork remains available." : ViewState.desktopIcons.error) : "",
         textSize: ViewState.textSize,
         hidden: ViewState.menuHidden,
         keyHints: ViewState.keyHints,

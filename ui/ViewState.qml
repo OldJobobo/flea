@@ -545,20 +545,33 @@ QtObject {
     readonly property var iconTheme: IconTheme { requested: root.display.iconSet || "flea" }
     readonly property string fileIconTheme: FileIcons.selection(root.display.fileIconTheme)
     property var desktopIcons: null
+    property var adaptiveIcons: null
+    readonly property string desktopIconSelection: root.fileIconTheme === "adaptive" ? "system" : root.fileIconTheme
     function loadDesktopIcons() {
         if (!root.desktopIcons) {
             var component = Qt.createComponent("DesktopIcons.qml")
             if (component.status === Component.Ready)
-                root.desktopIcons = component.createObject(root, { selection: root.fileIconTheme })
+                root.desktopIcons = component.createObject(root, { selection: root.desktopIconSelection })
         }
         return root.desktopIcons
     }
     function syncDesktopIcons() {
+        if (root.fileIconTheme === "adaptive" && !root.adaptiveIcons) {
+            const component = Qt.createComponent("AdaptiveIcons.qml")
+            if (component.status === Component.Ready) root.adaptiveIcons = component.createObject(root)
+        } else if (root.fileIconTheme !== "adaptive" && root.adaptiveIcons) {
+            root.adaptiveIcons.destroy(); root.adaptiveIcons = null
+        }
         if (root.fileIconTheme !== "builtin") root.loadDesktopIcons()
-        if (root.desktopIcons) root.desktopIcons.selection = root.fileIconTheme
+        if (root.desktopIcons) root.desktopIcons.selection = root.desktopIconSelection
     }
     function fileIconSource(row, size) {
-        return root.fileIconTheme !== "builtin" && root.desktopIcons ? root.desktopIcons.source(row, size) : ""
+        if (root.fileIconTheme === "builtin") return ""
+        if (root.fileIconTheme === "adaptive") {
+            const adaptive = root.adaptiveIcons ? root.adaptiveIcons.source(row, size) : ""
+            if (adaptive) return adaptive
+        }
+        return root.desktopIcons ? root.desktopIcons.source(row, size) : ""
     }
     onFileIconThemeChanged: Qt.callLater(root.syncDesktopIcons)
 }

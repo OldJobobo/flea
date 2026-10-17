@@ -160,10 +160,10 @@ ui/SettingsPanel.qml 558
 ui/SettingsRow.qml 409
 ui/Sidebar.qml 713
 ui/StatusBar.qml 477
-ui/Theme.qml 493
+ui/Theme.qml 496
 ui/TrashView.qml 472
 ui/UnlockDialog.qml 450
-ui/ViewState.qml 564
+ui/ViewState.qml 577
 ui/WindowBody.qml 820
 ui/js/Anchor.js 379
 ui/js/ColumnsCarry.js 94
