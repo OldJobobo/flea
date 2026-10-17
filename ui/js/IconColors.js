@@ -55,38 +55,38 @@ function ratio(a, b) {
     var x = luminance(a), y = luminance(b)
     return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05)
 }
-function ink(ground) { return ratio("#000000", ground) > ratio("#ffffff", ground) ? "#000000" : "#ffffff" }
-function boundary(bg, selected) {
-    // Maximise the weaker contrast. The second keyline handles incompatible grounds.
-    var best = "#000000", score = 0
-    for (var i = 0; i <= 100; i++) {
-        var c = lch(i/100, 0, 0), next = Math.min(ratio(c, bg), ratio(c, selected))
-        if (next > score) { score = next; best = c }
-    }
-    return best
-}
-function material(seed, bg, edge, neutral) {
+function tone(seed, lightness) {
     var v = lab(seed), C = Math.sqrt(v[1]*v[1] + v[2]*v[2])
-    var h = Math.atan2(v[2], v[1]), dark = lab(bg)[0] < 0.6
-    var L = dark ? 0.73 : 0.56
-    C = neutral ? 0 : Math.min(C, 0.16)
-    var face = lch(L, C, h), emblem = ink(face), light = face
-    // White emblems on light-theme materials must survive the bright end too.
-    var lo = 0, hi = 1
-    for (var i = 0; i < 12; i++) {
-        var t = (lo + hi) / 2, candidate = lch(L + 0.055*t, C*(1 - 0.2*t), h)
-        if (ratio(emblem, candidate) >= 4.5) { lo = t; light = candidate }
-        else hi = t
+    return lch(clamp(lightness, 0.02, 0.98), C, Math.atan2(v[2], v[1]))
+}
+function contrasting(seed, ground, target) {
+    // Keep the actual theme colour whenever possible. Otherwise move only its
+    // lightness, retaining its hue/chroma; there is no black/white substitution.
+    if (ratio(seed, ground) >= target) return seed
+    var L = lab(seed)[0], low = tone(seed, 0.02), high = tone(seed, 0.98)
+    var end = ratio(low, ground) > ratio(high, ground) ? 0.02 : 0.98
+    for (var i = 1; i <= 100; i++) {
+        var candidate = tone(seed, L + (end - L)*i/100)
+        if (ratio(candidate, ground) >= target) return candidate
     }
-    return { face: face, back: lch(L - 0.14, C*0.85, h), light: light, edge: edge,
-             ink: emblem, keyline: ink(edge), paper: lch(dark ? 0.87 : 0.94, C*0.12, h) }
+    return tone(seed, end)
+}
+function ink(fg, bg, ground) {
+    var seed = ratio(fg, ground) >= ratio(bg, ground) ? fg : bg
+    return contrasting(seed, ground, 4.5)
+}
+function material(seed, bg, fg, neutral) {
+    var v = lab(seed)
+    if (neutral) seed = lch(v[0], 0, 0)
+    var face = contrasting(seed, bg, 3)
+    return { face: face, back: tone(face, lab(face)[0] - 0.12), ink: ink(fg, bg, face) }
 }
 function derive(p, background, foreground, accent) {
     p = p || {}
-    var bg = hex(background, "#101315"), fg = hex(foreground, "#ffffff")
+    var bg = hex(background, "#101315"), fg = hex(foreground, "#dce3ed")
     var seed = pick(p, ["accent"], hex(accent, fg))
     var selected = pick(p, ["selection_background", "selection"], bg)
-    var edge = boundary(bg, selected), v = lab(seed)
+    var v = lab(seed)
     // A neutral accent is deliberate: never invent rainbow icons for monochrome themes.
     var neutral = Math.sqrt(v[1]*v[1] + v[2]*v[2]) < 0.025
     var out = { background: bg, selection: selected, foreground: fg }
@@ -94,6 +94,6 @@ function derive(p, background, foreground, accent) {
         image: pick(p, ["magenta", "color5"], seed), audio: pick(p, ["cyan", "color6"], seed),
         video: pick(p, ["magenta", "color5"], seed), archive: pick(p, ["yellow", "color3"], seed),
         code: pick(p, ["green", "color2"], seed), app: seed }
-    Object.keys(sources).forEach(function(key) { out[key] = material(sources[key], bg, edge, neutral) })
+    Object.keys(sources).forEach(function(key) { out[key] = material(sources[key], bg, fg, neutral) })
     return out
 }

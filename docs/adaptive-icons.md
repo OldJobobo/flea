@@ -23,26 +23,28 @@ directory. Localised or arbitrary names retain the plain folder silhouette.
 
 File families can use the theme's blue, green, yellow, magenta and cyan roles, or
 `color4`, `color2`, `color3`, `color5` and `color6`. Missing family colours fall back
-to the accent. All colours pass through one OKLCH material recipe:
+to the accent. The design is solid and flat at every size: no perimeter outlines,
+keylines, gradients, highlights or shadows. Every visible colour comes from a
+named theme role or a hue-preserving OKLCH derivation of that role:
 
-- Face, rear panel and restrained highlight have perceptually spaced lightness.
-- Chroma is capped and reduced into sRGB without independent channel clipping.
-- Light and dark grounds receive different materials.
-- An approximately neutral accent keeps every family neutral.
-- Black or white emblem ink is chosen for contrast against the face.
-- A two-tone outline preserves the silhouette. Its primary neutral edge maximises
-  the weaker contrast on the normal and selected grounds; the opposite keyline
-  helps where no single colour can achieve the target on both grounds.
+- The face uses the actual accent/family colour when it has 3:1 contrast against
+  the listing background; otherwise only its lightness moves to reach that target.
+- The folder rear panel and document fold use a darker tone of that same face.
+- Symbols use whichever of the theme foreground/background contrasts more strongly
+  with the face. If needed, that theme colour's lightness moves to reach 4.5:1.
+  There is no automatic pure-black/pure-white ink substitution.
+- An approximately neutral accent keeps every family neutral. Out-of-gamut colours
+  reduce chroma into sRGB without independent channel clipping.
 
 The `selection_background` or `selection` palette entry supplies the selected
 proof ground, falling back to the listing background. These are not a guarantee
-of contrast over every wallpaper/translucency combination. Gradients and edge
-contrast have automated coverage on six representative opaque proof palettes;
-there is no claim of a desktop-wide accessibility audit.
+of contrast over every wallpaper/translucency combination. Face/symbol contrast,
+theme-colour provenance and absence of outlines/effects have automated coverage
+on six representative opaque proof palettes; there is no claim of a desktop-wide
+accessibility audit.
 
-At 24 logical pixels and below, flat faces replace the subtle large-size gradient,
-ornamental highlights disappear and emblem strokes strengthen. Geometry and colour
-recipes are shared across all themes: there are no named theme variants.
+At 24 logical pixels and below, symbol strokes strengthen for readability. Geometry
+and colour recipes are shared across all themes: there are no named theme variants.
 
 Unknown names, including brand-specific application icons, use the existing System /
 Omarchy resolver unchanged, then interface glyphs if artwork cannot be loaded.

@@ -37,14 +37,11 @@ function text(x, y, label, color, size = 12) {
     out.push(`<text x="${x}" y="${y}" fill="${color}" font-size="${size}" font-family="DejaVu Sans, sans-serif">${label}</text>`);
 }
 text(26, 37, 'Adaptive icons', '#e1e6ee', 26);
-text(26, 65, 'One set of artwork. Theme-derived materials. Original, small and selected states.', '#b8c4d6', 13);
+text(26, 65, 'Flat theme colours. No outlines, gradients or shadows. Original, small and selected states.', '#b8c4d6', 13);
 text(26, 88, 'Folders / files / generic apps — brand-specific artwork falls back unchanged.', '#b8c4d6', 11);
-let serial = 0;
 function draw(name, palette, x, y, size) {
-    const id = `face-${serial++}`;
     const body = artwork.svg(marks.resolve({ i: name }), palette, size <= 24)
-        .replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '')
-        .replaceAll('id="face"', `id="${id}"`).replaceAll('url(#face)', `url(#${id})`);
+        .replace(/^<svg[^>]*>/, '').replace(/<\/svg>$/, '');
     out.push(`<g transform="translate(${x} ${y}) scale(${size / 64})">${body}</g>`);
 }
 fixtures.palettes.forEach((input, row) => {

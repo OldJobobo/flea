@@ -15,9 +15,9 @@ function run(check) {
                 check(input.name + " " + kind + " valid " + role, /^#[0-9a-f]{6}$/.test(p[role]), true)
             })
             check(input.name + " " + kind + " emblem contrast", Colors.ratio(p.ink, p.face) >= 4.5, true)
-            check(input.name + " " + kind + " gradient contrast", Colors.ratio(p.ink, p.light) >= 4.5, true)
-            check(input.name + " " + kind + " depth", Colors.lab(p.light)[0] > Colors.lab(p.face)[0] && Colors.lab(p.face)[0] > Colors.lab(p.back)[0], true)
-            check(input.name + " " + kind + " boundary", Math.min(Colors.ratio(p.edge, input.background), Colors.ratio(p.edge, input.selection)) >= 3, true)
+            check(input.name + " " + kind + " fold separation", Colors.lab(p.face)[0] > Colors.lab(p.back)[0], true)
+            check(input.name + " " + kind + " silhouette contrast", Colors.ratio(p.face, input.background) >= 3, true)
+            check(input.name + " " + kind + " flat roles only", Object.keys(p).sort().join(","), "back,face,ink")
             if (input.name === "Monochrome") {
                 var rgb = Colors.rgb(p.face)
                 check("neutral stays neutral " + kind, Math.max.apply(Math, rgb) - Math.min.apply(Math, rgb) < 0.001, true)
@@ -29,6 +29,15 @@ function run(check) {
                 var svg = Artwork.svg(icon, palette, small)
                 check(input.name + " " + name + " " + small + " valid SVG", svg.indexOf('<svg ') === 0 && !/undefined|NaN|<image|<filter|<script|href=/.test(svg), true)
                 check("bounded SVG", svg.length < 6000, true)
+                check("flat artwork has no gradients or effects", !/<(?:defs|linearGradient|radialGradient|filter)|url\(/.test(svg), true)
+                check("filled silhouettes have no border strokes", !/<path[^>]*fill="(?!none)[^"]*"[^>]*stroke=/.test(svg), true)
+                var material = palette[icon.kind]
+                var paints = svg.match(/(?:fill|stroke)="[^"]+"/g) || []
+                check("every paint is a theme material", paints.every(function(paint) {
+                    var color = paint.split('"')[1]
+                    return color === "none" || [material.face,material.back,material.ink].indexOf(color)>=0
+                }), true)
+                check("no unrequested white or black paint", !/="#(?:000000|ffffff)"/i.test(svg), true)
             })
         })
     })
@@ -57,4 +66,9 @@ function run(check) {
     check("pixel floor", Artwork.pixelsFor(-1), 1)
     check("fractional size rounds up", Artwork.pixelsFor(23.5), 24)
     check("invalid size cannot enter SVG markup", Artwork.pixelsFor('64" onload="bad'), 64)
+    check("safe theme accent is used exactly", dark.folder.face, "#85a9e8")
+    check("ink uses the theme foreground when it contrasts", Colors.ink("#152c3c","#f4f1eb","#85a9e8"), "#152c3c")
+    check("ink follows changed theme foreground", Colors.ink("#422332","#f4f1eb","#85a9e8"), "#422332")
+    check("ink can use the theme background", Colors.ink("#dce3ed","#171b22","#85a9e8"), "#171b22")
+    check("explicit black theme ink is honoured", Colors.ink("#000000","#f4f1eb","#85a9e8"), "#000000")
 }
