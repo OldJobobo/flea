@@ -28,10 +28,11 @@ def chunk(kind,body):
  return struct.pack('>I',len(body))+kind+body+struct.pack('>I',zlib.crc32(kind+body)&0xffffffff)
 (root/'thumb.png').write_bytes(b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('>IIBBBBB',1,1,8,2,0,0,0))+chunk(b'IDAT',zlib.compress(b'\x00\xff\xff\xff'))+chunk(b'IEND',b''))
 PY
-for mode in normal restart catalogue; do
+for mode in ${ADAPTIVE_ICON_TEST_MODES:-normal restart catalogue zoom}; do
     restart=''; [ "$mode" != restart ] || restart=1
     probe=tests/adaptive-icons.qml
     [ "$mode" != catalogue ] || probe=tests/adaptive-render.qml
+    [ "$mode" != zoom ] || probe=tests/adaptive-zoom.qml
     cp "$probe" "$fixture/config/shell.qml"
     set +e
     output=$(env -u DISPLAY -u WAYLAND_DISPLAY -u HYPRLAND_INSTANCE_SIGNATURE -u FLEA_QT_THEME \

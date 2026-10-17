@@ -16,9 +16,9 @@ QtObject {
     function source(row, size) {
         var icon = Marks.resolve(row)
         if (!icon) return ""
-        var small = size <= 24, key = icon.key + (small ? ":small" : ":large")
+        var pixels = Artwork.pixelsFor(size), key = icon.key + ":" + pixels
         if (root.cache[key] !== undefined) return root.cache[key]
-        var url = Artwork.source(icon, root.palette, small)
+        var url = Artwork.source(icon, root.palette, pixels <= 24, pixels)
         // Mutating these objects does not invalidate other rows. A palette swap replaces them.
         if (root.order.length >= 128) delete root.cache[root.order.shift()]
         root.cache[key] = url

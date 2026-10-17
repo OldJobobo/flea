@@ -48,4 +48,13 @@ function run(check) {
     var dark = Colors.derive({}, "#171b22", "#eeeeee", "#85a9e8")
     var light = Colors.derive({}, "#f4f1eb", "#292d34", "#85a9e8")
     check("light and dark need different materials", dark.folder.face !== light.folder.face, true)
+    var folder = Marks.resolve({i:"folder"})
+    var large = Artwork.svg(folder, dark, false, 128)
+    check("SVG canvas matches requested size", large.indexOf('width="128" height="128"')>=0, true)
+    check("geometry stays on the design grid", large.indexOf('viewBox="0 0 64 64"')>=0, true)
+    check("size change invalidates the image URL", Artwork.source(folder,dark,false,64)!==Artwork.source(folder,dark,false,128), true)
+    check("pixel bounds", Artwork.pixelsFor(2000), 512)
+    check("pixel floor", Artwork.pixelsFor(-1), 1)
+    check("fractional size rounds up", Artwork.pixelsFor(23.5), 24)
+    check("invalid size cannot enter SVG markup", Artwork.pixelsFor('64" onload="bad'), 64)
 }

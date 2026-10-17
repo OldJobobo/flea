@@ -99,7 +99,8 @@ Window {
                 root.check("row census stays fixed",root.countUnder(list)===17)
                 root.check("column census stays fixed",root.countUnder(column)===15)
                 root.check("grid census stays fixed",root.countUnder(grid)===13)
-                root.check("cache is shared",service.source(root.folder,18)===service.source(root.folder,20))
+                root.check("cache is shared at the same size",service.source(root.folder,20)===service.source(root.folder,20))
+                root.check("different sizes get distinct SVG canvases",service.source(root.folder,48)!==service.source(root.folder,96))
                 var before=service.stats.renders
                 for (var i=0;i<500;i++) service.source(root.folder,20)
                 root.check("repeated rows do not render again",service.stats.renders===before)

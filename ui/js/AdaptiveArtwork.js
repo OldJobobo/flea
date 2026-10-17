@@ -10,7 +10,8 @@ function path(d, fill, stroke, width) {
 function outline(d, fill, p) {
     return path(d, fill, p.keyline, 2.4) + path(d, fill, p.edge, 1.2)
 }
-function svg(icon, palette, small) {
+function pixelsFor(size) { return Math.max(1, Math.min(512, Math.ceil(Number(size)) || 64)) }
+function svg(icon, palette, small, pixels) {
     if (!icon || !palette[icon.kind]) return ""
     var p = palette[icon.kind], kind = icon.kind, body = ""
     var folder = "M7 14Q7 10 11 10H24L30 16H53Q57 16 57 20V49Q57 54 52 54H12Q7 54 7 49Z"
@@ -36,9 +37,11 @@ function svg(icon, palette, small) {
         var mark = path(Marks.paths[icon.mark], "none", p.ink, small ? 2.6 : 2)
         body += kind === "app" ? '<g transform="translate(0 -8)">' + mark + '</g>' : mark
     }
-    return '<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">' + defs + body + '</svg>'
+    // Qt's data-URL SVG loader can retain intrinsic dimensions despite Image.sourceSize.
+    var canvas = pixelsFor(pixels)
+    return '<svg xmlns="http://www.w3.org/2000/svg" width="' + canvas + '" height="' + canvas + '" viewBox="0 0 64 64">' + defs + body + '</svg>'
 }
-function source(icon, palette, small) {
-    var body = svg(icon, palette, small)
+function source(icon, palette, small, pixels) {
+    var body = svg(icon, palette, small, pixels)
     return body ? "data:image/svg+xml," + encodeURIComponent(body) : ""
 }
