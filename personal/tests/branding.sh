@@ -41,3 +41,4 @@ if printf '%s\n' "$output" | grep -E 'TypeError|ReferenceError|WARN|ERROR|TICK F
     echo 'Tick branding: unexpected runtime diagnostic'; exit 1
 fi
 printf 'Tick branding: About, safety guards, theme-colored artwork and seven icon selections passed\n'
+TICK_BUNDLE="$bundle" bash personal/tests/mascot.sh

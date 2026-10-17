@@ -24,7 +24,7 @@ class Branding(unittest.TestCase):
     def stage_sources(self):
         leaves = ["ui/" + leaf for leaf in branding.COPY_FILES]
         leaves += ["ui/boot/shell.qml", "ui/boot/picker.qml", "ui/js/Icons.js", "ui/js/IconPacks.js", "ui/Ipc.qml",
-                   "ui/FleaMark.qml", "ui/js/SettingsAbout.js", "ui/UpdateCheck.qml", "ui/DefaultClaim.qml",
+                   "ui/FleaMark.qml", "ui/qmldir", "ui/EmptyState.qml", "ui/js/SettingsAbout.js", "ui/UpdateCheck.qml", "ui/DefaultClaim.qml",
                    "shelf/Model.js", "shelf/ShelfActions.qml", "shelf/FleaShelfMark.qml", "shelf/manifest.json"]
         for leaf in leaves:
             destination = self.stage / leaf
@@ -81,10 +81,22 @@ class Branding(unittest.TestCase):
         mark = (self.stage / "ui/FleaMark.qml").read_text()
         self.assertNotIn('@PATH@', mark)
         self.assertIn('ShapePath.WindingFill', mark)
+        self.assertTrue((self.stage / "ui/TickIdleMotion.qml").is_file())
+        self.assertIn('TickIdleMotion 1.0 TickIdleMotion.qml', (self.stage / "ui/qmldir").read_text())
+        self.assertIn('Qt.createComponent("TickIdleMotion.qml")', mark)
+        self.assertIn('property bool idleGestures: false', mark)
+        self.assertIn('idleGestures: true', (self.stage / "ui/EmptyState.qml").read_text())
+        self.assertNotIn('Timer {', (self.stage / "ui/TickIdleMotion.qml").read_text())
         packs = (self.stage / "ui/js/IconPacks.js").read_text()
         self.assertIn('name === "shelf" ||', packs)
         self.assertIn('var IDS = ["flea", "tabler",', packs)
         self.assertIn('var LABELS = ["Flea",', packs)
+
+    def test_idle_motion_refuses_an_existing_ui_component(self):
+        self.stage_sources()
+        (self.stage / "ui/TickIdleMotion.qml").write_text("User-owned component")
+        with self.assertRaisesRegex(Refusal, 'collides'):
+            branding.apply(self.stage, "d" * 40)
 
     def test_upstream_seam_drift_fails_closed(self):
         self.stage_sources()
