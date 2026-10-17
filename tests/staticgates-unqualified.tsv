@@ -136,77 +136,77 @@ ui/ColumnPane.qml	425	root	Declared QML id; component context access is valid at
 ui/ColumnPane.qml	425	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnPane.qml	426	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnPane.qml	427	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	216	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	216	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	217	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	217	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	218	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	218	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	219	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	220	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	219	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	220	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	221	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	221	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	226	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	226	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	227	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	227	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	222	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	222	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	223	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	223	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	228	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	228	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	229	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	229	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	230	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	238	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	239	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	230	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	231	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	232	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	240	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	241	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	248	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	248	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	249	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	249	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	252	markParts	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	markParts	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	254	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	266	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	266	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	267	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	267	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	272	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	272	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	272	nameText	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	272	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	273	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	273	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	273	nameText	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	273	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	242	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	243	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	250	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	250	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	251	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	251	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	254	markParts	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	markParts	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	256	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	256	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	256	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	256	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	256	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	256	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	269	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	269	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	270	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	270	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	275	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	275	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	275	nameText	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	275	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	276	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	276	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	276	nameText	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	276	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	278	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	279	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	279	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	280	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	280	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	288	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	289	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	290	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	291	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	291	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	291	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	292	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	292	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	282	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	282	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	283	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	283	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	292	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	293	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	294	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	295	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	295	markContent	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	295	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	331	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	332	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	296	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	296	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	296	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	298	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	299	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	335	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	336	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
@@ -540,28 +540,28 @@ ui/GridTile.qml	171	nameLabel	Declared QML id; component context access is valid
 ui/GridTile.qml	171	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	172	nameLabel	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	172	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	234	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	235	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	236	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	237	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	251	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	238	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	252	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	253	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	254	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	255	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	256	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	256	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	257	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	258	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	269	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	269	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	259	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	270	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	270	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	302	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	302	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	303	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	303	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	271	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	271	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	304	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	304	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	305	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	305	root	Declared QML id; component context access is valid at runtime.
 ui/Header.qml	89	anchors	Inherited QtQuick Item property in the enclosing item scope.
 ui/Header.qml	89	parent	Inherited QtQuick Item property in the enclosing item scope.
 ui/Header.qml	93	parent	Inherited QtQuick Item property in the enclosing item scope.
@@ -1949,16 +1949,16 @@ ui/MarkdownTable.qml	97	root	Declared QML id; component context access is valid 
 ui/MarkdownTable.qml	100	root	Declared QML id; component context access is valid at runtime.
 ui/MarkdownTable.qml	112	modelData	Declared QML property; enclosing component context supplies it.
 ui/MarkdownTable.qml	115	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	61	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	61	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	61	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	61	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	69	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	70	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	63	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	63	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	63	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	63	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	71	root	Declared QML id; component context access is valid at runtime.
 ui/MatchText.qml	72	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	83	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	84	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	75	root	Declared QML id; component context access is valid at runtime.
 ui/MatchText.qml	86	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	87	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	90	root	Declared QML id; component context access is valid at runtime.
 ui/MediaSession.qml	30	root	Declared QML id; component context access is valid at runtime.
 ui/MediaSession.qml	33	root	Declared QML id; component context access is valid at runtime.
 ui/MediaSession.qml	34	helper	Declared QML id; component context access is valid at runtime.
@@ -2873,87 +2873,87 @@ ui/Theme.qml	78	root	Declared QML id; component context access is valid at runti
 ui/Theme.qml	83	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	91	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	91	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	92	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	92	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	93	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	93	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	100	glyphMetrics	Quickshell type unresolved when its module is missing.
-ui/Theme.qml	100	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	100	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	101	glyphMetrics	Quickshell type unresolved when its module is missing.
-ui/Theme.qml	101	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	101	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	102	glyphMetrics	Quickshell type unresolved when its module is missing.
-ui/Theme.qml	102	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	102	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	96	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	96	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	103	glyphMetrics	Quickshell type unresolved when its module is missing.
 ui/Theme.qml	103	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	104	bodyGlyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	103	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	104	glyphMetrics	Quickshell type unresolved when its module is missing.
 ui/Theme.qml	104	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	104	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	105	glyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	105	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	105	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	106	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	106	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	106	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	107	bodyGlyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	107	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	108	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	108	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	108	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	111	glyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	109	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	109	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	109	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	111	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	135	glyphMetrics	Quickshell type unresolved when its module is missing.
-ui/Theme.qml	135	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	135	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	136	glyphMetrics	Quickshell type unresolved when its module is missing.
-ui/Theme.qml	136	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	136	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	137	glyphMetrics	Quickshell type unresolved when its module is missing.
-ui/Theme.qml	137	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	137	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	139	bodyGlyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	111	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	111	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	114	glyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	114	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	138	glyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	138	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	138	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	139	glyphMetrics	Quickshell type unresolved when its module is missing.
 ui/Theme.qml	139	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	141	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	141	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	141	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	143	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	143	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	143	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	146	glyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	139	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	140	glyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	140	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	140	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	142	bodyGlyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	142	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	144	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	144	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	144	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	146	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	195	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	196	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	197	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	209	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	211	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	215	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	228	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	228	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	229	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	229	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	230	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	230	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	146	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	146	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	149	glyphMetrics	Quickshell type unresolved when its module is missing.
+ui/Theme.qml	149	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	198	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	199	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	200	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	212	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	214	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	218	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	231	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	231	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	232	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	232	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	233	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	265	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	267	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	271	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	284	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	284	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	285	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	285	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	286	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	286	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	233	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	234	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	235	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	236	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	268	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	270	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	274	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	287	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	288	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	288	root	Declared QML id; component context access is valid at runtime.
 ui/Theme.qml	289	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	385	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/Theme.qml	396	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/Theme.qml	410	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/Theme.qml	427	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	427	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/Theme.qml	438	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/Theme.qml	443	root	Declared QML id; component context access is valid at runtime.
-ui/Theme.qml	443	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/Theme.qml	452	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
-ui/Theme.qml	469	Hyprland	Imported Quickshell singleton; its type is unresolved in the missing-module profile.
-ui/Theme.qml	469	Hyprland	Quickshell.Hyprland singleton unresolved when its module is missing.
+ui/Theme.qml	289	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	290	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	292	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	388	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/Theme.qml	399	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/Theme.qml	413	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/Theme.qml	430	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	430	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/Theme.qml	441	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/Theme.qml	446	root	Declared QML id; component context access is valid at runtime.
+ui/Theme.qml	446	text	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/Theme.qml	455	reload	Enclosing Quickshell StdioCollector, Process or FileView supplies this member.
+ui/Theme.qml	472	Hyprland	Imported Quickshell singleton; its type is unresolved in the missing-module profile.
+ui/Theme.qml	472	Hyprland	Quickshell.Hyprland singleton unresolved when its module is missing.
 ui/TrashMonitor.qml	73	settle	Quickshell type unresolved when its module is missing.
 ui/TrashMonitor.qml	84	root	Declared QML id; component context access is valid at runtime.
 ui/TrashMonitor.qml	84	root	Declared QML id; component context access is valid at runtime.
@@ -3221,46 +3221,46 @@ ui/ColumnPane.qml	426	root	Declared QML id; component context access is valid at
 ui/ColumnPane.qml	427	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnPane.qml	438	root	Declared QML id; the loading signal crosses its component context and is exercised by columnsmoves.
 ui/ColumnPane.qml	439	root	Declared QML id; the loading signal crosses its component context and is exercised by columnsmoves.
-ui/ColumnRow.qml	217	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	217	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	218	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	219	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	219	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	220	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	221	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	221	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	227	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	227	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	228	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	228	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	223	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	223	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	229	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	229	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	230	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	239	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	240	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	230	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	232	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	241	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	249	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	249	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	253	markParts	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	255	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	267	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	267	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	273	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	273	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	273	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	273	nameText	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	242	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	243	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	251	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	251	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	255	markParts	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	257	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	270	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	270	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	276	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	280	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	280	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	289	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	290	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	291	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	292	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	292	markContent	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	292	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	276	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	276	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	276	nameText	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	279	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	283	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	283	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	293	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	294	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnRow.qml	295	root	Declared QML id; component context access is valid at runtime.
-ui/ColumnRow.qml	332	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	296	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	296	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	296	markContent	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	299	root	Declared QML id; component context access is valid at runtime.
+ui/ColumnRow.qml	336	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
 ui/ColumnsArea.qml	419	root	Declared QML id; component context access is valid at runtime.
@@ -3451,20 +3451,20 @@ ui/GridTile.qml	171	nameLabel	Declared QML id; component context access is valid
 ui/GridTile.qml	172	nameLabel	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	172	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	169	nameLabel	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	235	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	236	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	237	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	252	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	238	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	253	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	254	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	256	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	256	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	255	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	257	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	257	root	Declared QML id; component context access is valid at runtime.
 ui/GridTile.qml	258	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	270	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	270	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	303	root	Declared QML id; component context access is valid at runtime.
-ui/GridTile.qml	303	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	259	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	271	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	271	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	305	root	Declared QML id; component context access is valid at runtime.
+ui/GridTile.qml	305	root	Declared QML id; component context access is valid at runtime.
 ui/Header.qml	89	anchors	Inherited QtQuick Item property in the enclosing item scope.
 ui/Header.qml	89	parent	Inherited QtQuick Item property in the enclosing item scope.
 ui/Header.qml	93	parent	Inherited QtQuick Item property in the enclosing item scope.
@@ -3796,16 +3796,16 @@ ui/MarkdownTable.qml	97	root	Declared QML id; component context access is valid 
 ui/MarkdownTable.qml	100	root	Declared QML id; component context access is valid at runtime.
 ui/MarkdownTable.qml	112	modelData	Declared QML property; enclosing component context supplies it.
 ui/MarkdownTable.qml	115	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	61	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	61	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	61	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	61	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	69	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	70	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	63	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	63	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	63	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	63	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	71	root	Declared QML id; component context access is valid at runtime.
 ui/MatchText.qml	72	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	83	root	Declared QML id; component context access is valid at runtime.
-ui/MatchText.qml	84	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	75	root	Declared QML id; component context access is valid at runtime.
 ui/MatchText.qml	86	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	87	root	Declared QML id; component context access is valid at runtime.
+ui/MatchText.qml	90	root	Declared QML id; component context access is valid at runtime.
 ui/MenuActionDialog.qml	306	body	Declared QML id; component context access is valid at runtime.
 ui/MenuActionDialog.qml	309	root	Declared QML id; component context access is valid at runtime.
 ui/MenuActionDialog.qml	323	root	Declared QML id; component context access is valid at runtime.

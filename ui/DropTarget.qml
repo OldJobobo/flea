@@ -8,6 +8,7 @@ Item {
     property bool shown: true
     property real paintWidth: 0
     property alias text: dropLabel.text
+    property alias hintingPreference: dropLabel.font.hintingPreference
     property alias label: dropLabel
 
     // The board's accent hairline over a faint wash at the hover rung's alpha.

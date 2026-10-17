@@ -276,6 +276,7 @@ Item {
                 text: root.locationText
                 color: root.cellInk
                 font.family: Theme.font.family
+                font.hintingPreference: Font.PreferFullHinting
                 font.pixelSize: Theme.font.caption
                 elide: Text.ElideLeft
                 textFormat: Text.PlainText
@@ -294,6 +295,7 @@ Item {
         text: root.modeShown && root.row ? Format.permissions(root.row.p) : ""
         color: root.cellInk
         font.family: Theme.font.family
+        font.hintingPreference: Font.PreferFullHinting
         font.pixelSize: Theme.font.caption
         elide: Text.ElideRight
         textFormat: Text.PlainText
@@ -315,6 +317,7 @@ Item {
         text: root.sizeShown && root.row ? root.sizeText() : ""
         color: root.cellInk
         font.family: Theme.font.family
+        font.hintingPreference: Font.PreferFullHinting
         font.pixelSize: Theme.font.caption
         horizontalAlignment: Text.AlignRight
         elide: Text.ElideRight
@@ -331,6 +334,7 @@ Item {
         // Short-circuit on the switch first, so with the switch off no row enters the library.
         color: (root.dateShown && ViewState.highlightToday && Format.isRecent(root.dateStamp(), ViewState.todayStart)) ? root.dimmed(Theme.color.foreground) : root.cellInk
         font.family: Theme.font.family
+        font.hintingPreference: Font.PreferFullHinting
         font.pixelSize: Theme.font.caption
         horizontalAlignment: Text.AlignRight
         elide: Text.ElideRight
@@ -346,6 +350,7 @@ Item {
         text: root.kindShown && root.row ? root.kindText() : ""
         color: root.cellInk
         font.family: Theme.font.family
+        font.hintingPreference: Font.PreferFullHinting
         font.pixelSize: Theme.font.caption
         elide: Text.ElideRight
         textFormat: Text.PlainText

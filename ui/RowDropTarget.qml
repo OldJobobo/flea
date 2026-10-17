@@ -9,6 +9,7 @@ DropTarget {
     property alias mark: clipGlyph
     anchors.fill: parent
     shown: root.row.dropTarget
+    hintingPreference: Font.PreferFullHinting
     paintWidth: root.row.paintWidth
     text: DragOps.label(root.row.dropCopying, root.row.dropLinking)
 
