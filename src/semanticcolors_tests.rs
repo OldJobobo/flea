@@ -7,7 +7,7 @@ fn selected(value: &Json) -> Option<bool> {
 
 #[test]
 fn semantic_colors_default_off_validate_and_preserve_siblings() {
-    let current = uistate::from_file(r#"{"display":{"iconSet":"feather","textSize":{"mode":16}}}"#);
+    let current = uistate::from_file(r#"{"display":{"iconSet":"feather","textSize":{"mode":16},"fileIconTheme":"adaptive"}}"#);
     assert_eq!(selected(&current), Some(false));
     for enabled in [true, false] {
         let text = format!(r#"{{"display":{{"semanticColors":{enabled}}}}}"#);
@@ -16,6 +16,7 @@ fn semantic_colors_default_off_validate_and_preserve_siblings() {
         assert_eq!(selected(&next), Some(enabled));
         let display = next.get("display").unwrap();
         assert_eq!(display.get("iconSet").and_then(Json::as_str), Some("feather"));
+        assert_eq!(display.get("fileIconTheme").and_then(Json::as_str), Some("adaptive"));
         assert_eq!(display.get("textSize"), current.get("display").unwrap().get("textSize"));
         assert_eq!(selected(&uistate::from_file(&jsondoc::render(&next))), Some(enabled));
     }

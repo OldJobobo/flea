@@ -5,8 +5,10 @@ Settings → Display has two independent selections:
 - **Interface icons** selects Flea's drawn interface marks (including bundled
   Lucide, Tabler and other families). See `docs/icon-packs.md`.
 - **File and folder icons** selects the artwork in list, dual-pane, column, grid
-  and file-picker entries. **Interface icons** is the default; **System / Omarchy**
-  follows the desktop theme, and named entries select an installed theme such as
+  and file-picker entries. **Interface icons** is the default; **Adaptive / theme
+  palette** draws original artwork using the active theme colours (see
+  `docs/adaptive-icons.md`); **System / Omarchy** follows the desktop theme,
+  and named entries select an installed theme such as
   Papirus, Yaru, Tela or Colloid. Nothing is downloaded or installed by Flea.
 
 The selection does not change other applications' icons, the application's own
@@ -43,7 +45,7 @@ The existing shared `ui.json` stores `display.fileIconTheme`:
 {"display":{"fileIconTheme":"builtin"}}
 ```
 
-Values are `builtin`, `system` or `theme:<directory-name>`, for example
+Values are `builtin`, `adaptive`, `system` or `theme:<directory-name>`, for example
 `theme:Papirus-Dark`. `display.iconSet` remains the independent interface-pack
 selection. Missing named themes remain selected, rather than silently rewriting
 preferences; the selector labels an undiscovered selection as not listed.
@@ -66,7 +68,8 @@ path-data packs like the Custom interface-icon slot.
   up to 256 distinct requests; successful and missing results are cached.
 - The existing thumbnail `Image` also renders themed icons. No additional image,
   loader or shape is built per row. Artwork decodes asynchronously, shares Qt's
-  image cache, and is capped to the slot size (128 logical pixels for grid marks).
+  image cache, and is capped to the slot size (128 logical pixels for installed-theme
+  grid marks; Adaptive mode follows all six grid sizes through 256 pixels).
 - Metadata supports inherited themes, implicit `hicolor`, fixed/scalable/threshold
   directories and scaled directories. The closest child size is considered before
   trying a parent. User roots take precedence within the same theme directory.

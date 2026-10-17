@@ -64,7 +64,7 @@ def motions(data):
 
 
 def main():
-    archive = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "personal/branding/tick-animation-pack (1).zip"
+    archive = Path(sys.argv[1]) if len(sys.argv) > 1 else ROOT / "personal/branding/tick-mascot-animation-sources.zip"
     destination = ROOT / "personal/branding/mascot"
     if not destination.resolve().is_relative_to(ROOT):
         raise ValueError("Animation assets must stay inside the checkout")

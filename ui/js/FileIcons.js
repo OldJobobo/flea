@@ -1,7 +1,7 @@
 .pragma library
 
 function selection(value) {
-    if (value === "system") return value
+    if (value === "system" || value === "adaptive") return value
     if (typeof value !== "string" || value.indexOf("theme:") !== 0) return "builtin"
     var name = value.slice(6)
     var bytes
@@ -19,7 +19,7 @@ function request(row, size) {
 function key(icon) { return icon.size + ":" + icon.name }
 
 function choices(themes, current) {
-    var ids = ["builtin", "system"], labels = ["Interface icons", "System / Omarchy"]
+    var ids = ["builtin", "adaptive", "system"], labels = ["Interface icons", "Adaptive / theme palette", "System / Omarchy"]
     for (var i = 0; i < (themes || []).length; i++) {
         var theme = themes[i]
         if (selection(theme.id) !== theme.id || ids.indexOf(theme.id) >= 0) continue

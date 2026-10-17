@@ -226,7 +226,7 @@ function displayRows(state) {
     out.push({ kind: "hint", label: state.iconPackError || "Custom loads flea/icons/custom.json from your configuration directory. Missing marks use Flea icons. Brand marks stay unchanged." })
     var files = FileIcons.choices(state.fileIconThemes, ((state.data || {}).display || {}).fileIconTheme)
     out.push(choice("display.fileIconTheme", "File and folder icons", "folder", files.ids, files.labels, files.selected))
-    out.push({kind: "hint", label: state.fileIconError || "Installed desktop themes color file and folder artwork. Missing or unreadable icons use interface marks; thumbnails take priority."})
+    out.push({kind: "hint", label: state.fileIconError || "Adaptive artwork follows the theme palette; other app icons keep their system artwork. Installed themes stay unchanged. Thumbnails take priority."})
     out.push({kind: "action", id: "refreshFileIcons", label: "Rescan icon themes", glyph: "history"})
     out.push({kind: "check", id: "display.semanticColors", label: "Full semantic colours",
               on: ((state.data || {}).display || {}).semanticColors === true})

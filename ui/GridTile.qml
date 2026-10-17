@@ -125,8 +125,8 @@ Item {
             // silently truncates a plain file:// URL, which is what the hashcache fixture proves.
             source: root.thumb.length > 0 ? Format.fileUri(root.thumb) : root.desktopIcon
             fillMode: root.thumb.length ? Image.PreserveAspectFit : Image.Pad
-            sourceSize.width: root.thumb.length ? ViewState.thumbnailPixels : Density.glyphCap(ViewState.thumbnailPixels)
-            sourceSize.height: root.thumb.length ? ViewState.thumbnailPixels : Density.glyphCap(ViewState.thumbnailPixels)
+            sourceSize.width: root.thumb.length ? ViewState.thumbnailPixels : root.desktopIconPixels
+            sourceSize.height: root.thumb.length ? ViewState.thumbnailPixels : root.desktopIconPixels
             asynchronous: true
             cache: root.thumb.length === 0
         }
@@ -313,7 +313,8 @@ Item {
     // Pooled by its view, which parks the tile's listing reads on live (ui/GridArea.qml); a pooled tile builds no editor.
     property bool pooled: false
     readonly property bool live: !root.pooled
-    readonly property string desktopIcon: root.live && root.visible && !root.thumb.length ? ViewState.fileIconSource(root.row, Density.glyphCap(ViewState.thumbnailPixels)) : ""
+    readonly property int desktopIconPixels: ViewState.fileIconTheme === "adaptive" ? ViewState.thumbnailPixels : Density.glyphCap(ViewState.thumbnailPixels)
+    readonly property string desktopIcon: root.live && root.visible && !root.thumb.length ? ViewState.fileIconSource(root.row, root.desktopIconPixels) : ""
     readonly property bool desktopDrawn: root.desktopIcon.length > 0 && tileThumb.status === Image.Ready
     // The row whose editor the tile held when pooled, -1 for none; it keeps that editor while the edit stays on that row.
     property int pooledEditorRow: -1

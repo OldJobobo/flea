@@ -179,7 +179,7 @@ ui/StatusBar.qml 486
 ui/Theme.qml 478
 ui/TrashView.qml 492
 ui/UnlockDialog.qml 450
-ui/ViewState.qml 588
+ui/ViewState.qml 601
 ui/WindowBody.qml 821
 ui/js/Anchor.js 379
 ui/js/ColumnsCarry.js 103

@@ -1,5 +1,15 @@
 # Full semantic colours
 
+Deployment integration: `deploy/tick-semantic-adaptive` combines this feature
+with adaptive icons on Tick 0.3.12. Rebuilding the combined backend adds the
+adaptive-selection validator missing from the earlier composition probe. The
+full adaptive lifecycle, restart, 360-decode catalogue and six-stop zoom tests
+now pass with semantic colours enabled (20/3/360/176 checks respectively).
+The combined pure-JS battery passes 19,680 checks; semantic Qt/persistence checks
+and present-module static gates pass too. Historical limitations below describe
+the original semantic-only verification; deployment evidence is recorded in the
+immutable bundle manifest and smoke receipt when promotion succeeds.
+
 On `feature/tick-semantic-colors`, enable **Settings → Display → Appearance →
 Full semantic colours**. It is off by default. The saved setting is the strict
 boolean `display.semanticColors` in the existing shared `ui.json`. Switching it

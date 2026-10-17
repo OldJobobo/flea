@@ -1,7 +1,11 @@
 # Supplied Tick animations
 
-Imported from OldJobobo's newer `personal/branding/tick-animation-pack (1).zip`,
-which adds six states to the original three-clip pack.
+Imported from `personal/branding/tick-mascot-animation-sources.zip`, which
+consolidates OldJobobo's two supplied animation packs. The newer nine-state
+sources are canonical. The older rig, demo and README are preserved under
+`tick-animations/legacy/three-state/`, and its unique `tick-preview.gif` is retained.
+Byte-identical shared files are stored once; `CONSOLIDATION.json` maps every
+original file to its preserved member and records the original archive hashes.
 The archive and its rendered GIF previews are not needed at runtime and are not
 modified by the importer. No new authorship or license is inferred for the supplied
 artwork or motion studies.
