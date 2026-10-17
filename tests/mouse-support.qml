@@ -32,7 +32,9 @@ Window {
         }
         Flea.ChromeBar { id: nav; y: 240; width: 600; height: 40; onForwardRequested: root.forwards++ }
         Flea.TabBar { id: strip; y: 300; width: 600; height: 40; pane: root.tabPane }
-        Rectangle { id: shield; anchors.fill: parent; visible: false; z: 10; color: "transparent" }
+        // Real WindowBody has full-size inactive loaders above the chrome/listing.
+        Loader { anchors.fill: parent; active: false; z: 5 }
+        Rectangle { id: shield; anchors.fill: parent; visible: false; z: 10; color: "transparent"; MouseArea { anchors.fill: parent } }
     }
     Flea.MouseHints { id: hints; surface: surface }
     Flea.ContextMenu { id: menu; anchors.fill: surface; focusOwner: surface }

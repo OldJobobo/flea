@@ -53,6 +53,7 @@ Item {
 
     // While a listing is out a press or wheel notch over the header, filter or rows lands on nothing; the handlers gate it, not enabled.
     MouseArea {
+        readonly property bool mouseHintPassthrough: !root.pane.listInFlight
         x: root.pane.listSlot.x
         y: root.pane.header.y
         width: root.pane.listSlot.width

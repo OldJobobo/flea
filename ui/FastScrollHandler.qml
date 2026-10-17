@@ -7,6 +7,7 @@ import "js/MenuWheel.js" as MenuWheel
 MouseArea {
     id: root
     objectName: "fleaScroll"
+    readonly property bool mouseHintPassthrough: true
 
     required property var flickable
     property var ctrlWheelAction: null

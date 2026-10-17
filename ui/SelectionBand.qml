@@ -6,6 +6,7 @@ import "js/Scroll.js" as Scroll
 
 MouseArea {
     id: root
+    readonly property bool mouseHintPassthrough: true
 
     required property var pane
     required property var flickable

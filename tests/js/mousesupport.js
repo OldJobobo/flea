@@ -8,12 +8,30 @@ function run(check) {
     check("tooltip flips above bottom edge", Hints.position(20, 95, 40, 10, 100, 100, 12).y, 73)
     check("label without a key stays plain", Hints.text("Close", ""), "Close")
     check("shortcut follows label", Hints.text("Back", "Alt+Left"), "Back  ·  Alt+Left")
-    var leaf = { mouseHint: "Filename", childAt: function() { return null } }
-    var surface = { childAt: function() { return leaf } }
-    leaf.mapFromItem = function() { return { x: 0, y: 0 } }
+    function item(changes) {
+        var result = { width: 100, height: 100, z: 0, children: [],
+            mapFromItem: function(parent, x, y) { return { x: x, y: y } } }
+        for (var key in changes) result[key] = changes[key]
+        return result
+    }
+    var leaf = item({ mouseHint: "Filename" })
+    var surface = item({ children: [leaf] })
     check("deepest hint wins", Hints.at(surface, 1, 1), leaf)
-    surface.childAt = function() { return { childAt: function() { return null }, mapFromItem: leaf.mapFromItem } }
-    check("overlay blocks an underlying hint", Hints.at(surface, 1, 1), null)
+    var overlay = item({ z: 5 })
+    surface.children = [leaf, overlay]
+    check("inert full-window overlay passes through", Hints.at(surface, 1, 1), leaf)
+    overlay.acceptedButtons = Qt.LeftButton
+    overlay.hoverEnabled = false
+    check("interactive overlay blocks an underlying hint", Hints.at(surface, 1, 1), null)
+    overlay.visible = false
+    check("hidden scrim does not block hints", Hints.at(surface, 1, 1), leaf)
+    overlay.visible = true
+    overlay.enabled = false
+    check("disabled scrim does not block hints", Hints.at(surface, 1, 1), leaf)
+    overlay.enabled = true
+    overlay.z = -1
+    check("lower scrim does not cover higher hint", Hints.at(surface, 1, 1), leaf)
+    check("outside item is not a target", Hints.at(surface, 150, 1), null)
 
     var p = Fixture.pane("/work")
     Tabs.openNew(p, "/other")

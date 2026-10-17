@@ -44,8 +44,11 @@ No confirmation or collision handling is bypassed.
 
 `MouseHints.qml` owns one window-wide hover handler, passive press handler, delay
 and window-focus connection. `MouseHintBubble.qml` is instantiated only on first
-use. `js/MouseHints.js` walks only the item chain under the pointer; it never
-reads the directory model or requests file metadata. Rows gain a string property,
+use. `js/MouseHints.js` searches visible instantiated UI in stacking order after
+pointer dwell, not on every pointer motion. Inert overlay Items/Loaders pass
+through; enabled input scrims block covered hints. The scroll and selection
+handlers explicitly pass hints through, as does the listing shield while idle.
+It never reads the directory model or requests file metadata. Rows gain a string property,
 not an additional object. `js/TabMenu.js` resolves captured tab identities and
 uses the existing `Tabs` commands. `keys.toml` records the new tab right-click
 contract; `ui/js/Keymap.js` is regenerated.
@@ -53,7 +56,9 @@ contract; `ui/js/Keymap.js` is regenerated.
 The measured default startup census moves from 628 to 641 objects: eight for the
 additional chrome button and five for the shared tooltip lane. Its bubble remains
 absent before first hover. The first-frame trace moves from 178 to 181 units and
-from 1684068 to 1692919 bytes, pinned in `tests/startup-units.txt`.
+from 1684068 to 1694738 bytes, pinned in `tests/startup-units.txt`.
+The tooltip-overlay fix retains 641 objects and 181 units; its only ceiling change
+is `ui/FastScrollHandler.qml`, 476 to 477 lines, re-derived with `wc -l`.
 
 File ceilings re-derived with `wc -l`: `ui/ContextMenu.qml` 804,
 `ui/TabBar.qml` 682, `ui/WindowBody.qml` 820, `ui/Row.qml` 499,
@@ -65,13 +70,18 @@ File ceilings re-derived with `wc -l`: `ui/ContextMenu.qml` 804,
 - `bash tests/mouse-support.sh`: real Qt pointer events, delayed hints, plain text,
   reused-item dismissal, overlay blocking, edge placement, focus preservation,
   Forward enablement, tab right-click, Escape and menu-context transitions.
+- `bash tests/mouse-window.sh` (also `--native`): hover hints and focus in the real
+  WindowBody, including its inactive overlay loaders and pass-through input shields.
+  The initial `childAt()` implementation failed these cases: the unit-sized mock
+  window did not contain the product's full-window layers. This regression must
+  stay covered rather than relying on isolated controls or clean startup logs.
 - `bash tests/js.sh`: includes `mousesupport`, menu eligibility, stale/reordered tab
   identities, keyboard reachability and the regenerated pointer contract.
 - `bash tests/path-click.sh`: path entry, breadcrumbs and click-away behavior.
 - `bash tests/startup-objects.sh`: startup object/unit budgets and lazy Quick Look.
 - `tools/flea-file-budget`: documented file ceilings.
 
-The implementation passed 15206 standard JavaScript checks, the 4 Edmonton and
+The initial implementation passed 15206 standard JavaScript checks, the 4 Edmonton and
 13 DST checks, 22 Qt mouse checks, the 26 path-click checks, startup and file-budget
 gates, and generated-keymap comparison. The full `tests/run-all.sh` battery was
 not run. The QML lint gate is still blocked by the same failures reproduced on
@@ -79,7 +89,12 @@ unchanged HEAD: 24 import findings against a ceiling of 12 and four unclassified
 warning categories. Its actionable counts do not increase with this feature;
 pre-existing archive-test stub color warnings also remain in the JS harness.
 
-These are headless tests, not a claim of an exhaustive physical-mouse or visual
+The overlay correction passes 15211 standard JS checks (plus Edmonton/DST),
+22 isolated mouse checks, and 6 real-WindowBody checks on both offscreen and
+native Wayland, along with startup and file-budget gates. The native probe ignores
+only the known private-session portal registration warning, not QML diagnostics.
+
+These automated checks are not a claim of an exhaustive physical-mouse or visual
 accessibility audit. Existing drag/drop, portal-picker and touchpad suites remain
 separate coverage; the new tooltip lane is currently installed in the main file
 manager window, not the portal picker. Theme/monitor scaling and platform drag

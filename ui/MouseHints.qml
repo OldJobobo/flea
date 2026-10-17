@@ -9,6 +9,8 @@ Item {
     property var target: null
     property var bubble: null
     property bool held: false
+    property point lastPosition: Qt.point(-1, -1)
+    property bool over: false
     property real inputStamp: 0
     onInputStampChanged: root.dismiss()
     readonly property bool shown: root.bubble !== null && root.bubble.visible
@@ -18,6 +20,15 @@ Item {
         if (root.bubble) root.bubble.visible = false
     }
     function dismiss() { root.hide(); root.target = null }
+    // Hit testing waits for dwell, rather than walking UI children on every mouse move.
+    function moved() {
+        var point = pointer.point.position
+        if (point.x === root.lastPosition.x && point.y === root.lastPosition.y && pointer.hovered === root.over) return
+        root.lastPosition = point
+        root.over = pointer.hovered
+        root.dismiss()
+        if (pointer.hovered && !root.held) delay.restart()
+    }
     function updateTarget() {
         var next = pointer.hovered && !root.held
                  ? Hints.at(root.surface, pointer.point.position.x, pointer.point.position.y) : null
@@ -28,7 +39,7 @@ Item {
     }
     function show() {
         root.updateTarget()
-        if (!root.target || root.held || !pointer.hovered) return
+        if (!root.target || root.held || !pointer.hovered) { root.hide(); return }
         if (!root.bubble)
             root.bubble = Qt.createComponent("MouseHintBubble.qml").createObject(root.surface, { z: 1000 })
         root.bubble.text = Hints.text(root.target.mouseHint,
@@ -50,8 +61,8 @@ Item {
     HoverHandler {
         id: pointer
         parent: root.surface
-        onPointChanged: root.updateTarget()
-        onHoveredChanged: root.updateTarget()
+        onPointChanged: root.moved()
+        onHoveredChanged: root.moved()
     }
     PointHandler {
         parent: root.surface

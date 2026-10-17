@@ -138,7 +138,7 @@ tests/listprebuild.qml 410
 tests/poolpark.qml 419
 tests/touchpad-edge.qml 438
 tests/railmotion.qml 457
-ui/FastScrollHandler.qml 476
+ui/FastScrollHandler.qml 477
 ui/FigureService.qml 405
 ui/FlashView.qml 397
 ui/NetworkDialog.qml 435
