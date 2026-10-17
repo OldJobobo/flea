@@ -39,7 +39,8 @@ updater nor the stock default-handler action. Tick updates go through `tick-dev`
 
 ## Empty-folder character beats
 
-The empty-folder mascot uses the newer supplied `tick-animation-pack (1).zip`:
+The empty-folder mascot uses the nine-state sources in the consolidated
+`tick-mascot-animation-sources.zip`:
 **idle**, **walk**, **happy hop**, **thinking**, **searching**, **sleepy**, **waving**,
 **surprised**, and **error**. This replaces the earlier whole-icon tilt/hop/wiggle
 with an articulated body, twelve leg segments and two antennae, preserving the
@@ -73,7 +74,9 @@ The original SVG pieces and source QML are retained in `mascot/` with input hash
 which paints fifteen
 semantic-color ShapePaths. No animated GIF, SMIL playback, hard-coded white image,
 SVG image reader or additional multimedia dependency is used at runtime.
-The supplied archive remains untouched; source attribution/provenance is recorded
+The importer leaves the consolidated archive untouched. It preserves every unique
+file from both supplied packs, with differing older sources under `legacy/three-state`
+and original hashes in `CONSOLIDATION.json`. Source attribution/provenance is recorded
 in `mascot/README.md` without assuming an additional license.
 
 `personal/tests/mascot.sh` tests the actual overlaid EmptyState. It runs as part

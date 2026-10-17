@@ -1,6 +1,6 @@
 {
-  "archive": "tick-animation-pack (1).zip",
-  "archive_sha256": "cb33806b19ebbd2d972f96d7d6d66bf803a7b898be52bda630c62bbc86100cc9",
+  "archive": "tick-mascot-animation-sources.zip",
+  "archive_sha256": "ed238052d1b02aad517ba274bf426904055ede55a1093bd7d3680a83071404c7",
   "files": {
     "assets/body.svg": "a672daadee4c8862d134b3f1c32555d9184f6443cd9e0a4623658ea443db564b",
     "assets/antenna-left.svg": "9aa388435b7c9404e067c2e12fd4c21ac96165d34dde1409cf33caa55991f87d",
